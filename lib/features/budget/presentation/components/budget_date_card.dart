@@ -41,19 +41,25 @@ class BudgetDateCard extends StatelessWidget {
             color: context.purpleIcon,
           ),
           const Gap(AppSpacing.spacing4),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                l10n.budgetPeriod,
-                style: AppTextStyles.body5.copyWith(color: context.purpleText),
-              ),
-              Text(
-                '${budget.startDate.toDayShortMonth(locale)} - ${budget.endDate.toDayShortMonthYear(locale)}',
-                style: AppTextStyles.body5.bold,
-              ),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  l10n.budgetPeriod,
+                  style: AppTextStyles.body5.copyWith(color: context.purpleText),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(
+                  '${budget.startDate.toDayShortMonth(locale)} - ${budget.endDate.toDayShortMonthYear(locale)}',
+                  style: AppTextStyles.body5.bold,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
           ),
         ],
       ),
