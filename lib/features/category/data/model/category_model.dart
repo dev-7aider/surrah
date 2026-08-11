@@ -19,6 +19,12 @@ abstract class CategoryModel with _$CategoryModel {
     /// The display name of the category (e.g., "Groceries", "Salary").
     required String title,
 
+    /// Optional category title in Arabic
+    @Default('') String titleAr,
+
+    /// Optional category title in English
+    @Default('') String titleEn,
+
     /// The identifier or name of the icon associated with this category.
     /// This could be a key to lookup an icon from a predefined set (e.g., "HugeIcons.strokeRoundedShoppingBag01").
     @Default('') String icon,
@@ -80,8 +86,18 @@ extension CategoryModelUtils on CategoryModel {
   }
 
   /// Returns localized title based on category ID for default categories if available,
-  /// or falls back to the database title.
+  /// or falls back to titleAr/titleEn based on app language, and finally database title.
   String getLocalizedTitle(BuildContext context) {
+    final locale = Localizations.localeOf(context);
+    final isArabic = locale.languageCode == 'ar';
+
+    if (isArabic && titleAr.trim().isNotEmpty) {
+      return titleAr;
+    }
+    if (!isArabic && titleEn.trim().isNotEmpty) {
+      return titleEn;
+    }
+
     final l10n = AppLocalizations.of(context);
     switch (id) {
       case 1:
@@ -207,6 +223,15 @@ extension CategoryModelUtils on CategoryModel {
       case 11:
         return l10n.catDebts;
       default:
+        if (isArabic) {
+          if (titleAr.trim().isNotEmpty) return titleAr;
+          if (title.trim().isNotEmpty) return title;
+          if (titleEn.trim().isNotEmpty) return titleEn;
+        } else {
+          if (titleEn.trim().isNotEmpty) return titleEn;
+          if (title.trim().isNotEmpty) return title;
+          if (titleAr.trim().isNotEmpty) return titleAr;
+        }
         return title;
     }
   }

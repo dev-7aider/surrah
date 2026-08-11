@@ -48,16 +48,16 @@ class TransactionFormState {
     this.initialTransaction,
   });
 
-  String getCategoryText({CategoryModel? parentCategory}) {
+  String getCategoryText(BuildContext context, {CategoryModel? parentCategory}) {
     final category = selectedCategory.value;
     if (category == null) return '';
 
     if (parentCategory != null) {
       // It's a subcategory, find its parent to display "Parent • Sub"
-      return '${parentCategory.title} • ${category.title}';
+      return '${parentCategory.getLocalizedTitle(context)} • ${category.getLocalizedTitle(context)}';
     } else {
       // It's a parent category
-      return category.title;
+      return category.getLocalizedTitle(context);
     }
   }
 
@@ -284,6 +284,7 @@ TransactionFormState useTransactionFormState({
   required bool isEditing,
   TransactionModel? transaction,
 }) {
+  final context = useContext();
   final titleController = useTextEditingController(
     text: isEditing ? transaction?.title : '',
   );
@@ -391,7 +392,9 @@ TransactionFormState useTransactionFormState({
     () {
       Future.microtask(() {
         selectedCategory.value?.getParentCategory(ref).then((parentCategory) {
+          if (!context.mounted) return;
           categoryController.text = formState.getCategoryText(
+            context,
             parentCategory: parentCategory,
           );
         });

@@ -65,7 +65,8 @@ class BasicMonthlyReportScreen extends HookConsumerWidget {
         padding: const EdgeInsets.symmetric(vertical: AppSpacing.spacing20),
         children: [
           SpendingPieChart(
-            expenseData: transactionsAsync.value?.chartDataList ?? [],
+            expenseData:
+                transactionsAsync.value?.getChartDataList(context) ?? [],
             totalExpenses: transactionsAsync.value?.totalExpenses ?? 0,
             isLoading: transactionsAsync.isLoading,
           ),

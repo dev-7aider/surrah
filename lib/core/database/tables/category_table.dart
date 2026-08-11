@@ -7,6 +7,8 @@ import 'package:pockaw/features/category/data/model/category_model.dart';
 class Categories extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get title => text().withLength(min: 1, max: 100)();
+  TextColumn get titleAr => text().nullable()();
+  TextColumn get titleEn => text().nullable()();
   TextColumn get icon => text().nullable()();
   TextColumn get iconBackground => text().nullable()();
   TextColumn get iconType => text().nullable()();
@@ -25,6 +27,8 @@ extension CategoryExtension on Category {
     return Category(
       id: json['id'] as int,
       title: json['title'] as String,
+      titleAr: json['titleAr'] as String?,
+      titleEn: json['titleEn'] as String?,
       icon: json['icon'] as String?,
       iconBackground: json['iconBackground'] as String?,
       iconType: json['iconType'] as String?,
@@ -46,6 +50,8 @@ extension CategoryTableExtensions on Category {
     return CategoryModel(
       id: id,
       title: title,
+      titleAr: titleAr ?? '',
+      titleEn: titleEn ?? '',
       icon: icon ?? '',
       iconBackground: iconBackground ?? '',
       iconTypeValue: iconType ?? '',

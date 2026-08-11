@@ -51,7 +51,8 @@ class CategoryFormScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
-    final titleController = useTextEditingController();
+    final titleArController = useTextEditingController();
+    final titleEnController = useTextEditingController();
     final parentCategoryController = useTextEditingController();
     final descriptionController = useTextEditingController();
     final icon = useState('');
@@ -79,7 +80,12 @@ class CategoryFormScreen extends HookConsumerWidget {
       if (categoryFuture.connectionState == ConnectionState.done &&
           categoryFuture.data != null) {
         final category = categoryFuture.data!;
-        titleController.text = category.title;
+        titleArController.text = category.titleAr ?? '';
+        titleEnController.text = category.titleEn ?? '';
+        if (titleArController.text.isEmpty && titleEnController.text.isEmpty) {
+          titleArController.text = category.title;
+          titleEnController.text = category.title;
+        }
         descriptionController.text = category.description ?? '';
         icon.value = category.icon ?? '';
         iconType.value = category.toModel().iconType;
@@ -89,7 +95,8 @@ class CategoryFormScreen extends HookConsumerWidget {
     }, [categoryFuture.connectionState, categoryFuture.data]);
 
     if (isEditing) {
-      parentCategoryController.text = selectedParentCategory?.title ?? '';
+      parentCategoryController.text =
+          selectedParentCategory?.getLocalizedTitle(context) ?? '';
     }
 
     return CustomBottomSheet(
@@ -99,7 +106,10 @@ class CategoryFormScreen extends HookConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           spacing: AppSpacing.spacing16,
           children: [
-            CategoryTitleField(titleController: titleController),
+            CategoryTitleField(
+              titleArController: titleArController,
+              titleEnController: titleEnController,
+            ),
             CategoryPickerField(
               icon: icon,
               iconBackground: iconBackground,
@@ -122,7 +132,8 @@ class CategoryFormScreen extends HookConsumerWidget {
 
             CategorySaveButton(
               categoryId: categoryId,
-              titleController: titleController,
+              titleArController: titleArController,
+              titleEnController: titleEnController,
               descriptionController: descriptionController,
               makeAsParent: makeAsParent,
               selectedParentCategory: selectedParentCategory,

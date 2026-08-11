@@ -131,6 +131,7 @@ class TransactionForm extends HookConsumerWidget {
           onCategorySelected: (parentCategory, category) {
             formState.selectedCategory.value = category;
             formState.categoryController.text = formState.getCategoryText(
+              context,
               parentCategory: parentCategory,
             );
           },

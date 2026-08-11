@@ -62,7 +62,7 @@ class CategoryPickerField extends StatelessWidget {
                   label: l10n.parentCategory,
                   hint: isEditingParent
                       ? '-'
-                      : selectedParentCategory?.title ??
+                      : selectedParentCategory?.getLocalizedTitle(context) ??
                             l10n.leaveEmptyForParent,
                   prefixIcon: HugeIcons.strokeRoundedStructure01,
                   onTap: () async {
@@ -71,11 +71,12 @@ class CategoryPickerField extends StatelessWidget {
                       Routes.categoryListPickingParent,
                     );
                     // If a category was selected and returned, update the provider
-                    if (result != null) {
+                    if (result != null && context.mounted) {
                       ref
                           .read(selectedParentCategoryProvider.notifier)
                           .setParent(result);
-                      parentCategoryController.text = result.title;
+                      parentCategoryController.text =
+                          result.getLocalizedTitle(context);
                     }
                   },
                 );

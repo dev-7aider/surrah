@@ -4,7 +4,8 @@ class CategorySaveButton extends ConsumerWidget {
   const CategorySaveButton({
     super.key,
     required this.categoryId,
-    required this.titleController,
+    required this.titleArController,
+    required this.titleEnController,
     required this.descriptionController,
     required this.makeAsParent,
     required this.selectedParentCategory,
@@ -15,7 +16,8 @@ class CategorySaveButton extends ConsumerWidget {
   });
 
   final int? categoryId;
-  final TextEditingController titleController;
+  final TextEditingController titleArController;
+  final TextEditingController titleEnController;
   final TextEditingController descriptionController;
   final ValueNotifier<bool> makeAsParent;
   final CategoryModel? selectedParentCategory;
@@ -31,9 +33,15 @@ class CategorySaveButton extends ConsumerWidget {
       label: l10n.save,
       state: ButtonState.active,
       onPressed: () async {
+        final titleAr = titleArController.text.trim();
+        final titleEn = titleEnController.text.trim();
+        final title = titleAr.isNotEmpty ? titleAr : titleEn;
+
         final newCategory = CategoryModel(
           id: categoryId,
-          title: titleController.text.trim(),
+          title: title,
+          titleAr: titleAr,
+          titleEn: titleEn,
           description: descriptionController.text.trim(),
           parentId: makeAsParent.value ? null : selectedParentCategory?.id,
           icon: icon.value,

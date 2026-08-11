@@ -642,6 +642,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get newCategoryTitle => 'New Category Title';
 
   @override
+  String get categoryTitleAr => 'Category Name (Arabic)';
+
+  @override
+  String get categoryTitleEn => 'Category Name (English)';
+
+  @override
+  String get enterCategoryTitleToast =>
+      'Please enter category title in Arabic and English';
+
+  @override
   String get parentCategory => 'Parent Category';
 
   @override

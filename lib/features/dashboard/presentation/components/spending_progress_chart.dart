@@ -35,7 +35,7 @@ class SpendingProgressChart extends ConsumerWidget {
         final Map<String, double> categorySpending = {};
         for (var expense in currentMonthExpenses) {
           final categoryName =
-              expense.category.title; // Assuming title is the display name
+              expense.category.getLocalizedTitle(context);
           categorySpending[categoryName] =
               (categorySpending[categoryName] ?? 0) + expense.amount;
         }

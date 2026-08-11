@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:pockaw/core/utils/color_generator.dart';
 import 'package:pockaw/features/category/data/model/category_model.dart';
@@ -59,12 +60,12 @@ extension TransactionList on List<TransactionModel> {
     return total;
   }
 
-  List<CategoryChartData> get chartDataList {
+  List<CategoryChartData> getChartDataList(BuildContext context) {
     final Map<String, double> categoryExpenses = {};
 
     for (var transaction in this) {
       if (transaction.transactionType == TransactionType.expense) {
-        final categoryName = transaction.category.title;
+        final categoryName = transaction.category.getLocalizedTitle(context);
         categoryExpenses.update(
           categoryName,
           (value) => value + transaction.amount,

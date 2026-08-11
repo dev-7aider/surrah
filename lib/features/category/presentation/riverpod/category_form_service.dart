@@ -38,6 +38,8 @@ class CategoryFormService {
           ? const Value.absent()
           : Value(categoryModel.id!),
       title: Value(categoryModel.title),
+      titleAr: Value(categoryModel.titleAr),
+      titleEn: Value(categoryModel.titleEn),
       icon: Value(categoryModel.icon),
       iconType: Value(categoryModel.iconTypeValue),
       iconBackground: Value(categoryModel.iconBackground),

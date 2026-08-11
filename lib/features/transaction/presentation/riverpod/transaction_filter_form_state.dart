@@ -37,7 +37,7 @@ class TransactionFilterFormState {
     required this.selectedCategory,
   });
 
-  String getCategoryText() {
+  String getCategoryText(BuildContext context) {
     final cat = selectedCategory.value;
     if (cat == null) return '';
 
@@ -53,10 +53,10 @@ class TransactionFilterFormState {
           subCategories: [],
         ),
       );
-      return '${parent.title} • ${cat.title}';
+      return '${parent.getLocalizedTitle(context)} • ${cat.getLocalizedTitle(context)}';
     } else {
       // It's a parent category
-      return cat.title;
+      return cat.getLocalizedTitle(context);
     }
   }
 

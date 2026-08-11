@@ -67,7 +67,8 @@ class BudgetFormScreen extends HookConsumerWidget {
           amountController.text =
               '$defaultCurrency ${budget.amount.toPriceFormat()}';
           selectedCategory.value = budget.category;
-          categoryController.text = budget.category.title; // Simplified display
+          categoryController.text =
+              budget.category.getLocalizedTitle(context);
           isRoutine.value = budget.isRoutine;
         }
       } else if (!isEditing) {
@@ -286,10 +287,10 @@ class BudgetFormScreen extends HookConsumerWidget {
                         final CategoryModel? result = await context.push(
                           Routes.categoryList,
                         );
-                        if (result != null) {
+                        if (result != null && context.mounted) {
                           selectedCategory.value = result;
                           categoryController.text =
-                              result.title; // Or more detailed text
+                              result.getLocalizedTitle(context);
                         }
                       },
                     ),

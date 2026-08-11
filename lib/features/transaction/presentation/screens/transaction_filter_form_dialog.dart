@@ -52,7 +52,7 @@ class TransactionFilterFormDialog extends HookConsumerWidget {
                   formState.categoryController, // For displaying the text
               onCategorySelected: (category) {
                 formState.selectedCategory.value = category;
-                formState.categoryController.text = formState.getCategoryText();
+                formState.categoryController.text = formState.getCategoryText(context);
               },
             ),
             TransactionFilterDatePicker(

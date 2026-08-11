@@ -640,6 +640,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get newCategoryTitle => 'عنوان الفئة الجديدة';
 
   @override
+  String get categoryTitleAr => 'اسم الفئة بالعربية';
+
+  @override
+  String get categoryTitleEn => 'اسم الفئة بالإنجليزية';
+
+  @override
+  String get enterCategoryTitleToast =>
+      'يرجى إدخال اسم الفئة بالعربية والإنجليزية';
+
+  @override
   String get parentCategory => 'الفئة الرئيسية';
 
   @override

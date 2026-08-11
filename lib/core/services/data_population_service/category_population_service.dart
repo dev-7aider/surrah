@@ -15,6 +15,12 @@ class CategoryPopulationService {
           categoryModel.id!,
         ), // Assuming IDs are always present in defaults
         title: Value(categoryModel.title),
+        titleAr: categoryModel.titleAr.isEmpty
+            ? const Value.absent()
+            : Value(categoryModel.titleAr),
+        titleEn: categoryModel.titleEn.isEmpty
+            ? const Value.absent()
+            : Value(categoryModel.titleEn),
         icon: Value(categoryModel.icon),
         iconBackground: Value(categoryModel.iconBackground),
         iconType: Value(categoryModel.iconTypeValue),

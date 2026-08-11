@@ -22,6 +22,7 @@ import 'package:pockaw/core/router/routes.dart';
 import 'package:pockaw/core/utils/color_generator.dart';
 import 'package:pockaw/l10n/app_localizations.dart';
 import 'package:pockaw/features/authentication/presentation/riverpod/auth_provider.dart';
+import 'package:pockaw/features/category/data/model/category_model.dart';
 import 'package:pockaw/features/currency_picker/presentation/riverpod/currency_picker_provider.dart';
 import 'package:pockaw/features/debt/presentation/components/debt_dashboard_holder.dart';
 import 'package:pockaw/features/reports/presentation/components/money_insider_chart.dart';

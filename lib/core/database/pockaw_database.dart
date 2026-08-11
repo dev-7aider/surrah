@@ -55,7 +55,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
-  int get schemaVersion => 13; // Increment schema version to 13 for default categories update
+  int get schemaVersion => 14; // Increment schema version to 14 for category title localization
 
   @override
   MigrationStrategy get migration {
@@ -113,6 +113,16 @@ class AppDatabase extends _$AppDatabase {
         if (from < 13) {
           Log.i('Updating default categories for schema v13...', label: 'database');
           await CategoryPopulationService.populate(this);
+        }
+
+        if (from < 14) {
+          Log.i('Adding title_ar and title_en columns to categories table...', label: 'database');
+          try {
+            await m.addColumn(categories, categories.titleAr);
+            await m.addColumn(categories, categories.titleEn);
+          } catch (e) {
+            Log.d('Columns titleAr/titleEn migration check: $e', label: 'database');
+          }
         }
       },
     );

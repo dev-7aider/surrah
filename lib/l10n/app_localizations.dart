@@ -1340,6 +1340,24 @@ abstract class AppLocalizations {
   /// **'New Category Title'**
   String get newCategoryTitle;
 
+  /// No description provided for @categoryTitleAr.
+  ///
+  /// In en, this message translates to:
+  /// **'Category Name (Arabic)'**
+  String get categoryTitleAr;
+
+  /// No description provided for @categoryTitleEn.
+  ///
+  /// In en, this message translates to:
+  /// **'Category Name (English)'**
+  String get categoryTitleEn;
+
+  /// No description provided for @enterCategoryTitleToast.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter category title in Arabic and English'**
+  String get enterCategoryTitleToast;
+
   /// No description provided for @parentCategory.
   ///
   /// In en, this message translates to:
