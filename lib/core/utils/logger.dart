@@ -12,10 +12,10 @@ class Log {
     String trimmedLabel = label.toLowerCase().replaceAll(' ', '_');
     if (kDebugMode) {
       log('$message', name: trimmedLabel);
-    }
 
-    if (logToFile) {
-      _writeLogToFile('[$trimmedLabel] $message');
+      if (logToFile) {
+        _writeLogToFile('[$trimmedLabel] $message');
+      }
     }
   }
 

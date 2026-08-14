@@ -663,7 +663,7 @@ packages:
     source: hosted
     version: "0.21.3+1"
   flutter_launcher_icons:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: flutter_launcher_icons
       sha256: "10f13781741a2e3972126fae08393d3c4e01fa4cd7473326b94b72cf594195e7"
@@ -1914,14 +1914,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.0"
-  workmanager:
-    dependency: "direct main"
-    description:
-      name: workmanager
-      sha256: ed13530cccd28c5c9959ad42d657cd0666274ca74c56dea0ca183ddd527d3a00
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.5.2"
   xdg_directories:
     dependency: transitive
     description:

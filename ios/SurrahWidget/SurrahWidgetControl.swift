@@ -9,8 +9,9 @@ import AppIntents
 import SwiftUI
 import WidgetKit
 
+@available(iOS 18.0, *)
 struct SurrahWidgetControl: ControlWidget {
-    static let kind: String = "com.layground.pockaw.SurrahWidget"
+    static let kind: String = "com.haider.surrah.SurrahWidget"
 
     var body: some ControlWidgetConfiguration {
         AppIntentControlConfiguration(
@@ -30,6 +31,7 @@ struct SurrahWidgetControl: ControlWidget {
     }
 }
 
+@available(iOS 18.0, *)
 extension SurrahWidgetControl {
     struct Value {
         var isRunning: Bool
@@ -48,6 +50,7 @@ extension SurrahWidgetControl {
     }
 }
 
+@available(iOS 18.0, *)
 struct TimerConfiguration: ControlConfigurationIntent {
     static let title: LocalizedStringResource = "Timer Name Configuration"
 
@@ -55,6 +58,7 @@ struct TimerConfiguration: ControlConfigurationIntent {
     var timerName: String
 }
 
+@available(iOS 18.0, *)
 struct StartTimerIntent: SetValueIntent {
     static let title: LocalizedStringResource = "Start a timer"
 

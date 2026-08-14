@@ -52,16 +52,21 @@
 		<string>ar</string>
 		<string>en</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>SURRAH requires access to your photo library to select a custom profile picture.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>SURRAH requires camera access to take a profile picture.</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.pockaw.surrah</string>
+			<string>com.haider.surrah</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>surrah</string>
+				<string>pockaw</string>
 			</array>
 		</dict>
 	</array>

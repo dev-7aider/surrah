@@ -1,0 +1,25 @@
+{
+  "ar": [
+    "lastRestoreTimeLabel",
+    "notSet",
+    "backupFromDate",
+    "backupSizeLabel",
+    "unknownDate",
+    "unknownSize",
+    "accountDeletionWarning",
+    "accountDeletionDescription",
+    "typeYourNameToContinue",
+    "enterYourUsername",
+    "challengeConfirmation",
+    "reportLogFileNotice",
+    "understandAndContinue",
+    "developerPortalWarning",
+    "resetCategories",
+    "confirmResetCategories",
+    "resetWallets",
+    "confirmResetWallets",
+    "resetDatabase",
+    "confirmResetDatabase",
+    "privacyPolicyContent"
+  ]
+}

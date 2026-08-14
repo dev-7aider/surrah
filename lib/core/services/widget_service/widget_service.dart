@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:home_widget/home_widget.dart';
 
 class WidgetService {
-  static const String appGroupId = 'group.com.pockaw.surrah';
+  static const String appGroupId = 'group.com.haider.surrah';
   static const String androidWidgetName = 'SurrahWidgetProvider';
   static const String iOSWidgetName = 'SurrahWidget';
 

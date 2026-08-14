@@ -27,7 +27,7 @@ struct Provider: TimelineProvider {
     }
 
     private func getEntryFromUserDefaults() -> SimpleEntry {
-        let userDefaults = UserDefaults(suiteName: "group.com.pockaw.surrah")
+        let userDefaults = UserDefaults(suiteName: "group.com.haider.surrah")
         let hideBalance = userDefaults?.bool(forKey: "hide_balance") ?? false
         let todaySpentVal = userDefaults?.double(forKey: "today_spent") ?? 0
         let remainingBudgetVal = userDefaults?.double(forKey: "remaining_budget") ?? 0

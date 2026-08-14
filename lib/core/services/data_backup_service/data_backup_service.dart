@@ -26,7 +26,6 @@ class DataBackupService {
 
   static const String _jsonFileName = 'data.json';
   static const String _imagesDirName = 'images';
-  static const String _defaultBackupDirectory = '/storage/emulated/0/Documents';
   static const String _backupDir = 'PockawBackup';
   static const String _autoBackupFileName = 'Pockaw_Auto_Backup.zip';
   // static const String _tempBackupDirName = 'pockaw-temp-backup';
@@ -231,24 +230,28 @@ class DataBackupService {
   // PRIVATE HELPERS
   // ---------------------------------------------------------------------------
 
-  /// Perform file picker to select directory
+  /// Perform directory selection for backup root
   Future<Directory> _getDefaultDirectory() async {
     try {
-      /// declare default internal android directory path
-      final String defaultDirectory = Platform.isAndroid
-          ? _defaultBackupDirectory
-          : (await getApplicationDocumentsDirectory()).path;
+      final String defaultDirectory =
+          (await getApplicationDocumentsDirectory()).path;
 
       final backupDirectory = Directory(p.join(defaultDirectory, _backupDir));
+      if (!await backupDirectory.exists()) {
+        await backupDirectory.create(recursive: true);
+      }
       Log.d(backupDirectory, label: 'Selected Directory');
 
       return backupDirectory;
     } catch (e, st) {
-      Log.e('Failed to pick directory: $e\n$st', label: 'Backup Error');
+      Log.e('Failed to get default directory: $e\n$st', label: 'Backup Error');
 
       final String defaultDirectory =
           (await getApplicationDocumentsDirectory()).path;
       final backupDirectory = Directory(p.join(defaultDirectory, _backupDir));
+      if (!await backupDirectory.exists()) {
+        await backupDirectory.create(recursive: true);
+      }
 
       return backupDirectory;
     }

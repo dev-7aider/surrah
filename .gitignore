@@ -44,8 +44,13 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-/android/app/google-services*.json
 keystore.properties
+*.jks
+*.keystore
+*.p8
+*.p12
+*.mobileprovision
+.env*
 
 *.freezed.dart
 *.g.dart

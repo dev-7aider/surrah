@@ -273,8 +273,6 @@ PODS:
     - Flutter
   - vibration (3.0.0):
     - Flutter
-  - workmanager (0.0.1):
-    - Flutter
 
 DEPENDENCIES:
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
@@ -301,7 +299,6 @@ DEPENDENCIES:
   - sqlite3_flutter_libs (from `.symlinks/plugins/sqlite3_flutter_libs/darwin`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
   - vibration (from `.symlinks/plugins/vibration/ios`)
-  - workmanager (from `.symlinks/plugins/workmanager/ios`)
 
 SPEC REPOS:
   trunk:
@@ -381,8 +378,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
   vibration:
     :path: ".symlinks/plugins/vibration/ios"
-  workmanager:
-    :path: ".symlinks/plugins/workmanager/ios"
 
 SPEC CHECKSUMS:
   connectivity_plus: 2a701ffec2c0ae28a48cf7540e279787e77c447d
@@ -435,7 +430,6 @@ SPEC CHECKSUMS:
   SwiftyGif: 706c60cf65fa2bc5ee0313beece843c8eb8194d4
   url_launcher_ios: bb13df5870e8c4234ca12609d04010a21be43dfa
   vibration: 8e4d81c3e73ab229a9fb5ab2692f789c4a46d74d
-  workmanager: 0afdcf5628bbde6924c21af7836fed07b42e30e6
 
 PODFILE CHECKSUM: 4b015915ec662986b54bf30ab778da63f7dda016
 

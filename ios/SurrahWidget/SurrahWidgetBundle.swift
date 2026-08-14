@@ -12,6 +12,8 @@ import SwiftUI
 struct SurrahWidgetBundle: WidgetBundle {
     var body: some Widget {
         SurrahWidget()
-        SurrahWidgetControl()
+        if #available(iOS 18.0, *) {
+            SurrahWidgetControl()
+        }
     }
 }
