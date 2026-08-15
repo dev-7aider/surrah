@@ -210,7 +210,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get breakdownByCategory => 'تفصيل مصروفاتك حسب الفئة';
 
   @override
-  String get totalSpent => 'إجمالي المصروف';
+  String get totalSpent => 'إجمالي المصروفات';
 
   @override
   String get noTransactionToDisplay => 'لا توجد معاملات لعرضها';
@@ -682,7 +682,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'حذف هذه الفئة سيؤدي أيضاً إلى حذف جميع الفئات الفرعية والمعاملات المرتبطة بها. هل تريد الاستمرار؟\n\nلا يمكن التراجع عن هذا الإجراء.';
 
   @override
-  String get addAnewCategory => '+ إضافة فئة جديد';
+  String get addAnewCategory => '+ إضافة فئة جديدة';
 
   @override
   String get today => 'اليوم';
@@ -909,87 +909,86 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String lastBackupTimeLabel(Object time) {
-    return 'وقت آخر نسخة احتياط�  termsAndConditionsContent: ### ملخص\n- **ترخيص مجاني:** تطبيق Pockaw مجاني للاستخدام الشخصي.\n- **مسؤوليتك:** أنت المسؤول عن النسخ الاحتياطية الخاصة بك وأمان بياناتك.\n- **لا يوجد ضمان:** يتم توفير التطبيق \"كما هو\" دون ضمانات مالية.\n\n### 1. القبول بالشروط\nبتحميل التطبيق أو تثبيته أو استخدامه، فإنك توافق على الالتزام بهامش الشروط والأحكام. إذا كنت لا توافق على هذه الشروط، فيرجى عدم استخدام التطبيق.\n\n### 2. مسؤولية المستخدم عن البيانات\nيعمل Pockaw بناءً على **نموذج يعمل بدون إنترنت أوفلاين أولاً**. نحن لا نخزن بياناتك المالية على خوادمنا.\n\n#### 2.1. فقدان البيانات والنسخ الاحتياطي\nأنك تقر بأنك المسؤول الوحيد عن الاحتفاظ بنسخ احتياطية من بياناتك.\n- **النسخ الاحتياطي اليدوي مطلوب:** تتطلب ميزة \"النسخ الاحتياطي والاستعادة\" بدءاً يدوياً من قبلك. التزامن السحابي التلقائي غير مفعل بشكل افتراضي.\n- **عطل الجهاز:** لسنا مسؤولين عن أي فقدان للبيانات ناتج عن أجهزة مفقودة، أو تطبيقات ملغاة التثبيت، أو تلف في التخزين المحلي.\n\n#### 2.2. البيئات المدعومة\nتم تصميم Pockaw للعمل على أنظمة التشغيل القياسية غير المعدلة (Android, iOS, Windows, macOS, Linux). **لا نضمن الوظائف أو الدعم للأجهزة التي تم عمل \"Root\" أو \"Jailbreak\" لها.** قد تفشل ميزات مثل النسخ الاحتياطي المحلي على هذه الأجهزة بسبب قيود أذونات نظام الملفات.\n\n### 3. خدمات الطرف الثالث\n#### 3.1. خدمات Google\nإذا اخترت استخدام تسجيل الدخول عبر Google أو النسخ الاحتياطي على Google Drive:\n- فإنك توافق على الالتزام بشروط خدمة Google.\n- تفهم أن Pockaw يسهل الاتصال بـ Google Drive فقط. لسنا مسؤولين عن توفر أو موثوقية خدمات Google.\n\n### 4. حذف الحساب\nيؤدي تحديد \"حذف الحساب\" داخل التطبيق إلى إعادة ضبط محلية لجلساتك الحالية وفصل رمز حساب Google الخاص بك. **ولا يؤدي إلى حذف ملفات النسخ الاحتياطي** التي قمت بتصديرها سابقاً إلى Google Drive أو التخزين المحلي لجهازك. إدارة وتعديل تلك الملفات الخارجية هي مسؤوليتك.\n\n### 5. الملكية الفكرية\nPockaw هو برنامج مفتوح المصدر (Open Source). بينما تتوفر الكود المصدري للمعاينة والمساهمة بموجب ترخيص LGPL v3، فإن العلامة التجارية Pockaw والشعارات والأصول المرئية هي ملكية فكرية للمطورين ولا يجوز استخدامها لأغراض تجارية دون إذن.\n\n### 6. إخلاء المسؤولية عن الضمانات\nيتم توفير التطبيق \"كما هو\" و \"كما هو متاح\" دون أي ضمان من أي نوع.\n- **ليست نصيحة مالية:** Pockaw هو أداة تتبع، وليس مستشاراً مالياً. لسنا مسؤولين عن أي قرارات مالية تتخذها بناءً على البيانات المعروضة في التطبيق.\n- **الأخطاء والأعطال:** بينما نسعى جاهدين للاستقرار، لا نضمن أن التطبيق سيكون خالياً من الأخطاء أو مستمراً دون انقطاع.\n\n### 7. التعديلات على الشروط\nنحتفظ بالحق في تعديل هذه الشروط في أي وقت. الاستمرار في استخدام التطبيق بعد أي تغييرات يعني قبولك للشروط الجديدة.\n\n### 8. تواصل معنا\nلأي أسئلة تتعلق بهذه الشروط، يرجى التواصل معنا عبر: idlayground@gmail.com';
+    return 'وقت آخر نسخة احتياطية: $time';
   }
 
   @override
   String lastRestoreTimeLabel(Object time) {
-    return 'Last Restore Time: $time';
+    return 'وقت آخر استعادة: $time';
   }
 
   @override
-  String get notSet => 'Not set';
+  String get notSet => 'غير محدد';
 
   @override
   String backupFromDate(Object date) {
-    return 'Backup from $date';
+    return 'نسخة احتياطية بتاريخ $date';
   }
 
   @override
   String backupSizeLabel(Object size) {
-    return 'Size: $size';
+    return 'الحجم: $size';
   }
 
   @override
-  String get unknownDate => 'Unknown Date';
+  String get unknownDate => 'تاريخ غير معروف';
 
   @override
-  String get unknownSize => 'Unknown Size';
+  String get unknownSize => 'حجم غير معروف';
 
   @override
-  String get accountDeletionWarning =>
-      'Warning: Account Deletion is PERMANENT!';
+  String get accountDeletionWarning => 'تحذير: حذف الحساب نهائي ودائم!';
 
   @override
   String get accountDeletionDescription =>
-      'If you decided to proceed, all your application data, including financial records, goals, and settings, will be permanently erased from this device. This action cannot be undone or reversed. The application will be reset to its initial state, and you will be logged out.\n\nThis will not delete any backup files you may have stored on local storage or Google Drive. If you are not sure, please back up to local or Google Drive first.\n\nYou may restore your backup file later.';
+      'إذا قررت المتابعة، فسيتم مسح جميع بيانات التطبيق نهائياً من هذا الجهاز، بما في ذلك السجلات المالية والأهداف والإعدادات. لا يمكن التراجع عن هذا الإجراء أو عكسه. سيتم إعادة تشغيل التطبيق إلى حالته الأولية وتسجيل خروجك.\n\nلن يؤدي هذا إلى حذف أي ملفات نسخة احتياطية قمت بتخزينها على التخزين المحلي أو Google Drive. إذا لم تكن متأكداً، يرجى إجراء نسخة احتياطية أولاً.\n\nيمكنك استعادة ملف النسخة الاحتياطية لاحقاً.';
 
   @override
   String typeYourNameToContinue(Object userName) {
-    return 'Type your name \'$userName\' to continue:';
+    return 'اكتب اسمك \'$userName\' للمتابعة:';
   }
 
   @override
-  String get enterYourUsername => 'Enter your username';
+  String get enterYourUsername => 'أدخل اسم المستخدم الخاص بك';
 
   @override
-  String get challengeConfirmation => 'Challenge Confirmation';
+  String get challengeConfirmation => 'تأكيد التحدي';
 
   @override
   String get reportLogFileNotice =>
-      'Log file contains non-sensitive information. It is for development and investigation purposes only. Please only share this file with the developer.\n\nLog history is one-time session. It will be cleared every time you open the app.';
+      'يحتوي ملف السجل على معلومات غير حساسة. وهو مخصص لأغراض التطوير والتحقيق فقط. يرجى مشاركة هذا الملف فقط مع المطور.\n\nسجل العمليات جلسة واحدة فقط. يتم مسحه في كل مرة تفتح فيها التطبيق.';
 
   @override
-  String get understandAndContinue => 'Understand and Continue';
+  String get understandAndContinue => 'أفهم وأتابع';
 
   @override
   String get developerPortalWarning =>
-      'Warning! Make sure you know what you are doing. Use with caution.';
+      'تحذير! تأكد من أنك تعرف ما تفعله. استخدم بحذر.';
 
   @override
-  String get resetCategories => 'Reset Categories';
+  String get resetCategories => 'إعادة ضبط الفئات';
 
   @override
   String get confirmResetCategories =>
-      'Are you sure you want to reset the categories?';
+      'هل أنت تأكد من أنك تريد إعادة ضبط الفئات؟';
 
   @override
-  String get resetWallets => 'Reset Wallets';
+  String get resetWallets => 'إعادة ضبط المحافظ';
 
   @override
   String get confirmResetWallets =>
-      'Are you sure you want to reset the wallets?';
+      'هل أنت تأكد من أنك تريد إعادة ضبط المحافظ؟';
 
   @override
-  String get resetDatabase => 'Reset Database';
+  String get resetDatabase => 'إعادة ضبط قاعدة البيانات';
 
   @override
   String get confirmResetDatabase =>
-      'Are you sure you want to reset the database?';
+      'هل أنت تأكد من أنك تريد إعادة ضبط قاعدة البيانات؟';
 
   @override
   String get privacyPolicyContent =>
-      '### Summary\n- **We are offline-first:** Your data lives on your device by default.\n- **We don\'t sell data:** We have no access to your financial transactions.\n- **Backups are manual:** You control when and where your data is saved.\n\n### 1. Data Collection & Usage\nPockaw is designed as an **offline-first application**. This means the core database containing your budgets, transactions, and goals is created and stored locally on your device.\n\n#### 1.1. Google Sign-In\nWe use Google Sign-In solely for authentication purposes to facilitate secure backups. When you sign in, we receive a basic authentication token to verify your identity. Pockaw **does not** read your emails, contacts, or other personal information from your Google account.\n\n#### 1.2. Analytics & Crash Reports\nTo improve app stability, we use **Firebase Analytics** and **Crashlytics**. These services collect anonymous usage data (e.g., \"User opened Settings screen\") and crash logs. This data is aggregated and cannot be used to identify you personally or view your financial entries.\n\n### 2. Data Backup & Restore\nTo prevent data loss, Pockaw offers manual backup options. You are in full control of triggering these actions.\n\n#### 2.1. Local Backup\nYou can choose to export a backup file directly to your device\'s storage.\n- **Android:** Backups are stored in `Internal Storage/Documents/PockawBackup/`.\n- **iOS:** Backups are stored in the application\'s document directory, accessible via the Files app.\n\n*Note: You are responsible for the security of these files. If you lose your device or delete these files, the data cannot be recovered by us.*\n\n#### 2.2. Google Drive Backup\nYou may optionally choose to back up your data to your personal Google Drive.\n- This action is **manually triggered** by you in the \"Backup & Restore\" settings.\n- The app requires an internet connection to perform this action.\n- The backup file is stored in a private folder in your Google Drive. Pockaw does not have access to other files in your Drive.\n\n### 3. Account Deletion & Data Reset\nPockaw does not maintain a central server with your financial records. Therefore, the \"Delete Account\" function works as follows:\n1. **Session Reset:** It signs you out of your Google account within the app.\n2. **Local Wipe:** It clears the current session data from the app.\n\n**Important:** Deleting your account in the app **does not** automatically delete backup files you have previously saved to your Google Drive or local storage. Since you own those files, you must manually delete them from your Drive or device if you wish to remove all traces of your data.\n\n### 4. Security\nWe take security seriously. Your database is stored using industry-standard SQLite encryption on your device. When using Google Drive backup, your data is transmitted securely using Google\'s encrypted APIs.\n\n### 5. Contact Us\nIf you have questions about this policy or the open-source nature of our project, reach out to us:\n- **Developer:** Haider Al-Tamimi\n- **Email:** haider.new.it@gmail.com\n- **Website:** https://haider-al-timamy.vercel.app\n- **WhatsApp:** https://wa.me/+9647841392694\n- **Community:** Join our Telegram (https://t.me/PockawApp)';
+      '### ملخص\n- **نحن نعمل بدون إنترنت (أوفلاين أولاً):** تعيش بياناتك على جهازك بشكل افتراضي.\n- **نحن لا نبيع البيانات:** ليس لدينا أي وصول إلى معاملاتك المالية.\n- **النسخ الاحتياطي يدوي:** أنت من يتحكم في وقت ومكان حفظ بياناتك.\n\n### 1. جمع البيانات واستخدامها\nتم تصميم تطبيق Pockaw كـ **تطبيق يعمل دون اتصال بالإنترنت (Offline-First)**. هذا يعني أن قاعدة البيانات الأساسية التي تحتوي على ميزانياتك ومعاملاتك وأهدافك يتم إنشاؤها وتخزينها محلياً على جهازك.\n\n#### 1.1. تسجيل الدخول عبر Google\nنستخدم تسجيل الدخول عبر Google فقط لأغراض المصادقة لتسهيل عمليات النسخ الاحتياطي الآمنة. عند تسجيل الدخول، نلتزم بتلقي رمز مصادقة أساسي للتحقق من هويتك. **لا يقوم** Pockaw بقراءة بريدك الإلكتروني أو جهات اتصالك أو أي معلومات شخصية أخرى من حساب Google الخاص بك.\n\n#### 1.2. تحليلات وتقارير الأعطال\nلتحسين استقرار التطبيق، نستخدم **Firebase Analytics** و **Crashlytics**. تجمع هذه الخدمات بيانات استخدام مجهولة الهوية (مثل \"فتح المستخدم شاشة الإعدادات\") وسجلات الأعطال. يتم تجميع هذه البيانات ولا يمكن استخدامها للتعرف عليك شخصياً أو الاطلاع على مدخلاتك المالية.\n\n### 2. النسخ الاحتياطي واستعادة البيانات\nلمنع فقدان البيانات، يوفر Pockaw خيارات النسخ الاحتياطي اليدوي. أنت في تحكم كامل لتشغيل هذه الإجراءات.\n\n#### 2.1. النسخ الاحتياطي المحلي\nيمكنك اختيار تصدير ملف نسخة احتياطية مباشرة إلى وحدة تخزين جهازك.\n- **Android:** يتم تخزين النسخ الاحتياطية في `Internal Storage/Documents/PockawBackup/`.\n- **iOS:** يتم تخزين النسخ الاحتياطية في مجلد مستندات التطبيق، ويمكن الوصول إليها عبر تطبيق الملفات (Files).\n\n*ملاحظة: أنت المسؤول عن أمان هذه الملفات. إذا فقدت جهازك أو قمت بحذف هذه الملفات، فلا يمكننا استعادة البيانات.*\n\n#### 2.2. النسخ الاحتياطي على Google Drive\nيمكنك اختيارياً النسخ الاحتياطي لبياناتك على حساب Google Drive الشخصي الخاص بك.\n- يتم **تشغيل هذا الإجراء يدوياً** من قبلك في إعدادات \"النسخ الاحتياطي والاستعادة\".\n- يتطلب التطبيق اتصالاً بالإنترنت لتنفيذ هذا الإجراء.\n- يتم تخزين ملف النسخ الاحتياطي في مجلد خاص في Google Drive. لا يملك Pockaw إمكانية الوصول إلى الملفات الأخرى في Google Drive الخاص بك.\n\n### 3. حذف الحساب وإعادة ضبط البيانات\nلا يحتفظ Pockaw بسيرفر مركزي يضم سجلاتك المالية. لذلك، تعمل وظيفة \"حذف الحساب\" كالتالي:\n1. **إعادة ضبط الجلسة:** تقوم بتسجيل خروجك من حساب Google الخاص بك داخل التطبيق.\n2. **المسح المحلي:** تقوم بمسح بيانات الجلسة الحالية من التطبيق.\n\n**هام:** حذف حسابك في التطبيق **لا يؤدي تلقائياً** إلى حذف ملفات النسخ الاحتياطي التي قمت بحفظها سابقاً على Google Drive أو التخزين المحلي. نظراً لأنك تملك تلك الملفات، يجب عليك حذفها يدوياً من Drive أو جهازك إذا كنت ترغب في إزالة جميع آثار بياناتك.\n\n### 4. الأمان\nنحن نأخذ الأمان على محمل الجد. يتم تخزين قاعدة البيانات الخاصة بك باستخدام تشفير SQLite القياسي على جهازك. عند استخدام النسخ الاحتياطي على Google Drive، يتم نقل بياناتك بأمان باستخدام واجهات برمجية مشفرة من Google.\n\n### 5. تواصل معنا\nإذا كان لديك أي أسئلة حول هذه السياسة أو طبيعة مشروعنا مفتوح المصدر، تواصل معنا:\n- **المطور:** حيدر التميمي (Haider Al-Tamimi)\n- **البريد الإلكتروني:** haider.new.it@gmail.com\n- **الموقع الشخصي:** https://haider-al-timamy.vercel.app\n- **واتساب:** https://wa.me/+9647841392694\n- **المجتمع:** انضم إلى قناتنا على تلغرام (https://t.me/PockawApp)';
 
   @override
   String get termsAndConditionsContent =>
@@ -1176,6 +1175,5 @@ class AppLocalizationsAr extends AppLocalizations {
   String get catPhone => 'الهاتف والاتصالات';
 
   @override
-  String get catDebts =>
-      'الديون والالتزاماتا أي وصول إلى معاملاتك المالية.\n- **النسخ الاحتياطي يدوي:** أنت من يتحكم في وقت ومكان حفظ بياناتك.\n\n### 1. جمع البيانات واستخدامها\nتم تصميم تطبيق Pockaw كـ **تطبيق يعمل دون اتصال بالإنترنت (Offline-First)**. هذا يعني أن قاعدة البيانات الأساسية التي تحتوي على ميزانياتك ومعاملاتك وأهدافك يتم إنشاؤها وتخزينها محلياً على جهازك.\n\n#### 1.1. تسجيل الدخول عبر Google\nنستخدم تسجيل الدخول عبر Google فقط لأغراض المصادقة لتسهيل عمليات النسخ الاحتياطي الآمنة. عند تسجيل الدخول، نلتزم بتلقي رمز مصادقة أساسي للتحقق من هويتك. **لا يقوم** Pockaw بقراءة بريدك الإلكتروني أو جهات اتصالك أو أي معلومات شخصية أخرى من حساب Google الخاص بك.\n\n#### 1.2. تحليلات وتقارير الأعطال\nلتحسين استقرار التطبيق، نستخدم **Firebase Analytics** و **Crashlytics**. تجميع هذه الخدمات بيانات استخدام مجهولة الهوية (مثل \"فتح المستخدم شاشة الإعدادات\") وسجلات الأعطال. يتم تجميع هذه البيانات ولا يمكن استخدامها للتعرف عليك شخصياً أو الاطلاع على مدخلاتك المالية.\n\n### 2. النسخ الاحتياطي واستعادة البيانات\nلمنع فقدان البيانات، يوفر Pockaw خيارات النسخ الاحتياطي اليدوي. أنت في تحكم كامل لتشغيل هذه الإجراءات.\n\n#### 2.1. النسخ الاحتياطي المحلي\nيمكنك اختيار تصدير ملف نسخة احتياطية مباشرة إلى وحدة تخزين جهازك.\n- **Android:** يتم تخزين النسخ الاحتياطية في `Internal Storage/Documents/PockawBackup/`.\n- **iOS:** يتم تخزين النسخ الاحتياطية في مجلد مستندات التطبيق، ويمكن الوصول إليها عبر تطبيق الملفات (Files).\n\n*ملاحظة: أنت المسؤول عن أمان هذه الملفات. إذا فقدت جهازك أو قمت بحذف هذه الملفات، فلا يمكننا استعادة البيانات.*\n\n#### 2.2. النسخ الاحتياطي على Google Drive\nيمكنك اختيارياً النسخ الاحتياطي لبياناتك على حساب Google Drive الشخصي الخاص بك.\n- يتم **تشغيل هذا الإجراء يدوياً** من قبلك في إعدادات \"النسخ الاحتياطي والاستعادة\".\n- يتطلب التطبيق اتصالاً بالإنترنت لتنفيذ هذا الإجراء.\n- يتم تخزين ملف النسخ الاحتياطي في مجلد خاص في Google Drive. لا يملك Pockaw إمكانية الوصول إلى الملفات الأخرى في Google Drive الخاص بك.\n\n### 3. حذف الحساب وإعادة ضبط البيانات\nلا يحتفظ Pockaw بسيرفر مركزي يضم سجلاتك المالية. لذلك، تعمل وظيفة \"حذف الحساب\" كالتالي:\n1. **إعادة ضبط الجلسة:** تقوم بتسجيل خروجك من حساب Google الخاص بك داخل التطبيق.\n2. **المسح المحلي:** تقوم بمسح بيانات الجلسة الحالية من التطبيق.\n\n**هام:** حذف حسابك في التطبيق **لا يؤدي تلقائياً** إلى حذف ملفات النسخ الاحتياطي التي قمت بحفظها سابقاً على Google Drive أو التخزين المحلي. نظراً لأنك تملك تلك الملفات، يجب عليك حذفها يدوياً من Drive أو جهازك إذا كنت ترغب في إزالة جميع آثار بياناتك.\n\n### 4. الأمان\nنحن نأخذ الأمان على محمل الجد. يتم تخزين قاعدة البيانات الخاصة بك باستخدام تشفير SQLite القياسي على جهازك. عند استخدام النسخ الاحتياطي على Google Drive، يتم نقل بياناتك بأمان باستخدام واجهات برمجية مشفرة من Google.\n\n### 5. تواصل معنا\nإذا كان لديك أي أسئلة حول هذه السياسة أو طبيعة مشروعنا مفتوح المصدر، تواصل معنا:\n- **المطور:** حيدر التميمي (Haider Al-Tamimi)\n- **البريد الإلكتروني:** haider.new.it@gmail.com\n- **الموقع الشخصي:** https://haider-al-timamy.vercel.app\n- **واتساب:** https://wa.me/+9647841392694\n- **المجتمع:** انضم إلى قناتنا على تلغرام (https://t.me/PockawApp)';
+  String get catDebts => 'الديون والالتزامات';
 }
