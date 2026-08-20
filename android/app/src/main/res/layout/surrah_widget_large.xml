@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="@drawable/widget_bg">
+
+    <!-- Top Bar: Wallet Name + Big Balance -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/widget_wallet_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Main Wallet"
+            android:textColor="#00CCCD"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/widget_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1,250,000 IQD"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end" />
+    </LinearLayout>
+
+    <!-- Cashflow Strip: Income & Expenses Today -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="6dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/widget_card_bg"
+            android:padding="5dp"
+            android:layout_marginEnd="4dp">
+
+            <TextView
+                android:id="@+id/widget_income_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Income today"
+                android:textColor="#B0B0B0"
+                android:textSize="8.5sp" />
+
+            <TextView
+                android:id="@+id/widget_today_income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+100,000 IQD"
+                android:textColor="#52DF83"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/widget_card_bg"
+            android:padding="5dp"
+            android:layout_marginStart="4dp">
+
+            <TextView
+                android:id="@+id/widget_expenses_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Expenses today"
+                android:textColor="#B0B0B0"
+                android:textSize="8.5sp" />
+
+            <TextView
+                android:id="@+id/widget_today_expenses"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-25,000 IQD"
+                android:textColor="#FF2C6D"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Recent Transactions Header -->
+    <TextView
+        android:id="@+id/widget_recent_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Recent Transactions"
+        android:textColor="#B0B0B0"
+        android:textSize="10.5sp"
+        android:textStyle="bold" />
+
+    <!-- Static container with up to 3 transactions -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginTop="3dp">
+
+        <!-- Tx 1 -->
+        <LinearLayout
+            android:id="@+id/widget_tx_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/widget_card_bg"
+            android:padding="5dp"
+            android:layout_marginBottom="3dp"
+            android:gravity="center_vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/widget_tx_1_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Coffee"
+                android:textColor="#FFFFFF"
+                android:textSize="10.5sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <TextView
+                android:id="@+id/widget_tx_1_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-5,000 IQD"
+                android:textColor="#FF2C6D"
+                android:textSize="10.5sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Tx 2 -->
+        <LinearLayout
+            android:id="@+id/widget_tx_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/widget_card_bg"
+            android:padding="5dp"
+            android:layout_marginBottom="3dp"
+            android:gravity="center_vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/widget_tx_2_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Groceries"
+                android:textColor="#FFFFFF"
+                android:textSize="10.5sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <TextView
+                android:id="@+id/widget_tx_2_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-35,000 IQD"
+                android:textColor="#FF2C6D"
+                android:textSize="10.5sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Tx 3 -->
+        <LinearLayout
+            android:id="@+id/widget_tx_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/widget_card_bg"
+            android:padding="5dp"
+            android:gravity="center_vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/widget_tx_3_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Salary"
+                android:textColor="#FFFFFF"
+                android:textSize="10.5sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <TextView
+                android:id="@+id/widget_tx_3_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+500,000 IQD"
+                android:textColor="#52DF83"
+                android:textSize="10.5sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Empty Tx State -->
+        <TextView
+            android:id="@+id/widget_tx_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="No transactions today"
+            android:textColor="#888888"
+            android:textSize="10.5sp"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <!-- Bottom Action Bar: [Expense] [Income] [Transfer] -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:id="@+id/widget_btn_expense"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text="- Expense"
+            android:textColor="#FF2C6D"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/widget_badge_expense"
+            android:layout_marginEnd="3dp" />
+
+        <TextView
+            android:id="@+id/widget_btn_income"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text="+ Income"
+            android:textColor="#52DF83"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/widget_badge_income"
+            android:layout_marginEnd="3dp" />
+
+        <TextView
+            android:id="@+id/widget_btn_transfer"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text="⇄ Transfer"
+            android:textColor="#4D96FF"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/widget_card_bg" />
+    </LinearLayout>
+</LinearLayout>

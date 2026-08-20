@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pockaw/core/database/database_provider.dart';
+import 'package:pockaw/core/services/widget_service/widget_sync_provider.dart';
 import 'package:pockaw/core/utils/logger.dart';
 import 'package:pockaw/features/user_activity/data/enum/user_activity_action.dart';
 import 'package:pockaw/features/user_activity/riverpod/user_activity_provider.dart';
@@ -48,6 +49,7 @@ class ActiveWalletNotifier extends AsyncNotifier<WalletModel?> {
 
   void setActiveWallet(WalletModel? wallet) {
     state = AsyncValue.data(wallet);
+    ref.read(widgetSyncProvider).syncWidgetData();
   }
 
   Future<void> setDefaultWallet() async {
@@ -62,6 +64,7 @@ class ActiveWalletNotifier extends AsyncNotifier<WalletModel?> {
             action: UserActivityAction.walletSelected,
             subjectId: wallets.first.id,
           );
+      ref.read(widgetSyncProvider).syncWidgetData();
     }
   }
 
@@ -79,6 +82,7 @@ class ActiveWalletNotifier extends AsyncNotifier<WalletModel?> {
             action: UserActivityAction.walletSelected,
             subjectId: walletID,
           );
+      ref.read(widgetSyncProvider).syncWidgetData();
     }
   }
 
@@ -97,6 +101,7 @@ class ActiveWalletNotifier extends AsyncNotifier<WalletModel?> {
           action: UserActivityAction.walletCreated,
           subjectId: id,
         );
+    ref.read(widgetSyncProvider).syncWidgetData();
   }
 
   void updateActiveWallet(WalletModel? newWalletData) {
@@ -133,6 +138,7 @@ class ActiveWalletNotifier extends AsyncNotifier<WalletModel?> {
           action: action,
           subjectId: newWalletData?.id,
         );
+    ref.read(widgetSyncProvider).syncWidgetData();
   }
 
   Future<void> refreshActiveWallet() async {

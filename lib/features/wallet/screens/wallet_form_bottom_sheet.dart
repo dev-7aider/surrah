@@ -16,6 +16,7 @@ import 'package:pockaw/core/database/database_provider.dart';
 import 'package:pockaw/core/extensions/double_extension.dart';
 import 'package:pockaw/core/extensions/popup_extension.dart';
 import 'package:pockaw/core/extensions/string_extension.dart';
+import 'package:pockaw/core/services/widget_service/widget_sync_provider.dart';
 import 'package:pockaw/core/utils/logger.dart';
 import 'package:pockaw/features/currency_picker/presentation/components/currency_picker_field.dart';
 import 'package:pockaw/features/currency_picker/presentation/riverpod/currency_picker_provider.dart';
@@ -163,6 +164,7 @@ class WalletFormBottomSheet extends HookConsumerWidget {
                                 .read(activeWalletProvider.notifier)
                                 .setDefaultWallet();
                           }
+                          ref.read(widgetSyncProvider).syncWidgetData();
 
                           if (context.mounted) {
                             context.pop(); // close alert dialog

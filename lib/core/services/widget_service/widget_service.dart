@@ -6,7 +6,6 @@ class WidgetService {
   static const String appGroupId = 'group.com.haider.surrah';
   static const String androidWidgetName = 'SurrahWidgetProvider';
   static const String iOSWidgetName = 'SurrahWidget';
-
   static const String pockawAndroidWidgetName = 'PockawWidgetProvider';
 
   /// Initialize HomeWidget settings
@@ -20,52 +19,86 @@ class WidgetService {
 
   /// Update home widget data from app state
   static Future<void> updateWidgetData({
-    required double totalBalance,
-    required double todaySpent,
-    required double remainingBudget,
-    required double budgetLimit,
-    required double budgetSpent,
-    required double budgetProgress,
+    required bool hasActiveWallet,
+    required String walletName,
+    required double walletBalance,
+    required String walletBalanceFormatted,
     required String currencySymbol,
-    required String widgetTitle,
-    required String remainingBudgetLabel,
-    required String todaySpentLabel,
-    required String quickAddLabel,
+    required double todayIncome,
+    required String todayIncomeFormatted,
+    required double todayExpenses,
+    required String todayExpensesFormatted,
+    required String incomeTodayLabel,
+    required String expensesTodayLabel,
+    required String recentTransactionsLabel,
+    required String addTransactionLabel,
+    required String noActiveWalletLabel,
+    required String noTransactionsTodayLabel,
+    required String noRecentTransactionsLabel,
+    required String openAppLabel,
+    required bool isRtl,
     required bool hideBalance,
     List<Map<String, dynamic>>? recentTransactions,
-    Map<String, double>? walletsBalances,
+    // Legacy support keys
+    double? totalBalance,
+    double? remainingBudget,
+    double? budgetLimit,
+    double? budgetSpent,
+    double? budgetProgress,
+    String? widgetTitle,
+    String? remainingBudgetLabel,
   }) async {
     try {
       await HomeWidget.setAppGroupId(appGroupId);
 
-      await HomeWidget.saveWidgetData<double>('total_balance', totalBalance);
-      await HomeWidget.saveWidgetData<String>('total_balance_str', totalBalance.toString());
-      await HomeWidget.saveWidgetData<double>('today_spent', todaySpent);
-      await HomeWidget.saveWidgetData<String>('today_spent_str', todaySpent.toString());
-      await HomeWidget.saveWidgetData<double>('remaining_budget', remainingBudget);
-      await HomeWidget.saveWidgetData<String>('remaining_budget_str', remainingBudget.toString());
-      await HomeWidget.saveWidgetData<double>('budget_limit', budgetLimit);
-      await HomeWidget.saveWidgetData<String>('budget_limit_str', budgetLimit.toString());
-      await HomeWidget.saveWidgetData<double>('budget_spent', budgetSpent);
-      await HomeWidget.saveWidgetData<String>('budget_spent_str', budgetSpent.toString());
-      await HomeWidget.saveWidgetData<double>('budget_progress', budgetProgress);
-      await HomeWidget.saveWidgetData<String>('budget_progress_str', budgetProgress.toString());
+      // Active wallet info
+      await HomeWidget.saveWidgetData<bool>('has_active_wallet', hasActiveWallet);
+      await HomeWidget.saveWidgetData<String>('wallet_name', walletName);
+      await HomeWidget.saveWidgetData<double>('wallet_balance', walletBalance);
+      await HomeWidget.saveWidgetData<String>('wallet_balance_formatted', walletBalanceFormatted);
       await HomeWidget.saveWidgetData<String>('currency', currencySymbol);
+
+      // Cash flow today
+      await HomeWidget.saveWidgetData<double>('today_income', todayIncome);
+      await HomeWidget.saveWidgetData<String>('today_income_formatted', todayIncomeFormatted);
+      await HomeWidget.saveWidgetData<double>('today_expenses', todayExpenses);
+      await HomeWidget.saveWidgetData<String>('today_expenses_formatted', todayExpensesFormatted);
+
+      // Localized strings
+      await HomeWidget.saveWidgetData<String>('income_today_label', incomeTodayLabel);
+      await HomeWidget.saveWidgetData<String>('expenses_today_label', expensesTodayLabel);
+      await HomeWidget.saveWidgetData<String>('recent_transactions_label', recentTransactionsLabel);
+      await HomeWidget.saveWidgetData<String>('add_transaction_label', addTransactionLabel);
+      await HomeWidget.saveWidgetData<String>('no_active_wallet_label', noActiveWalletLabel);
+      await HomeWidget.saveWidgetData<String>('no_transactions_today_label', noTransactionsTodayLabel);
+      await HomeWidget.saveWidgetData<String>('no_recent_transactions_label', noRecentTransactionsLabel);
+      await HomeWidget.saveWidgetData<String>('open_app_label', openAppLabel);
+      await HomeWidget.saveWidgetData<bool>('is_rtl', isRtl);
       await HomeWidget.saveWidgetData<bool>('hide_balance', hideBalance);
 
-      await HomeWidget.saveWidgetData<String>('widget_title', widgetTitle);
-      await HomeWidget.saveWidgetData<String>('remaining_budget_label', remainingBudgetLabel);
-      await HomeWidget.saveWidgetData<String>('today_spent_label', todaySpentLabel);
-      await HomeWidget.saveWidgetData<String>('quick_add_label', quickAddLabel);
+      // Legacy compatibility
+      await HomeWidget.saveWidgetData<double>('total_balance', totalBalance ?? walletBalance);
+      await HomeWidget.saveWidgetData<String>('total_balance_str', (totalBalance ?? walletBalance).toString());
+      await HomeWidget.saveWidgetData<double>('today_spent', todayExpenses);
+      await HomeWidget.saveWidgetData<String>('today_spent_str', todayExpenses.toString());
+      await HomeWidget.saveWidgetData<double>('remaining_budget', remainingBudget ?? 0.0);
+      await HomeWidget.saveWidgetData<String>('remaining_budget_str', (remainingBudget ?? 0.0).toString());
+      await HomeWidget.saveWidgetData<double>('budget_limit', budgetLimit ?? 0.0);
+      await HomeWidget.saveWidgetData<String>('budget_limit_str', (budgetLimit ?? 0.0).toString());
+      await HomeWidget.saveWidgetData<double>('budget_spent', budgetSpent ?? 0.0);
+      await HomeWidget.saveWidgetData<String>('budget_spent_str', (budgetSpent ?? 0.0).toString());
+      await HomeWidget.saveWidgetData<double>('budget_progress', budgetProgress ?? 0.0);
+      await HomeWidget.saveWidgetData<String>('budget_progress_str', (budgetProgress ?? 0.0).toString());
+      await HomeWidget.saveWidgetData<String>('widget_title', widgetTitle ?? walletName);
+      await HomeWidget.saveWidgetData<String>('remaining_budget_label', remainingBudgetLabel ?? '');
+      await HomeWidget.saveWidgetData<String>('today_spent_label', expensesTodayLabel);
+      await HomeWidget.saveWidgetData<String>('quick_add_label', addTransactionLabel);
 
       if (recentTransactions != null) {
         final jsonStr = jsonEncode(recentTransactions);
         await HomeWidget.saveWidgetData<String>('recent_transactions', jsonStr);
-      }
-
-      if (walletsBalances != null) {
-        final jsonStr = jsonEncode(walletsBalances);
-        await HomeWidget.saveWidgetData<String>('wallets_balances', jsonStr);
+      } else {
+        await HomeWidget.saveWidgetData<String>('recent_transactions', '[]');
       }
 
       await HomeWidget.updateWidget(

@@ -20,14 +20,20 @@ import 'package:pockaw/features/transaction/presentation/components/form/transac
 import 'package:pockaw/features/transaction/presentation/components/form/transaction_notes_field.dart';
 import 'package:pockaw/features/transaction/presentation/riverpod/transaction_form_state.dart';
 import 'package:pockaw/features/transaction/presentation/riverpod/transaction_providers.dart';
+import 'package:pockaw/features/transaction/data/model/transaction_model.dart';
 import 'package:pockaw/features/wallet/data/model/wallet_model.dart';
 import 'package:pockaw/l10n/app_localizations.dart';
 import 'package:pockaw/features/wallet/riverpod/wallet_providers.dart';
 
 class TransactionForm extends HookConsumerWidget {
-  // Change to HookConsumerWidget
   final int? transactionId;
-  const TransactionForm({super.key, this.transactionId});
+  final TransactionType? initialTransactionType;
+
+  const TransactionForm({
+    super.key,
+    this.transactionId,
+    this.initialTransactionType,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -36,7 +42,7 @@ class TransactionForm extends HookConsumerWidget {
     final wallet = ref.watch(activeWalletProvider);
     final defaultCurrency = wallet.value
         ?.currencyByIsoCode(ref)
-        .symbol; // Determine if we are in "edit" mode
+        .symbol;
     final isEditing = transactionId != null;
     final l10n = AppLocalizations.of(context);
 
@@ -50,8 +56,8 @@ class TransactionForm extends HookConsumerWidget {
       ref: ref,
       defaultCurrency: defaultCurrency ?? CurrencyLocalDataSource.dummy.symbol,
       isEditing: isEditing,
-      transaction:
-          asyncTransaction?.value, // Pass current data, hook handles null
+      transaction: asyncTransaction?.value,
+      initialTransactionType: initialTransactionType,
     );
 
     return CustomScaffold(

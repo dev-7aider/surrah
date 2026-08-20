@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
@@ -13,17 +14,68 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:pockaw/core/localization/locale_provider.dart';
 import 'package:pockaw/l10n/app_localizations.dart';
 
+import 'package:home_widget/home_widget.dart';
 import 'package:pockaw/core/constants/app_font_families.dart';
-
+import 'package:pockaw/core/router/routes.dart';
+import 'package:pockaw/core/services/widget_service/widget_service.dart';
 import 'package:pockaw/core/services/widget_service/widget_sync_provider.dart';
 
-class MyApp extends ConsumerWidget {
+void _handleWidgetUri(Uri uri) {
+  final host = uri.host;
+  final path = uri.path;
+  final type = uri.queryParameters['type'];
+  
+  if (host == 'add_transaction' || host == 'transaction-form' || path.contains('add_transaction') || path.contains('transaction-form')) {
+    if (type != null && type.isNotEmpty) {
+      router.push('${Routes.transactionForm}?type=$type');
+    } else {
+      router.push(Routes.transactionForm);
+    }
+  } else if (host == 'wallets' || host == 'manage-wallets' || path.contains('manage-wallets')) {
+    router.push(Routes.manageWallets);
+  } else if (path.startsWith('/transaction/')) {
+    router.push(path);
+  }
+}
+
+class MyApp extends ConsumerStatefulWidget {
   const MyApp({super.key});
 
   static GlobalKey<NavigatorState> rootKey = GlobalKey<NavigatorState>();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends ConsumerState<MyApp> {
+  StreamSubscription<Uri?>? _widgetSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    _initHomeWidgetDeepLinks();
+  }
+
+  Future<void> _initHomeWidgetDeepLinks() async {
+    final initialUri = await WidgetService.getInitiallyLaunchedUrl();
+    if (initialUri != null) {
+      _handleWidgetUri(initialUri);
+    }
+    _widgetSubscription = HomeWidget.widgetClicked.listen((uri) {
+      if (uri != null) {
+        _handleWidgetUri(uri);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _widgetSubscription?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     ref.watch(autoWidgetSyncProvider);
     final themeMode = ref.watch(themeModeProvider);
     final locale = ref.watch(localeNotifierProvider);

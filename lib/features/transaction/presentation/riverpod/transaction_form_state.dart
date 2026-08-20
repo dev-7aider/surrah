@@ -283,6 +283,7 @@ TransactionFormState useTransactionFormState({
   required String defaultCurrency,
   required bool isEditing,
   TransactionModel? transaction,
+  TransactionType? initialTransactionType,
 }) {
   final context = useContext();
   final titleController = useTextEditingController(
@@ -302,7 +303,7 @@ TransactionFormState useTransactionFormState({
   final selectedTransactionType = useState<TransactionType>(
     isEditing && transaction != null
         ? transaction.transactionType
-        : TransactionType.expense,
+        : (initialTransactionType ?? TransactionType.expense),
   );
   final selectedCategory = useState<CategoryModel?>(
     isEditing ? transaction?.category : null,

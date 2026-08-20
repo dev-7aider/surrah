@@ -2,8 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pockaw/core/database/database_provider.dart';
 import 'package:pockaw/core/database/pockaw_database.dart';
+import 'package:pockaw/core/extensions/double_extension.dart';
 import 'package:pockaw/core/localization/locale_provider.dart';
 import 'package:pockaw/core/services/widget_service/widget_service.dart';
+import 'package:pockaw/features/transaction/data/model/transaction_model.dart';
 import 'package:pockaw/features/wallet/riverpod/wallet_providers.dart';
 
 final widgetSyncProvider = Provider<WidgetSyncService>((ref) {
@@ -15,13 +17,18 @@ final widgetSyncProvider = Provider<WidgetSyncService>((ref) {
 final autoWidgetSyncProvider = Provider<void>((ref) {
   final syncService = ref.watch(widgetSyncProvider);
 
-  // Watch locale changes
-  ref.watch(localeNotifierProvider);
+  // Listen to locale changes
+  ref.listen(localeNotifierProvider, (previous, next) {
+    syncService.syncWidgetData();
+  });
 
-  // Watch active wallet & visibility changes
-  ref.watch(activeWalletProvider);
-  ref.watch(walletAmountVisibilityProvider);
-  ref.watch(allWalletsStreamProvider);
+  // Listen to active wallet & visibility changes
+  ref.listen(activeWalletProvider, (previous, next) {
+    syncService.syncWidgetData();
+  });
+  ref.listen(walletAmountVisibilityProvider, (previous, next) {
+    syncService.syncWidgetData();
+  });
 
   // Listen to transaction & budget stream updates from database
   final db = ref.watch(databaseProvider);
@@ -41,8 +48,8 @@ final autoWidgetSyncProvider = Provider<void>((ref) {
     sub3.cancel();
   });
 
-  // Execute initial sync
-  syncService.syncWidgetData();
+  // Defer initial sync to next microtask so build phase completes first
+  Future.microtask(() => syncService.syncWidgetData());
 });
 
 class WidgetSyncService {
@@ -51,98 +58,157 @@ class WidgetSyncService {
 
   WidgetSyncService(this.db, this.ref);
 
-  /// Synchronize app budget & transaction data with native Android & iOS Widgets
+  /// Synchronize app active wallet, cash flow & transaction data with native Android & iOS Widgets
   Future<void> syncWidgetData() async {
     try {
       final now = DateTime.now();
       final startOfDay = DateTime(now.year, now.month, now.day);
       final endOfDay = DateTime(now.year, now.month, now.day, 23, 59, 59);
 
-      // Fetch all wallets & compute total balance + wallet balances map
-      final wallets = await db.walletDao.watchAllWallets().first;
-      double totalBalance = 0;
-      final Map<String, double> walletsBalances = {};
-      for (final w in wallets) {
-        totalBalance += w.balance;
-        walletsBalances[w.name] = w.balance;
-      }
-
-      // Fetch all transactions with details
-      final allTransactions = await db.transactionDao.watchAllTransactionsWithDetails().first;
-
-      // Calculate today's spent
-      double todaySpent = 0;
-      for (final tx in allTransactions) {
-        if (tx.transactionType.name.toLowerCase() == 'expense' &&
-            !tx.date.isBefore(startOfDay) &&
-            !tx.date.isAfter(endOfDay)) {
-          todaySpent += tx.amount;
+      // 1. Fetch Active Wallet (or fallback to first wallet in DB)
+      var activeWallet = ref.read(activeWalletProvider).asData?.value;
+      if (activeWallet == null) {
+        final wallets = await db.walletDao.watchAllWallets().first;
+        if (wallets.isNotEmpty) {
+          activeWallet = wallets.first;
         }
       }
 
-      // Extract recent 5 transactions
-      final List<Map<String, dynamic>> recentTransactions = [];
-      for (final tx in allTransactions.take(5)) {
-        recentTransactions.add({
-          'id': tx.id,
+      final bool hasActiveWallet = activeWallet != null;
+      final String walletName = activeWallet?.name ?? 'Main Wallet';
+      final double walletBalance = activeWallet?.balance ?? 0.0;
+      final String walletCurrency = activeWallet?.currency ?? 'IQD';
+
+      final locale = ref.read(localeNotifierProvider);
+      final bool isArabic = locale?.languageCode != 'en';
+      final bool isRtl = isArabic;
+
+      final String currencySymbol = (walletCurrency == 'IQD' || walletCurrency == 'د.ع')
+          ? (isArabic ? 'د.ع' : 'IQD')
+          : walletCurrency;
+
+      final bool isVisible = ref.read(walletAmountVisibilityProvider);
+      final bool hideBalance = !isVisible;
+
+      // 2. Fetch transactions for the active wallet
+      List<TransactionModel> transactions = [];
+      if (activeWallet?.id != null) {
+        transactions = await db.transactionDao
+            .watchTransactionsByWalletIdWithDetails(activeWallet!.id!)
+            .first;
+      } else {
+        transactions = await db.transactionDao
+            .watchAllTransactionsWithDetails()
+            .first;
+      }
+
+      // Sort newest first
+      transactions.sort((a, b) => b.date.compareTo(a.date));
+
+      // 3. Compute today's Income and Expenses for the active wallet
+      double todayIncome = 0.0;
+      double todayExpenses = 0.0;
+
+      for (final tx in transactions) {
+        final isToday = !tx.date.isBefore(startOfDay) && !tx.date.isAfter(endOfDay);
+        if (isToday) {
+          if (tx.transactionType == TransactionType.income) {
+            todayIncome += tx.amount;
+          } else if (tx.transactionType == TransactionType.expense) {
+            todayExpenses += tx.amount;
+          }
+        }
+      }
+
+      // 4. Format strings
+      final String walletBalanceFormatted = hideBalance
+          ? '•••• $currencySymbol'
+          : '${walletBalance.toPriceFormat()} $currencySymbol';
+
+      final String todayIncomeFormatted = hideBalance
+          ? '•••• $currencySymbol'
+          : '+${todayIncome.toPriceFormat()} $currencySymbol';
+
+      final String todayExpensesFormatted = hideBalance
+          ? '•••• $currencySymbol'
+          : '-${todayExpenses.toPriceFormat()} $currencySymbol';
+
+      // 5. Build recent 2-3 transactions payload
+      final List<Map<String, dynamic>> recentTransactionsList = [];
+      for (final tx in transactions.take(3)) {
+        final bool isExpense = tx.transactionType == TransactionType.expense;
+        final String sign = isExpense ? '-' : '+';
+        final String formattedAmount = hideBalance
+            ? '•••• $currencySymbol'
+            : '$sign${tx.amount.toPriceFormat()} $currencySymbol';
+
+        recentTransactionsList.add({
+          'id': tx.id ?? 0,
           'title': tx.title.isNotEmpty ? tx.title : tx.category.title,
           'amount': tx.amount,
+          'amount_formatted': formattedAmount,
           'type': tx.transactionType.name,
           'category': tx.category.title,
           'date': tx.date.toIso8601String(),
         });
       }
 
-      // Fetch all budgets
+      // 6. Localized Labels
+      final String incomeTodayLabel = isArabic ? 'دخل اليوم' : 'Income today';
+      final String expensesTodayLabel = isArabic ? 'مصاريف اليوم' : 'Expenses today';
+      final String recentTransactionsLabel = isArabic ? 'أحدث المعاملات' : 'Recent Transactions';
+      final String addTransactionLabel = isArabic ? '+ إضافة معاملة' : '+ Add Transaction';
+      final String noActiveWalletLabel = isArabic ? 'لا توجد محفظة نشطة' : 'No active wallet';
+      final String noTransactionsTodayLabel = isArabic ? 'لا توجد معاملات اليوم' : 'No transactions today';
+      final String noRecentTransactionsLabel = isArabic ? 'لا توجد معاملات مؤخراً' : 'No recent transactions';
+      final String openAppLabel = isArabic ? 'فتح صُـرّة' : 'Open Pockaw';
+
+      // Legacy budget calculation for backwards compatibility
       final budgetModels = await db.budgetDao.watchAllBudgets().first;
       double totalBudgetLimit = 0;
       double totalBudgetSpent = 0;
-
       for (final b in budgetModels) {
         totalBudgetLimit += b.amount;
         final spent = await db.budgetDao.getSpentAmountForBudget(b);
         totalBudgetSpent += spent;
       }
-
       double remainingBudget = totalBudgetLimit - totalBudgetSpent;
       if (remainingBudget < 0) remainingBudget = 0;
-
       final budgetProgress = totalBudgetLimit > 0
           ? (totalBudgetSpent / totalBudgetLimit).clamp(0.0, 1.0)
           : 0.0;
 
-      final activeWallet = ref.read(activeWalletProvider).asData?.value;
-      final walletCurrency = activeWallet?.currency ?? 'IQD';
-      final currencySymbol = (walletCurrency == 'IQD' || walletCurrency == 'د.ع') ? 'د.ع' : walletCurrency;
-
-      final isVisible = ref.read(walletAmountVisibilityProvider);
-
-      final locale = ref.read(localeNotifierProvider);
-      final isArabic = locale?.languageCode != 'en';
-
-      final widgetTitle = isArabic ? 'صُـرّة' : 'Pockaw';
-      final remainingBudgetLabel = isArabic ? 'الميزانية المتبقية' : 'Remaining Budget';
-      final todaySpentLabel = isArabic ? 'مصاريف اليوم' : 'Today\'s Spent';
-      final quickAddLabel = isArabic ? 'إضافة' : 'Add';
-
       await WidgetService.updateWidgetData(
-        totalBalance: totalBalance,
-        todaySpent: todaySpent,
+        hasActiveWallet: hasActiveWallet,
+        walletName: walletName,
+        walletBalance: walletBalance,
+        walletBalanceFormatted: walletBalanceFormatted,
+        currencySymbol: currencySymbol,
+        todayIncome: todayIncome,
+        todayIncomeFormatted: todayIncomeFormatted,
+        todayExpenses: todayExpenses,
+        todayExpensesFormatted: todayExpensesFormatted,
+        incomeTodayLabel: incomeTodayLabel,
+        expensesTodayLabel: expensesTodayLabel,
+        recentTransactionsLabel: recentTransactionsLabel,
+        addTransactionLabel: addTransactionLabel,
+        noActiveWalletLabel: noActiveWalletLabel,
+        noTransactionsTodayLabel: noTransactionsTodayLabel,
+        noRecentTransactionsLabel: noRecentTransactionsLabel,
+        openAppLabel: openAppLabel,
+        isRtl: isRtl,
+        hideBalance: hideBalance,
+        recentTransactions: recentTransactionsList,
+        totalBalance: walletBalance,
         remainingBudget: remainingBudget,
         budgetLimit: totalBudgetLimit,
         budgetSpent: totalBudgetSpent,
         budgetProgress: budgetProgress,
-        currencySymbol: currencySymbol,
-        widgetTitle: widgetTitle,
-        remainingBudgetLabel: remainingBudgetLabel,
-        todaySpentLabel: todaySpentLabel,
-        quickAddLabel: quickAddLabel,
-        hideBalance: !isVisible,
-        recentTransactions: recentTransactions,
-        walletsBalances: walletsBalances,
+        widgetTitle: walletName,
+        remainingBudgetLabel: isArabic ? 'الميزانية المتبقية' : 'Remaining Budget',
       );
-    } catch (e) {
-      debugPrint('Error syncing widget data: $e');
+    } catch (e, st) {
+      debugPrint('Error syncing widget data: $e\n$st');
     }
   }
 }
