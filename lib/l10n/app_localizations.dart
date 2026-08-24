@@ -464,6 +464,12 @@ abstract class AppLocalizations {
   /// **'Good morning,'**
   String get goodMorning;
 
+  /// No description provided for @goodEvening.
+  ///
+  /// In en, this message translates to:
+  /// **'Good evening,'**
+  String get goodEvening;
+
   /// No description provided for @noWalletSelected.
   ///
   /// In en, this message translates to:
