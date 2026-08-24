@@ -176,22 +176,35 @@ class AuthNotifier extends Notifier<UserModel> {
             .logActivity(action: UserActivityAction.signIn);
       } else {
         await _setSession();
-        final currencyNotifier = ref.read(currenciesStaticProvider.notifier);
-        final deviceRegion = await getDeviceRegion();
-        final selectedCurrency = currencyNotifier.getCurrencyByISOCode(
-          deviceRegion,
-        );
+        final currentActiveWallet = ref.read(activeWalletProvider).asData?.value;
+        if (currentActiveWallet != null) {
+          // If a wallet was created or configured in onboarding, link it to the new user ID if needed
+          final updatedWallet = currentActiveWallet.copyWith(userId: state.id);
+          if (updatedWallet.id != null) {
+            await db.walletDao.updateWallet(updatedWallet);
+            ref.read(activeWalletProvider.notifier).updateActiveWallet(updatedWallet);
+          } else {
+            int walletID = await db.walletDao.addWallet(updatedWallet);
+            ref.read(activeWalletProvider.notifier).setActiveWalletByID(walletID);
+          }
+        } else {
+          final currencyNotifier = ref.read(currenciesStaticProvider.notifier);
+          final deviceRegion = await getDeviceRegion();
+          final selectedCurrency = currencyNotifier.getCurrencyByISOCode(
+            deviceRegion,
+          );
 
-        Log.d(selectedCurrency.toJson(), label: 'selected currency');
-        ref.read(currencyProvider.notifier).setCurrency(selectedCurrency);
+          Log.d(selectedCurrency.toJson(), label: 'selected currency');
+          ref.read(currencyProvider.notifier).setCurrency(selectedCurrency);
 
-        final wallet = WalletModel(
-          userId: state.id,
-          currency: selectedCurrency.isoCode,
-        );
-        int walletID = await db.walletDao.addWallet(wallet);
-        Log.d(wallet.toJson(), label: 'selected wallet');
-        ref.read(activeWalletProvider.notifier).setActiveWalletByID(walletID);
+          final wallet = WalletModel(
+            userId: state.id,
+            currency: selectedCurrency.isoCode,
+          );
+          int walletID = await db.walletDao.addWallet(wallet);
+          Log.d(wallet.toJson(), label: 'selected wallet');
+          ref.read(activeWalletProvider.notifier).setActiveWalletByID(walletID);
+        }
 
         ref
             .read(userActivityServiceProvider)
