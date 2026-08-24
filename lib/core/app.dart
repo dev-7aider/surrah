@@ -24,18 +24,25 @@ void _handleWidgetUri(Uri uri) {
   final host = uri.host;
   final path = uri.path;
   final type = uri.queryParameters['type'];
-  
-  if (host == 'add_transaction' || host == 'transaction-form' || path.contains('add_transaction') || path.contains('transaction-form')) {
-    if (type != null && type.isNotEmpty) {
-      router.push('${Routes.transactionForm}?type=$type');
-    } else {
-      router.push(Routes.transactionForm);
+
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    if (host == 'add_transaction' ||
+        host == 'transaction-form' ||
+        path.contains('add_transaction') ||
+        path.contains('transaction-form')) {
+      if (type != null && type.isNotEmpty) {
+        router.push('${Routes.transactionForm}?type=$type');
+      } else {
+        router.push(Routes.transactionForm);
+      }
+    } else if (host == 'wallets' ||
+        host == 'manage-wallets' ||
+        path.contains('manage-wallets')) {
+      router.push(Routes.manageWallets);
+    } else if (path.startsWith('/transaction/')) {
+      router.push(path);
     }
-  } else if (host == 'wallets' || host == 'manage-wallets' || path.contains('manage-wallets')) {
-    router.push(Routes.manageWallets);
-  } else if (path.startsWith('/transaction/')) {
-    router.push(path);
-  }
+  });
 }
 
 class MyApp extends ConsumerStatefulWidget {
@@ -57,15 +64,16 @@ class _MyAppState extends ConsumerState<MyApp> {
   }
 
   Future<void> _initHomeWidgetDeepLinks() async {
-    final initialUri = await WidgetService.getInitiallyLaunchedUrl();
-    if (initialUri != null) {
-      _handleWidgetUri(initialUri);
-    }
     _widgetSubscription = HomeWidget.widgetClicked.listen((uri) {
       if (uri != null) {
         _handleWidgetUri(uri);
       }
     });
+
+    final initialUri = await WidgetService.getInitiallyLaunchedUrl();
+    if (initialUri != null) {
+      _handleWidgetUri(initialUri);
+    }
   }
 
   @override

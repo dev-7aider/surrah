@@ -80,7 +80,9 @@ class WidgetSyncService {
       final String walletCurrency = activeWallet?.currency ?? 'IQD';
 
       final locale = ref.read(localeNotifierProvider);
-      final bool isArabic = locale?.languageCode != 'en';
+      final String effectiveLang = locale?.languageCode ??
+          PlatformDispatcher.instance.locale.languageCode;
+      final bool isArabic = effectiveLang == 'ar';
       final bool isRtl = isArabic;
 
       final String currencySymbol = (walletCurrency == 'IQD' || walletCurrency == 'د.ع')
