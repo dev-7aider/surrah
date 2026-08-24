@@ -364,7 +364,7 @@ TransactionFormState useTransactionFormState({
           titleController.clear();
           amountController.clear();
           notesController.clear();
-          selectedTransactionType.value = TransactionType.expense;
+          selectedTransactionType.value = initialTransactionType ?? TransactionType.expense;
           selectedCategory.value = null;
           WidgetsBinding.instance.addPostFrameCallback((_) {
             ref.read(datePickerProvider.notifier).setDate(DateTime.now());
