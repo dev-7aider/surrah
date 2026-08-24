@@ -167,13 +167,15 @@ class MoneyInsiderChart extends ConsumerWidget {
           leftTitles: AxisTitles(
             sideTitles: SideTitles(
               showTitles: true,
-              reservedSize: 40,
+              reservedSize: 52,
               interval: maxY / 3,
               getTitlesWidget: (value, meta) {
                 if (value == 0) return const SizedBox.shrink();
                 return Text(
                   value.toShortPriceFormat(),
                   style: AppTextStyles.body4,
+                  maxLines: 1,
+                  softWrap: false,
                 );
               },
             ),
