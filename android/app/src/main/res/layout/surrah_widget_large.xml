@@ -7,7 +7,7 @@
     android:padding="12dp"
     android:background="@drawable/widget_bg">
 
-    <!-- Top Bar: Wallet Name + Big Balance -->
+    <!-- Top Bar: Wallet Name + Balance -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,75 +32,109 @@
             android:layout_height="wrap_content"
             android:text="1,250,000 IQD"
             android:textColor="#FFFFFF"
-            android:textSize="17sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:maxLines="1"
             android:ellipsize="end" />
     </LinearLayout>
 
-    <!-- Cashflow Strip: Income & Expenses Today -->
+    <!-- Cashflow Strip: Income & Expenses Badges -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="6dp">
 
+        <!-- Income Badge -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:background="@drawable/widget_card_bg"
-            android:padding="5dp"
+            android:padding="6dp"
+            android:gravity="center_vertical"
             android:layout_marginEnd="4dp">
 
-            <TextView
-                android:id="@+id/widget_income_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Income today"
-                android:textColor="#B0B0B0"
-                android:textSize="8.5sp" />
+            <View
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/widget_icon_income_bg"
+                android:layout_marginEnd="5dp" />
 
-            <TextView
-                android:id="@+id/widget_today_income"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="+100,000 IQD"
-                android:textColor="#52DF83"
-                android:textSize="11sp"
-                android:textStyle="bold"
-                android:maxLines="1"
-                android:ellipsize="end" />
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/widget_income_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Income today"
+                    android:textColor="#B0B0B0"
+                    android:textSize="8.5sp"
+                    android:maxLines="1"
+                    android:ellipsize="end" />
+
+                <TextView
+                    android:id="@+id/widget_today_income"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+100,000 IQD"
+                    android:textColor="#52DF83"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:ellipsize="end" />
+            </LinearLayout>
         </LinearLayout>
 
+        <!-- Expenses Badge -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:background="@drawable/widget_card_bg"
-            android:padding="5dp"
+            android:padding="6dp"
+            android:gravity="center_vertical"
             android:layout_marginStart="4dp">
 
-            <TextView
-                android:id="@+id/widget_expenses_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Expenses today"
-                android:textColor="#B0B0B0"
-                android:textSize="8.5sp" />
+            <View
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/widget_icon_expense_bg"
+                android:layout_marginEnd="5dp" />
 
-            <TextView
-                android:id="@+id/widget_today_expenses"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="-25,000 IQD"
-                android:textColor="#FF2C6D"
-                android:textSize="11sp"
-                android:textStyle="bold"
-                android:maxLines="1"
-                android:ellipsize="end" />
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/widget_expenses_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Expenses today"
+                    android:textColor="#B0B0B0"
+                    android:textSize="8.5sp"
+                    android:maxLines="1"
+                    android:ellipsize="end" />
+
+                <TextView
+                    android:id="@+id/widget_today_expenses"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-25,000 IQD"
+                    android:textColor="#FF2C6D"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:ellipsize="end" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
@@ -109,13 +143,13 @@
         android:id="@+id/widget_recent_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="7dp"
         android:text="Recent Transactions"
         android:textColor="#B0B0B0"
         android:textSize="10.5sp"
         android:textStyle="bold" />
 
-    <!-- Static container with up to 3 transactions -->
+    <!-- Transactions List Container -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -130,22 +164,45 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:background="@drawable/widget_card_bg"
-            android:padding="5dp"
+            android:padding="6dp"
             android:layout_marginBottom="3dp"
             android:gravity="center_vertical"
             android:visibility="gone">
 
-            <TextView
-                android:id="@+id/widget_tx_1_title"
+            <View
+                android:id="@+id/widget_tx_1_icon_bg"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/widget_icon_expense_bg"
+                android:layout_marginEnd="6dp" />
+
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Coffee"
-                android:textColor="#FFFFFF"
-                android:textSize="10.5sp"
-                android:textStyle="bold"
-                android:maxLines="1"
-                android:ellipsize="end" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/widget_tx_1_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Coffee"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:ellipsize="end" />
+
+                <TextView
+                    android:id="@+id/widget_tx_1_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Food &amp; Drinks"
+                    android:textColor="#B0B0B0"
+                    android:textSize="9sp"
+                    android:maxLines="1"
+                    android:ellipsize="end" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/widget_tx_1_amount"
@@ -153,7 +210,7 @@
                 android:layout_height="wrap_content"
                 android:text="-5,000 IQD"
                 android:textColor="#FF2C6D"
-                android:textSize="10.5sp"
+                android:textSize="11sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -164,22 +221,45 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:background="@drawable/widget_card_bg"
-            android:padding="5dp"
+            android:padding="6dp"
             android:layout_marginBottom="3dp"
             android:gravity="center_vertical"
             android:visibility="gone">
 
-            <TextView
-                android:id="@+id/widget_tx_2_title"
+            <View
+                android:id="@+id/widget_tx_2_icon_bg"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/widget_icon_expense_bg"
+                android:layout_marginEnd="6dp" />
+
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Groceries"
-                android:textColor="#FFFFFF"
-                android:textSize="10.5sp"
-                android:textStyle="bold"
-                android:maxLines="1"
-                android:ellipsize="end" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/widget_tx_2_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Groceries"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:ellipsize="end" />
+
+                <TextView
+                    android:id="@+id/widget_tx_2_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Groceries"
+                    android:textColor="#B0B0B0"
+                    android:textSize="9sp"
+                    android:maxLines="1"
+                    android:ellipsize="end" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/widget_tx_2_amount"
@@ -187,7 +267,7 @@
                 android:layout_height="wrap_content"
                 android:text="-35,000 IQD"
                 android:textColor="#FF2C6D"
-                android:textSize="10.5sp"
+                android:textSize="11sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -198,21 +278,44 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:background="@drawable/widget_card_bg"
-            android:padding="5dp"
+            android:padding="6dp"
             android:gravity="center_vertical"
             android:visibility="gone">
 
-            <TextView
-                android:id="@+id/widget_tx_3_title"
+            <View
+                android:id="@+id/widget_tx_3_icon_bg"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/widget_icon_income_bg"
+                android:layout_marginEnd="6dp" />
+
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Salary"
-                android:textColor="#FFFFFF"
-                android:textSize="10.5sp"
-                android:textStyle="bold"
-                android:maxLines="1"
-                android:ellipsize="end" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/widget_tx_3_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Salary"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:ellipsize="end" />
+
+                <TextView
+                    android:id="@+id/widget_tx_3_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Salary"
+                    android:textColor="#B0B0B0"
+                    android:textSize="9sp"
+                    android:maxLines="1"
+                    android:ellipsize="end" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/widget_tx_3_amount"
@@ -220,17 +323,17 @@
                 android:layout_height="wrap_content"
                 android:text="+500,000 IQD"
                 android:textColor="#52DF83"
-                android:textSize="10.5sp"
+                android:textSize="11sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!-- Empty Tx State -->
+        <!-- Empty State -->
         <TextView
             android:id="@+id/widget_tx_empty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="No transactions today"
+            android:text="No recent transactions"
             android:textColor="#888888"
             android:textSize="10.5sp"
             android:visibility="visible" />
@@ -246,7 +349,7 @@
         <TextView
             android:id="@+id/widget_btn_expense"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="32dp"
             android:layout_weight="1"
             android:text="- Expense"
             android:textColor="#FF2C6D"
@@ -259,7 +362,7 @@
         <TextView
             android:id="@+id/widget_btn_income"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="32dp"
             android:layout_weight="1"
             android:text="+ Income"
             android:textColor="#52DF83"
@@ -272,13 +375,13 @@
         <TextView
             android:id="@+id/widget_btn_transfer"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="32dp"
             android:layout_weight="1"
             android:text="⇄ Transfer"
             android:textColor="#4D96FF"
             android:textSize="11sp"
             android:textStyle="bold"
             android:gravity="center"
-            android:background="@drawable/widget_card_bg" />
+            android:background="@drawable/widget_badge_transfer" />
     </LinearLayout>
 </LinearLayout>

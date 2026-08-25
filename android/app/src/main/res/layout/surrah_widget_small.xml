@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="14dp"
+    android:padding="12dp"
     android:background="@drawable/widget_bg">
 
-    <!-- Header: Wallet Name -->
+    <!-- Header: Active Wallet Title -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <!-- Active Wallet Balance (Focal Point) -->
+    <!-- Current Balance Block -->
     <TextView
         android:id="@+id/widget_balance_label"
         android:layout_width="wrap_content"
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:text="1,250,000 IQD"
         android:textColor="#FFFFFF"
-        android:textSize="19sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:maxLines="1"
         android:ellipsize="end" />
@@ -56,21 +56,35 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <!-- Footer: Today Income -->
+    <!-- Quick Action Links: Expense & Income -->
     <LinearLayout
-        android:id="@+id/widget_today_income_container"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/widget_today_income"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="+100,000 IQD"
+            android:id="@+id/widget_btn_expense"
+            android:layout_width="0dp"
+            android:layout_height="26dp"
+            android:layout_weight="1"
+            android:text="- Expense"
+            android:textColor="#FF2C6D"
+            android:textSize="9.5sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/widget_badge_expense"
+            android:layout_marginEnd="4dp" />
+
+        <TextView
+            android:id="@+id/widget_btn_income"
+            android:layout_width="0dp"
+            android:layout_height="26dp"
+            android:layout_weight="1"
+            android:text="+ Income"
             android:textColor="#52DF83"
-            android:textSize="11sp"
-            android:textStyle="bold" />
+            android:textSize="9.5sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/widget_badge_income" />
     </LinearLayout>
 </LinearLayout>

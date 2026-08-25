@@ -43,6 +43,8 @@ class SurrahWidgetProvider : HomeWidgetProvider() {
                 val recentTransactionsLabel = widgetData.getString("recent_transactions_label", "Recent Transactions") ?: "Recent Transactions"
                 val noActiveWalletLabel = widgetData.getString("no_active_wallet_label", "No active wallet") ?: "No active wallet"
 
+                val noRecentTransactionsLabel = widgetData.getString("no_recent_transactions_label", "No recent transactions") ?: "No recent transactions"
+
                 // Bind Common Values
                 setTextViewText(R.id.widget_wallet_name, if (hasActiveWallet) walletName else noActiveWalletLabel)
                 setTextViewText(R.id.widget_balance, balanceFormatted)
@@ -67,6 +69,7 @@ class SurrahWidgetProvider : HomeWidgetProvider() {
 
                         if (count == 0) {
                             setViewVisibility(R.id.widget_tx_empty, View.VISIBLE)
+                            setTextViewText(R.id.widget_tx_empty, noRecentTransactionsLabel)
                             setViewVisibility(R.id.widget_tx_1, View.GONE)
                             setViewVisibility(R.id.widget_tx_2, View.GONE)
                             setViewVisibility(R.id.widget_tx_3, View.GONE)
@@ -78,7 +81,14 @@ class SurrahWidgetProvider : HomeWidgetProvider() {
                                 val tx1 = txArray.getJSONObject(0)
                                 setViewVisibility(R.id.widget_tx_1, View.VISIBLE)
                                 setTextViewText(R.id.widget_tx_1_title, tx1.optString("title", "Transaction"))
+                                setTextViewText(R.id.widget_tx_1_category, tx1.optString("category", ""))
                                 setTextViewText(R.id.widget_tx_1_amount, tx1.optString("amount_formatted", ""))
+                                val isExpense = tx1.optString("type", "expense").lowercase() == "expense"
+                                setImageViewResource(
+                                    R.id.widget_tx_1_icon_bg,
+                                    if (isExpense) R.drawable.widget_icon_expense_bg else R.drawable.widget_icon_income_bg
+                                )
+
                                 val tx1Id = tx1.optInt("id", 0)
                                 val tx1Intent = HomeWidgetLaunchIntent.getActivity(
                                     context,
@@ -95,7 +105,14 @@ class SurrahWidgetProvider : HomeWidgetProvider() {
                                 val tx2 = txArray.getJSONObject(1)
                                 setViewVisibility(R.id.widget_tx_2, View.VISIBLE)
                                 setTextViewText(R.id.widget_tx_2_title, tx2.optString("title", "Transaction"))
+                                setTextViewText(R.id.widget_tx_2_category, tx2.optString("category", ""))
                                 setTextViewText(R.id.widget_tx_2_amount, tx2.optString("amount_formatted", ""))
+                                val isExpense = tx2.optString("type", "expense").lowercase() == "expense"
+                                setImageViewResource(
+                                    R.id.widget_tx_2_icon_bg,
+                                    if (isExpense) R.drawable.widget_icon_expense_bg else R.drawable.widget_icon_income_bg
+                                )
+
                                 val tx2Id = tx2.optInt("id", 0)
                                 val tx2Intent = HomeWidgetLaunchIntent.getActivity(
                                     context,
@@ -112,7 +129,14 @@ class SurrahWidgetProvider : HomeWidgetProvider() {
                                 val tx3 = txArray.getJSONObject(2)
                                 setViewVisibility(R.id.widget_tx_3, View.VISIBLE)
                                 setTextViewText(R.id.widget_tx_3_title, tx3.optString("title", "Transaction"))
+                                setTextViewText(R.id.widget_tx_3_category, tx3.optString("category", ""))
                                 setTextViewText(R.id.widget_tx_3_amount, tx3.optString("amount_formatted", ""))
+                                val isExpense = tx3.optString("type", "expense").lowercase() == "expense"
+                                setImageViewResource(
+                                    R.id.widget_tx_3_icon_bg,
+                                    if (isExpense) R.drawable.widget_icon_expense_bg else R.drawable.widget_icon_income_bg
+                                )
+
                                 val tx3Id = tx3.optInt("id", 0)
                                 val tx3Intent = HomeWidgetLaunchIntent.getActivity(
                                     context,
@@ -126,6 +150,7 @@ class SurrahWidgetProvider : HomeWidgetProvider() {
                         }
                     } catch (e: Exception) {
                         setViewVisibility(R.id.widget_tx_empty, View.VISIBLE)
+                        setTextViewText(R.id.widget_tx_empty, noRecentTransactionsLabel)
                     }
                 }
 
