@@ -192,6 +192,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get goodMorning => 'صباح الخير،';
 
   @override
+  String get goodEvening => 'مساء الخير،';
+
+  @override
   String get noWalletSelected => 'لم يتم تحديد أي حساب.';
 
   @override

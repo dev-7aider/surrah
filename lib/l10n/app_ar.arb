@@ -61,6 +61,7 @@
   "version": "الإصدار",
   "comingSoon": "قريباً",
   "goodMorning": "صباح الخير،",
+  "goodEvening": "مساء الخير،",
   "noWalletSelected": "لم يتم تحديد أي حساب.",
   "noTransactionsYet": "لا توجد معاملات بعد.",
   "cashFlow": "التدفق النقدي",

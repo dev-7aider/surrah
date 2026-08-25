@@ -8,7 +8,6 @@ import 'package:pockaw/core/extensions/popup_extension.dart';
 import 'package:pockaw/features/currency_picker/data/sources/currency_local_source.dart';
 import 'package:pockaw/features/currency_picker/presentation/riverpod/currency_picker_provider.dart';
 import 'package:pockaw/features/wallet/data/model/wallet_model.dart';
-import 'package:pockaw/features/wallet/data/repositories/wallet_repo.dart';
 import 'package:pockaw/features/wallet/riverpod/wallet_providers.dart';
 import 'package:pockaw/features/wallet/screens/wallet_form_bottom_sheet.dart';
 import 'package:pockaw/l10n/app_localizations.dart';
@@ -47,7 +46,7 @@ class CreateFirstWalletField extends HookConsumerWidget {
         if (wallet == null) {
           context.openBottomSheet(
             child: WalletFormBottomSheet(
-              wallet: defaultWallets.first,
+              wallet: null,
               showDeleteButton: false,
             ),
           );

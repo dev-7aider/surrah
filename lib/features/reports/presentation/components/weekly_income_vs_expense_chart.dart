@@ -132,13 +132,15 @@ class WeeklyIncomeExpenseChart extends ConsumerWidget {
           leftTitles: AxisTitles(
             sideTitles: SideTitles(
               showTitles: true,
-              reservedSize: 40,
+              reservedSize: 52,
               interval: maxY / 4, // Match grid interval
               getTitlesWidget: (value, meta) {
                 if (value == 0) return const SizedBox.shrink();
                 return Text(
                   NumberFormat.compact().format(value),
                   style: AppTextStyles.body4,
+                  maxLines: 1,
+                  softWrap: false,
                 );
               },
             ),

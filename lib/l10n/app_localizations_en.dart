@@ -192,6 +192,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get goodMorning => 'Good morning,';
 
   @override
+  String get goodEvening => 'Good evening,';
+
+  @override
   String get noWalletSelected => 'No wallet selected.';
 
   @override

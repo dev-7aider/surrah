@@ -61,6 +61,7 @@
   "version": "Version",
   "comingSoon": "Coming Soon",
   "goodMorning": "Good morning,",
+  "goodEvening": "Good evening,",
   "noWalletSelected": "No wallet selected.",
   "noTransactionsYet": "No transactions yet.",
   "cashFlow": "Cash Flow",
