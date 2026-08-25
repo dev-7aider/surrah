@@ -16,4 +16,5 @@
 
 # AndroidX and Material
 -dontwarn androidx.**
+-dontwarn com.google.android.play.core.**
 -keep class androidx.lifecycle.DefaultLifecycleObserver
