@@ -34,6 +34,7 @@ class CustomTextField extends TextField {
     List<List<dynamic>>? prefixIcon,
     List<List<dynamic>>? suffixIcon,
     GestureTapCallback? onTapSuffixIcon,
+    EdgeInsetsGeometry? contentPadding,
   }) : super(
          style: AppTextStyles.body3,
          inputFormatters: [
@@ -91,12 +92,13 @@ class CustomTextField extends TextField {
                ),
            alignLabelWithHint: label != null,
            isDense: true,
-           contentPadding: EdgeInsets.fromLTRB(
-             prefixIcon == null ? AppSpacing.spacing20 : 0,
-             AppSpacing.spacing16,
-             0,
-             AppSpacing.spacing16,
-           ),
+           contentPadding: contentPadding ??
+               EdgeInsets.fromLTRB(
+                 prefixIcon == null ? AppSpacing.spacing20 : 0,
+                 AppSpacing.spacing16,
+                 0,
+                 AppSpacing.spacing16,
+               ),
            prefixIcon: prefixIcon == null
                ? null
                : Container(

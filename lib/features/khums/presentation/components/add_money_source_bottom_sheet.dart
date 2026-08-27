@@ -9,6 +9,7 @@ import 'package:pockaw/core/components/chips/custom_chip.dart';
 import 'package:pockaw/core/components/form_fields/custom_numeric_field.dart';
 import 'package:pockaw/core/components/form_fields/custom_text_field.dart';
 import 'package:pockaw/core/constants/app_colors.dart';
+import 'package:pockaw/core/constants/app_radius.dart';
 import 'package:pockaw/core/constants/app_spacing.dart';
 import 'package:pockaw/core/database/pockaw_database.dart';
 import 'package:pockaw/features/khums/data/model/khums_money_source_model.dart';
@@ -131,19 +132,32 @@ class _AddMoneySourceBottomSheetState
             label: l10n.khumsSourceName,
             hint: l10n.khumsWallet,
             prefixIcon: HugeIcons.strokeRoundedFolder01,
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.spacing12,
+              vertical: AppSpacing.spacing12,
+            ),
           ),
-          const Gap(AppSpacing.spacing16),
+          const Gap(AppSpacing.spacing12),
           CustomNumericField(
             controller: _amountController,
             label: l10n.amount,
             hint: '500,000',
             icon: HugeIcons.strokeRoundedMoney03,
             appendCurrencySymbolToHint: true,
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.spacing12,
+              vertical: AppSpacing.spacing12,
+            ),
           ),
           const Gap(AppSpacing.spacing24),
           PrimaryButton(
             label: l10n.save,
             isLoading: _isLoading,
+            borderRadius: BorderRadius.circular(AppRadius.radius8),
+            padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.spacing12,
+        vertical: AppSpacing.spacing16,
+      ),
             onPressed: _save,
           ),
         ],

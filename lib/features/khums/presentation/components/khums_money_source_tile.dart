@@ -43,7 +43,7 @@ class KhumsMoneySourceTile extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(AppSpacing.spacing8),
             decoration: BoxDecoration(
-              color: AppColors.primary900,
+              color: AppColors.primary,
               borderRadius: BorderRadius.circular(AppRadius.radius8),
             ),
             child: const HugeIcon(
