@@ -25,6 +25,7 @@ import 'package:pockaw/features/authentication/presentation/riverpod/auth_provid
 import 'package:pockaw/features/category/data/model/category_model.dart';
 import 'package:pockaw/features/currency_picker/presentation/riverpod/currency_picker_provider.dart';
 import 'package:pockaw/features/debt/presentation/components/debt_dashboard_holder.dart';
+import 'package:pockaw/features/khums/presentation/components/khums_dashboard_holder.dart';
 import 'package:pockaw/features/reports/presentation/components/money_insider_chart.dart';
 import 'package:pockaw/features/reports/presentation/components/six_months_income_vs_expense_chart.dart';
 import 'package:pockaw/features/goal/presentation/components/goal_pinned_holder.dart';
@@ -86,6 +87,8 @@ class DashboardScreen extends StatelessWidget {
             const GoalPinnedHolder(),
             Gap(AppSpacing.spacing12),
             const DebtDashboardHolder(),
+            Gap(AppSpacing.spacing12),
+            const KhumsDashboardHolder(),
             Gap(AppSpacing.spacing12),
             const RecentTransactionList(),
             Gap(AppSpacing.spacing12),

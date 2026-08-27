@@ -1184,4 +1184,161 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get catDebts => 'Debts';
+
+  @override
+  String get khums => 'Khums';
+
+  @override
+  String get khumsYear => 'Khums Year';
+
+  @override
+  String get khumsSetupTitle => 'Let\'s set up your Khums year';
+
+  @override
+  String get khumsSetupDesc =>
+      'Set your Khums year and organize your money so Surrah can help you calculate and track your Khums.';
+
+  @override
+  String get khumsDoYouHaveYear => 'Do you already have a Khums year?';
+
+  @override
+  String get khumsYesHaveOne => 'Yes, I already have one';
+
+  @override
+  String get khumsNoCreateOne => 'No, create one for me';
+
+  @override
+  String get khumsSelectStartDate => 'Select Khums Year Start Date';
+
+  @override
+  String get khumsYearCreatedSuccess =>
+      'Your Khums year has been created successfully.';
+
+  @override
+  String get khumsCurrentYear => 'Current Khums Year';
+
+  @override
+  String khumsDaysRemaining(int days) {
+    return '$days days remaining';
+  }
+
+  @override
+  String get khumsTotalMoney => 'Total Money';
+
+  @override
+  String get khumsAmount => 'Khums Amount';
+
+  @override
+  String get khumsPaymentStatus => 'Payment Status';
+
+  @override
+  String get khumsNotPaid => 'Not Paid';
+
+  @override
+  String get khumsPartiallyPaid => 'Partially Paid';
+
+  @override
+  String get khumsPaid => 'Paid';
+
+  @override
+  String get khumsManageMoney => 'Manage Money';
+
+  @override
+  String get khumsMyMoney => 'My Money';
+
+  @override
+  String get khumsAddMoney => 'Add Money';
+
+  @override
+  String get khumsEditMoney => 'Edit Money';
+
+  @override
+  String get khumsSourceName => 'Source Name';
+
+  @override
+  String get khumsCalculateKhums => 'Calculate Khums';
+
+  @override
+  String get khumsYearlyComparison => 'Yearly Comparison';
+
+  @override
+  String get khumsPreviousYear => 'Previous Year';
+
+  @override
+  String get khumsDifference => 'Difference';
+
+  @override
+  String get khumsHowTrackPayment => 'How would you like to track the payment?';
+
+  @override
+  String get khumsPayInFull => 'Pay in Full';
+
+  @override
+  String get khumsInstallments => 'Installments';
+
+  @override
+  String get khumsMarkAsPaid => 'Mark as Paid';
+
+  @override
+  String khumsMonthCount(int months) {
+    return '$months Months';
+  }
+
+  @override
+  String khumsMonthN(int index) {
+    return 'Month $index';
+  }
+
+  @override
+  String khumsRemaining(String amount) {
+    return 'Remaining: $amount';
+  }
+
+  @override
+  String get khumsHistory => 'Khums History';
+
+  @override
+  String get khumsDisclaimer =>
+      'Surrah is a calculation and organization tool and does not provide religious rulings. For specific religious questions or individual cases, please refer to the official guidance of your religious authority.';
+
+  @override
+  String get khumsWallet => 'Wallet';
+
+  @override
+  String get khumsBank => 'Bank';
+
+  @override
+  String get khumsCashBox => 'Cash Box';
+
+  @override
+  String get khumsSavings => 'Savings';
+
+  @override
+  String get khumsOther => 'Other';
+
+  @override
+  String get khumsCreateNewYear => 'Start New Khums Year';
+
+  @override
+  String get khumsNoMoneySources => 'No money sources added yet';
+
+  @override
+  String get khumsNextInstallment => 'Next Installment';
+
+  @override
+  String get khumsNextPayment => 'Upcoming Payment';
+
+  @override
+  String get khumsMarkAsPaidShort => 'Mark Paid';
+
+  @override
+  String get khumsConfirmPayment => 'Confirm Payment';
+
+  @override
+  String get khumsConfirmPaymentDesc =>
+      'Are you sure you want to mark this installment as paid?';
+
+  @override
+  String get khumsInstallmentPaidSuccess =>
+      'Installment marked as paid successfully';
 }

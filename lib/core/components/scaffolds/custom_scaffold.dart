@@ -61,7 +61,13 @@ class CustomScaffold extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 6),
                   child: CustomIconButton(
                     context,
-                    onPressed: () => context.pop(),
+                    onPressed: () {
+                      if (context.canPop()) {
+                        context.pop();
+                      } else {
+                        Navigator.of(context).maybePop();
+                      }
+                    },
                     icon: Directionality.of(context) == TextDirection.rtl
                         ? HugeIcons.strokeRoundedArrowRight01
                         : HugeIcons.strokeRoundedArrowLeft01,

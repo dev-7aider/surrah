@@ -2347,6 +2347,294 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Debts'**
   String get catDebts;
+
+  /// No description provided for @khums.
+  ///
+  /// In en, this message translates to:
+  /// **'Khums'**
+  String get khums;
+
+  /// No description provided for @khumsYear.
+  ///
+  /// In en, this message translates to:
+  /// **'Khums Year'**
+  String get khumsYear;
+
+  /// No description provided for @khumsSetupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s set up your Khums year'**
+  String get khumsSetupTitle;
+
+  /// No description provided for @khumsSetupDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Set your Khums year and organize your money so Surrah can help you calculate and track your Khums.'**
+  String get khumsSetupDesc;
+
+  /// No description provided for @khumsDoYouHaveYear.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you already have a Khums year?'**
+  String get khumsDoYouHaveYear;
+
+  /// No description provided for @khumsYesHaveOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, I already have one'**
+  String get khumsYesHaveOne;
+
+  /// No description provided for @khumsNoCreateOne.
+  ///
+  /// In en, this message translates to:
+  /// **'No, create one for me'**
+  String get khumsNoCreateOne;
+
+  /// No description provided for @khumsSelectStartDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Khums Year Start Date'**
+  String get khumsSelectStartDate;
+
+  /// No description provided for @khumsYearCreatedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Khums year has been created successfully.'**
+  String get khumsYearCreatedSuccess;
+
+  /// No description provided for @khumsCurrentYear.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Khums Year'**
+  String get khumsCurrentYear;
+
+  /// No description provided for @khumsDaysRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'{days} days remaining'**
+  String khumsDaysRemaining(int days);
+
+  /// No description provided for @khumsTotalMoney.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Money'**
+  String get khumsTotalMoney;
+
+  /// No description provided for @khumsAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Khums Amount'**
+  String get khumsAmount;
+
+  /// No description provided for @khumsPaymentStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Status'**
+  String get khumsPaymentStatus;
+
+  /// No description provided for @khumsNotPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Not Paid'**
+  String get khumsNotPaid;
+
+  /// No description provided for @khumsPartiallyPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Partially Paid'**
+  String get khumsPartiallyPaid;
+
+  /// No description provided for @khumsPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get khumsPaid;
+
+  /// No description provided for @khumsManageMoney.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage Money'**
+  String get khumsManageMoney;
+
+  /// No description provided for @khumsMyMoney.
+  ///
+  /// In en, this message translates to:
+  /// **'My Money'**
+  String get khumsMyMoney;
+
+  /// No description provided for @khumsAddMoney.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Money'**
+  String get khumsAddMoney;
+
+  /// No description provided for @khumsEditMoney.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Money'**
+  String get khumsEditMoney;
+
+  /// No description provided for @khumsSourceName.
+  ///
+  /// In en, this message translates to:
+  /// **'Source Name'**
+  String get khumsSourceName;
+
+  /// No description provided for @khumsCalculateKhums.
+  ///
+  /// In en, this message translates to:
+  /// **'Calculate Khums'**
+  String get khumsCalculateKhums;
+
+  /// No description provided for @khumsYearlyComparison.
+  ///
+  /// In en, this message translates to:
+  /// **'Yearly Comparison'**
+  String get khumsYearlyComparison;
+
+  /// No description provided for @khumsPreviousYear.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous Year'**
+  String get khumsPreviousYear;
+
+  /// No description provided for @khumsDifference.
+  ///
+  /// In en, this message translates to:
+  /// **'Difference'**
+  String get khumsDifference;
+
+  /// No description provided for @khumsHowTrackPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'How would you like to track the payment?'**
+  String get khumsHowTrackPayment;
+
+  /// No description provided for @khumsPayInFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay in Full'**
+  String get khumsPayInFull;
+
+  /// No description provided for @khumsInstallments.
+  ///
+  /// In en, this message translates to:
+  /// **'Installments'**
+  String get khumsInstallments;
+
+  /// No description provided for @khumsMarkAsPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as Paid'**
+  String get khumsMarkAsPaid;
+
+  /// No description provided for @khumsMonthCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{months} Months'**
+  String khumsMonthCount(int months);
+
+  /// No description provided for @khumsMonthN.
+  ///
+  /// In en, this message translates to:
+  /// **'Month {index}'**
+  String khumsMonthN(int index);
+
+  /// No description provided for @khumsRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'Remaining: {amount}'**
+  String khumsRemaining(String amount);
+
+  /// No description provided for @khumsHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Khums History'**
+  String get khumsHistory;
+
+  /// No description provided for @khumsDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'Surrah is a calculation and organization tool and does not provide religious rulings. For specific religious questions or individual cases, please refer to the official guidance of your religious authority.'**
+  String get khumsDisclaimer;
+
+  /// No description provided for @khumsWallet.
+  ///
+  /// In en, this message translates to:
+  /// **'Wallet'**
+  String get khumsWallet;
+
+  /// No description provided for @khumsBank.
+  ///
+  /// In en, this message translates to:
+  /// **'Bank'**
+  String get khumsBank;
+
+  /// No description provided for @khumsCashBox.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash Box'**
+  String get khumsCashBox;
+
+  /// No description provided for @khumsSavings.
+  ///
+  /// In en, this message translates to:
+  /// **'Savings'**
+  String get khumsSavings;
+
+  /// No description provided for @khumsOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get khumsOther;
+
+  /// No description provided for @khumsCreateNewYear.
+  ///
+  /// In en, this message translates to:
+  /// **'Start New Khums Year'**
+  String get khumsCreateNewYear;
+
+  /// No description provided for @khumsNoMoneySources.
+  ///
+  /// In en, this message translates to:
+  /// **'No money sources added yet'**
+  String get khumsNoMoneySources;
+
+  /// No description provided for @khumsNextInstallment.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Installment'**
+  String get khumsNextInstallment;
+
+  /// No description provided for @khumsNextPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming Payment'**
+  String get khumsNextPayment;
+
+  /// No description provided for @khumsMarkAsPaidShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark Paid'**
+  String get khumsMarkAsPaidShort;
+
+  /// No description provided for @khumsConfirmPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Payment'**
+  String get khumsConfirmPayment;
+
+  /// No description provided for @khumsConfirmPaymentDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to mark this installment as paid?'**
+  String get khumsConfirmPaymentDesc;
+
+  /// No description provided for @khumsInstallmentPaidSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Installment marked as paid successfully'**
+  String get khumsInstallmentPaidSuccess;
 }
 
 class _AppLocalizationsDelegate

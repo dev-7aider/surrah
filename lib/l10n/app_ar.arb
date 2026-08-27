@@ -378,5 +378,81 @@
   "catGas": "الغاز",
   "catInternet": "الإنترنت",
   "catPhone": "الهاتف والاتصالات",
-  "catDebts": "الديون والالتزامات"
+  "catDebts": "الديون والالتزامات",
+  "khums": "الخمس",
+  "khumsYear": "السنة الخمسية",
+  "khumsSetupTitle": "لنقم بضبط سنتك الخمسية",
+  "khumsSetupDesc": "حدد موعد سنتك الخمسية ورتّب أموالك لتساعدك صرّة في حساب الخمس ومتابعته بسهولة.",
+  "khumsDoYouHaveYear": "هل لديك سنة خمسية محددة مسبقاً؟",
+  "khumsYesHaveOne": "نعم، لدي سنة خمسية",
+  "khumsNoCreateOne": "لا، أنشئ لي سنة خمسية",
+  "khumsSelectStartDate": "اختر تاريخ بداية السنة الخمسية",
+  "khumsYearCreatedSuccess": "تم إنشاء سنتك الخمسية بنجاح.",
+  "khumsCurrentYear": "السنة الخمسية الحالية",
+  "khumsDaysRemaining": "متبقي {days} يوماً",
+  "@khumsDaysRemaining": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "khumsTotalMoney": "إجمالي الأموال",
+  "khumsAmount": "مبلغ الخمس",
+  "khumsPaymentStatus": "حالة السداد",
+  "khumsNotPaid": "غير مسدد",
+  "khumsPartiallyPaid": "مسدد جزئياً",
+  "khumsPaid": "مسدد بالكامل",
+  "khumsManageMoney": "إدارة الأموال",
+  "khumsMyMoney": "أموالي",
+  "khumsAddMoney": "إضافة مال",
+  "khumsEditMoney": "تعديل المال",
+  "khumsSourceName": "اسم المصدر",
+  "khumsCalculateKhums": "حساب الخمس",
+  "khumsYearlyComparison": "المقارنة السنوية",
+  "khumsPreviousYear": "السنة السابقة",
+  "khumsDifference": "الفارق",
+  "khumsHowTrackPayment": "كيف تود تتبع السداد؟",
+  "khumsPayInFull": "سداد كامل المبلغ",
+  "khumsInstallments": "أقساط شهرية",
+  "khumsMarkAsPaid": "تحديد كمسدد",
+  "khumsMonthCount": "{months} أشهر",
+  "@khumsMonthCount": {
+    "placeholders": {
+      "months": {
+        "type": "int"
+      }
+    }
+  },
+  "khumsMonthN": "الشهر {index}",
+  "@khumsMonthN": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "khumsRemaining": "المتبقي: {amount}",
+  "@khumsRemaining": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "khumsHistory": "سجل الخمس",
+  "khumsDisclaimer": "صرّة هي أداة حساب وتنظيم ولا تقدم فتاوى أو أحكاماً شرعية. لأي استفسارات فقهية أو حالات خاصة، يرجى مراجعة وتوجيه مرجعك الديني.",
+  "khumsWallet": "محفظة كاش",
+  "khumsBank": "حساب بنكي",
+  "khumsCashBox": "قاصة / صندوق",
+  "khumsSavings": "مدخرات",
+  "khumsOther": "أخرى",
+  "khumsCreateNewYear": "بدء سنة خمسية جديدة",
+  "khumsNoMoneySources": "لم تقم بإضافة مصادر أموال بعد",
+  "khumsNextInstallment": "الدفعة القادمة",
+  "khumsNextPayment": "الدفعة المستحقة",
+  "khumsMarkAsPaidShort": "تم الدفع",
+  "khumsConfirmPayment": "تأكيد تسديد الدفعة",
+  "khumsConfirmPaymentDesc": "هل أنت متأكد من تحديد هذه الدفعة كمسددة؟",
+  "khumsInstallmentPaidSuccess": "تم تسديد الدفعة بنجاح"
 }

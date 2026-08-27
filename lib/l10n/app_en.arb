@@ -379,5 +379,81 @@
   "catGas": "Gas",
   "catInternet": "Internet",
   "catPhone": "Phone",
-  "catDebts": "Debts"
+  "catDebts": "Debts",
+  "khums": "Khums",
+  "khumsYear": "Khums Year",
+  "khumsSetupTitle": "Let's set up your Khums year",
+  "khumsSetupDesc": "Set your Khums year and organize your money so Surrah can help you calculate and track your Khums.",
+  "khumsDoYouHaveYear": "Do you already have a Khums year?",
+  "khumsYesHaveOne": "Yes, I already have one",
+  "khumsNoCreateOne": "No, create one for me",
+  "khumsSelectStartDate": "Select Khums Year Start Date",
+  "khumsYearCreatedSuccess": "Your Khums year has been created successfully.",
+  "khumsCurrentYear": "Current Khums Year",
+  "khumsDaysRemaining": "{days} days remaining",
+  "@khumsDaysRemaining": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "khumsTotalMoney": "Total Money",
+  "khumsAmount": "Khums Amount",
+  "khumsPaymentStatus": "Payment Status",
+  "khumsNotPaid": "Not Paid",
+  "khumsPartiallyPaid": "Partially Paid",
+  "khumsPaid": "Paid",
+  "khumsManageMoney": "Manage Money",
+  "khumsMyMoney": "My Money",
+  "khumsAddMoney": "Add Money",
+  "khumsEditMoney": "Edit Money",
+  "khumsSourceName": "Source Name",
+  "khumsCalculateKhums": "Calculate Khums",
+  "khumsYearlyComparison": "Yearly Comparison",
+  "khumsPreviousYear": "Previous Year",
+  "khumsDifference": "Difference",
+  "khumsHowTrackPayment": "How would you like to track the payment?",
+  "khumsPayInFull": "Pay in Full",
+  "khumsInstallments": "Installments",
+  "khumsMarkAsPaid": "Mark as Paid",
+  "khumsMonthCount": "{months} Months",
+  "@khumsMonthCount": {
+    "placeholders": {
+      "months": {
+        "type": "int"
+      }
+    }
+  },
+  "khumsMonthN": "Month {index}",
+  "@khumsMonthN": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "khumsRemaining": "Remaining: {amount}",
+  "@khumsRemaining": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "khumsHistory": "Khums History",
+  "khumsDisclaimer": "Surrah is a calculation and organization tool and does not provide religious rulings. For specific religious questions or individual cases, please refer to the official guidance of your religious authority.",
+  "khumsWallet": "Wallet",
+  "khumsBank": "Bank",
+  "khumsCashBox": "Cash Box",
+  "khumsSavings": "Savings",
+  "khumsOther": "Other",
+  "khumsCreateNewYear": "Start New Khums Year",
+  "khumsNoMoneySources": "No money sources added yet",
+  "khumsNextInstallment": "Next Installment",
+  "khumsNextPayment": "Upcoming Payment",
+  "khumsMarkAsPaidShort": "Mark Paid",
+  "khumsConfirmPayment": "Confirm Payment",
+  "khumsConfirmPaymentDesc": "Are you sure you want to mark this installment as paid?",
+  "khumsInstallmentPaidSuccess": "Installment marked as paid successfully"
 }

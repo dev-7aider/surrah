@@ -33,4 +33,11 @@ class Routes {
   static const String debtList = '/debt-list';
   static const String debtDetails = '/debt-details';
   static const String debtForm = '/debt-form';
+
+  /// Khums
+  static const String khums = '/khums';
+  static const String khumsOnboarding = '/khums-onboarding';
+  static const String khumsHistory = '/khums/history';
+  static const String khumsPayment = '/khums/payment/:id';
+  static const String khumsDetail = '/khums/detail/:id';
 }

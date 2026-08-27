@@ -4,6 +4,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pockaw/core/database/daos/budget_dao.dart';
 import 'package:pockaw/core/database/daos/category_dao.dart';
 import 'package:pockaw/core/database/daos/debt_dao.dart';
+import 'package:pockaw/core/database/daos/khums_dao.dart';
 import 'package:pockaw/core/database/daos/transaction_dao.dart';
 import 'package:pockaw/core/database/daos/checklist_item_dao.dart';
 import 'package:pockaw/core/database/daos/goal_dao.dart';
@@ -14,6 +15,9 @@ import 'package:pockaw/core/database/tables/budgets_table.dart';
 import 'package:pockaw/core/database/tables/category_table.dart';
 import 'package:pockaw/core/database/tables/debt_payment_table.dart';
 import 'package:pockaw/core/database/tables/debt_table.dart';
+import 'package:pockaw/core/database/tables/khums_installments_table.dart';
+import 'package:pockaw/core/database/tables/khums_money_sources_table.dart';
+import 'package:pockaw/core/database/tables/khums_years_table.dart';
 import 'package:pockaw/core/database/tables/transaction_table.dart';
 import 'package:pockaw/core/database/tables/checklist_item_table.dart';
 import 'package:pockaw/core/database/tables/goal_table.dart';
@@ -38,6 +42,9 @@ part 'pockaw_database.g.dart';
     UserActivities,
     Debts,
     DebtPayments,
+    KhumsYears,
+    KhumsMoneySources,
+    KhumsInstallments,
   ],
   daos: [
     UserDao,
@@ -49,13 +56,14 @@ part 'pockaw_database.g.dart';
     BudgetDao,
     UserActivityDao,
     DebtDao,
+    KhumsDao,
   ],
 )
 class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
-  int get schemaVersion => 14; // Increment schema version to 14 for category title localization
+  int get schemaVersion => 15; // Increment schema version to 15 for Khums feature
 
   @override
   MigrationStrategy get migration {
@@ -122,6 +130,17 @@ class AppDatabase extends _$AppDatabase {
             await m.addColumn(categories, categories.titleEn);
           } catch (e) {
             Log.d('Columns titleAr/titleEn migration check: $e', label: 'database');
+          }
+        }
+
+        if (from < 15) {
+          Log.i('Creating Khums tables for schema v15...', label: 'database');
+          try {
+            await m.createTable(khumsYears);
+            await m.createTable(khumsMoneySources);
+            await m.createTable(khumsInstallments);
+          } catch (e) {
+            Log.d('Khums tables migration check: $e', label: 'database');
           }
         }
       },

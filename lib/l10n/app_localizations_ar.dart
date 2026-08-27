@@ -1179,4 +1179,159 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get catDebts => 'الديون والالتزامات';
+
+  @override
+  String get khums => 'الخمس';
+
+  @override
+  String get khumsYear => 'السنة الخمسية';
+
+  @override
+  String get khumsSetupTitle => 'لنقم بضبط سنتك الخمسية';
+
+  @override
+  String get khumsSetupDesc =>
+      'حدد موعد سنتك الخمسية ورتّب أموالك لتساعدك صرّة في حساب الخمس ومتابعته بسهولة.';
+
+  @override
+  String get khumsDoYouHaveYear => 'هل لديك سنة خمسية محددة مسبقاً؟';
+
+  @override
+  String get khumsYesHaveOne => 'نعم، لدي سنة خمسية';
+
+  @override
+  String get khumsNoCreateOne => 'لا، أنشئ لي سنة خمسية';
+
+  @override
+  String get khumsSelectStartDate => 'اختر تاريخ بداية السنة الخمسية';
+
+  @override
+  String get khumsYearCreatedSuccess => 'تم إنشاء سنتك الخمسية بنجاح.';
+
+  @override
+  String get khumsCurrentYear => 'السنة الخمسية الحالية';
+
+  @override
+  String khumsDaysRemaining(int days) {
+    return 'متبقي $days يوماً';
+  }
+
+  @override
+  String get khumsTotalMoney => 'إجمالي الأموال';
+
+  @override
+  String get khumsAmount => 'مبلغ الخمس';
+
+  @override
+  String get khumsPaymentStatus => 'حالة السداد';
+
+  @override
+  String get khumsNotPaid => 'غير مسدد';
+
+  @override
+  String get khumsPartiallyPaid => 'مسدد جزئياً';
+
+  @override
+  String get khumsPaid => 'مسدد بالكامل';
+
+  @override
+  String get khumsManageMoney => 'إدارة الأموال';
+
+  @override
+  String get khumsMyMoney => 'أموالي';
+
+  @override
+  String get khumsAddMoney => 'إضافة مال';
+
+  @override
+  String get khumsEditMoney => 'تعديل المال';
+
+  @override
+  String get khumsSourceName => 'اسم المصدر';
+
+  @override
+  String get khumsCalculateKhums => 'حساب الخمس';
+
+  @override
+  String get khumsYearlyComparison => 'المقارنة السنوية';
+
+  @override
+  String get khumsPreviousYear => 'السنة السابقة';
+
+  @override
+  String get khumsDifference => 'الفارق';
+
+  @override
+  String get khumsHowTrackPayment => 'كيف تود تتبع السداد؟';
+
+  @override
+  String get khumsPayInFull => 'سداد كامل المبلغ';
+
+  @override
+  String get khumsInstallments => 'أقساط شهرية';
+
+  @override
+  String get khumsMarkAsPaid => 'تحديد كمسدد';
+
+  @override
+  String khumsMonthCount(int months) {
+    return '$months أشهر';
+  }
+
+  @override
+  String khumsMonthN(int index) {
+    return 'الشهر $index';
+  }
+
+  @override
+  String khumsRemaining(String amount) {
+    return 'المتبقي: $amount';
+  }
+
+  @override
+  String get khumsHistory => 'سجل الخمس';
+
+  @override
+  String get khumsDisclaimer =>
+      'صرّة هي أداة حساب وتنظيم ولا تقدم فتاوى أو أحكاماً شرعية. لأي استفسارات فقهية أو حالات خاصة، يرجى مراجعة وتوجيه مرجعك الديني.';
+
+  @override
+  String get khumsWallet => 'محفظة كاش';
+
+  @override
+  String get khumsBank => 'حساب بنكي';
+
+  @override
+  String get khumsCashBox => 'قاصة / صندوق';
+
+  @override
+  String get khumsSavings => 'مدخرات';
+
+  @override
+  String get khumsOther => 'أخرى';
+
+  @override
+  String get khumsCreateNewYear => 'بدء سنة خمسية جديدة';
+
+  @override
+  String get khumsNoMoneySources => 'لم تقم بإضافة مصادر أموال بعد';
+
+  @override
+  String get khumsNextInstallment => 'الدفعة القادمة';
+
+  @override
+  String get khumsNextPayment => 'الدفعة المستحقة';
+
+  @override
+  String get khumsMarkAsPaidShort => 'تم الدفع';
+
+  @override
+  String get khumsConfirmPayment => 'تأكيد تسديد الدفعة';
+
+  @override
+  String get khumsConfirmPaymentDesc =>
+      'هل أنت متأكد من تحديد هذه الدفعة كمسددة؟';
+
+  @override
+  String get khumsInstallmentPaidSuccess => 'تم تسديد الدفعة بنجاح';
 }

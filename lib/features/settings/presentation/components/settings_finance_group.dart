@@ -24,6 +24,11 @@ class SettingsFinanceGroup extends StatelessWidget {
           icon: HugeIcons.strokeRoundedUserGroup,
           onTap: () => context.push(Routes.debtList),
         ),
+        MenuTileButton(
+          label: l10n.khums,
+          icon: HugeIcons.strokeRoundedSafe,
+          onTap: () => context.push(Routes.khums),
+        ),
       ],
     );
   }
