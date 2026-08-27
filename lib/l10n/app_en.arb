@@ -450,10 +450,22 @@
   "khumsOther": "Other",
   "khumsCreateNewYear": "Start New Khums Year",
   "khumsNoMoneySources": "No money sources added yet",
+  "khumsOverviewAndPayment": "Khums Overview & Payment",
+  "khumsDue": "Khums Due",
+  "khumsRecalculateAndPlan": "Recalculate and Plan",
+  "khumsPaymentTracking": "Payment Tracking",
+  "khumsInstallmentPlan": "Installment Plan",
+  "khumsMarkAsFullyPaid": "Mark as Fully Paid",
+  "khumsGeneratePlanMonth": "Generate Plan ({months} Months)",
+  "@khumsGeneratePlanMonth": {
+    "placeholders": {
+      "months": {
+        "type": "int"
+      }
+    }
+  },
+  "khumsInstallmentList": "Installment List",
+  "khumsInstallmentPaidSuccess": "Installment marked as paid successfully",
   "khumsNextInstallment": "Next Installment",
-  "khumsNextPayment": "Upcoming Payment",
-  "khumsMarkAsPaidShort": "Mark Paid",
-  "khumsConfirmPayment": "Confirm Payment",
-  "khumsConfirmPaymentDesc": "Are you sure you want to mark this installment as paid?",
-  "khumsInstallmentPaidSuccess": "Installment marked as paid successfully"
+  "khumsMarkAsPaidShort": "Mark Paid"
 }

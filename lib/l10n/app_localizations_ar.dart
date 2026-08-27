@@ -1314,24 +1314,40 @@ class AppLocalizationsAr extends AppLocalizations {
   String get khumsCreateNewYear => 'بدء سنة خمسية جديدة';
 
   @override
-  String get khumsNoMoneySources => 'لم تقم بإضافة مصادر أموال بعد';
+  String get khumsNoMoneySources => 'No money sources added yet';
+
+  @override
+  String get khumsOverviewAndPayment => 'نظرة عامة وسداد الخمس';
+
+  @override
+  String get khumsDue => 'الخمس المستحق';
+
+  @override
+  String get khumsRecalculateAndPlan => 'إعادة الحساب والخطة';
+
+  @override
+  String get khumsPaymentTracking => 'تتبع السداد';
+
+  @override
+  String get khumsInstallmentPlan => 'خطة التقسيط';
+
+  @override
+  String get khumsMarkAsFullyPaid => 'تحديد كمسدد بالكامل';
+
+  @override
+  String khumsGeneratePlanMonth(int months) {
+    return 'توزيع الأقساط ($months أشهر)';
+  }
+
+  @override
+  String get khumsInstallmentList => 'قائمة الأقساط';
+
+  @override
+  String get khumsInstallmentPaidSuccess => 'تم تسديد الدفعة بنجاح';
 
   @override
   String get khumsNextInstallment => 'الدفعة القادمة';
 
   @override
-  String get khumsNextPayment => 'الدفعة المستحقة';
-
-  @override
   String get khumsMarkAsPaidShort => 'تم الدفع';
-
-  @override
-  String get khumsConfirmPayment => 'تأكيد تسديد الدفعة';
-
-  @override
-  String get khumsConfirmPaymentDesc =>
-      'هل أنت متأكد من تحديد هذه الدفعة كمسددة؟';
-
-  @override
-  String get khumsInstallmentPaidSuccess => 'تم تسديد الدفعة بنجاح';
 }

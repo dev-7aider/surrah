@@ -17,6 +17,7 @@ class PrimaryButton extends FilledButton {
     String loadingText = 'Please wait...',
     IconData? icon,
     EdgeInsets? padding,
+    BorderRadius? borderRadius,
     ButtonType type = ButtonType.primary,
     ButtonState state = ButtonState.active,
     ThemeMode themeMode = ThemeMode.system,
@@ -37,6 +38,13 @@ class PrimaryButton extends FilledButton {
                padding: padding == null
                    ? null
                    : WidgetStatePropertyAll<EdgeInsetsGeometry>(padding),
+               shape: borderRadius == null
+                   ? null
+                   : WidgetStatePropertyAll<RoundedRectangleBorder>(
+                       RoundedRectangleBorder(
+                         borderRadius: borderRadius,
+                       ),
+                     ),
              ),
          child: Row(
            mainAxisAlignment: MainAxisAlignment.center,

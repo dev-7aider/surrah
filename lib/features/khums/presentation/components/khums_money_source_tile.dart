@@ -31,7 +31,7 @@ class KhumsMoneySourceTile extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: AppSpacing.spacing8),
       padding: const EdgeInsets.symmetric(
         horizontal: AppSpacing.spacing12,
-        vertical: AppSpacing.spacing8,
+        vertical: AppSpacing.spacing2-1,
       ),
       decoration: BoxDecoration(
         color: context.secondaryBackground,
@@ -43,12 +43,12 @@ class KhumsMoneySourceTile extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(AppSpacing.spacing8),
             decoration: BoxDecoration(
-              color: AppColors.primary50,
+              color: AppColors.primary900,
               borderRadius: BorderRadius.circular(AppRadius.radius8),
             ),
             child: const HugeIcon(
               icon: HugeIcons.strokeRoundedWallet02,
-              color: AppColors.primary,
+              color: AppColors.light,
               size: 18,
             ),
           ),

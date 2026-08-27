@@ -1323,22 +1323,38 @@ class AppLocalizationsEn extends AppLocalizations {
   String get khumsNoMoneySources => 'No money sources added yet';
 
   @override
-  String get khumsNextInstallment => 'Next Installment';
+  String get khumsOverviewAndPayment => 'Khums Overview & Payment';
 
   @override
-  String get khumsNextPayment => 'Upcoming Payment';
+  String get khumsDue => 'Khums Due';
 
   @override
-  String get khumsMarkAsPaidShort => 'Mark Paid';
+  String get khumsRecalculateAndPlan => 'Recalculate and Plan';
 
   @override
-  String get khumsConfirmPayment => 'Confirm Payment';
+  String get khumsPaymentTracking => 'Payment Tracking';
 
   @override
-  String get khumsConfirmPaymentDesc =>
-      'Are you sure you want to mark this installment as paid?';
+  String get khumsInstallmentPlan => 'Installment Plan';
+
+  @override
+  String get khumsMarkAsFullyPaid => 'Mark as Fully Paid';
+
+  @override
+  String khumsGeneratePlanMonth(int months) {
+    return 'Generate Plan ($months Months)';
+  }
+
+  @override
+  String get khumsInstallmentList => 'Installment List';
 
   @override
   String get khumsInstallmentPaidSuccess =>
       'Installment marked as paid successfully';
+
+  @override
+  String get khumsNextInstallment => 'Next Installment';
+
+  @override
+  String get khumsMarkAsPaidShort => 'Mark Paid';
 }

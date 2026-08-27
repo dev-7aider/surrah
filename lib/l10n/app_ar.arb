@@ -448,11 +448,22 @@
   "khumsSavings": "مدخرات",
   "khumsOther": "أخرى",
   "khumsCreateNewYear": "بدء سنة خمسية جديدة",
-  "khumsNoMoneySources": "لم تقم بإضافة مصادر أموال بعد",
+  "khumsOverviewAndPayment": "نظرة عامة وسداد الخمس",
+  "khumsDue": "الخمس المستحق",
+  "khumsRecalculateAndPlan": "إعادة الحساب والخطة",
+  "khumsPaymentTracking": "تتبع السداد",
+  "khumsInstallmentPlan": "خطة التقسيط",
+  "khumsMarkAsFullyPaid": "تحديد كمسدد بالكامل",
+  "khumsGeneratePlanMonth": "توزيع الأقساط ({months} أشهر)",
+  "@khumsGeneratePlanMonth": {
+    "placeholders": {
+      "months": {
+        "type": "int"
+      }
+    }
+  },
+  "khumsInstallmentList": "قائمة الأقساط",
+  "khumsInstallmentPaidSuccess": "تم تسديد الدفعة بنجاح",
   "khumsNextInstallment": "الدفعة القادمة",
-  "khumsNextPayment": "الدفعة المستحقة",
-  "khumsMarkAsPaidShort": "تم الدفع",
-  "khumsConfirmPayment": "تأكيد تسديد الدفعة",
-  "khumsConfirmPaymentDesc": "هل أنت متأكد من تحديد هذه الدفعة كمسددة؟",
-  "khumsInstallmentPaidSuccess": "تم تسديد الدفعة بنجاح"
+  "khumsMarkAsPaidShort": "تم الدفع"
 }

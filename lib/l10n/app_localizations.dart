@@ -2600,41 +2600,71 @@ abstract class AppLocalizations {
   /// **'No money sources added yet'**
   String get khumsNoMoneySources;
 
-  /// No description provided for @khumsNextInstallment.
+  /// No description provided for @khumsOverviewAndPayment.
   ///
   /// In en, this message translates to:
-  /// **'Next Installment'**
-  String get khumsNextInstallment;
+  /// **'Khums Overview & Payment'**
+  String get khumsOverviewAndPayment;
 
-  /// No description provided for @khumsNextPayment.
+  /// No description provided for @khumsDue.
   ///
   /// In en, this message translates to:
-  /// **'Upcoming Payment'**
-  String get khumsNextPayment;
+  /// **'Khums Due'**
+  String get khumsDue;
 
-  /// No description provided for @khumsMarkAsPaidShort.
+  /// No description provided for @khumsRecalculateAndPlan.
   ///
   /// In en, this message translates to:
-  /// **'Mark Paid'**
-  String get khumsMarkAsPaidShort;
+  /// **'Recalculate and Plan'**
+  String get khumsRecalculateAndPlan;
 
-  /// No description provided for @khumsConfirmPayment.
+  /// No description provided for @khumsPaymentTracking.
   ///
   /// In en, this message translates to:
-  /// **'Confirm Payment'**
-  String get khumsConfirmPayment;
+  /// **'Payment Tracking'**
+  String get khumsPaymentTracking;
 
-  /// No description provided for @khumsConfirmPaymentDesc.
+  /// No description provided for @khumsInstallmentPlan.
   ///
   /// In en, this message translates to:
-  /// **'Are you sure you want to mark this installment as paid?'**
-  String get khumsConfirmPaymentDesc;
+  /// **'Installment Plan'**
+  String get khumsInstallmentPlan;
+
+  /// No description provided for @khumsMarkAsFullyPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as Fully Paid'**
+  String get khumsMarkAsFullyPaid;
+
+  /// No description provided for @khumsGeneratePlanMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate Plan ({months} Months)'**
+  String khumsGeneratePlanMonth(int months);
+
+  /// No description provided for @khumsInstallmentList.
+  ///
+  /// In en, this message translates to:
+  /// **'Installment List'**
+  String get khumsInstallmentList;
 
   /// No description provided for @khumsInstallmentPaidSuccess.
   ///
   /// In en, this message translates to:
   /// **'Installment marked as paid successfully'**
   String get khumsInstallmentPaidSuccess;
+
+  /// No description provided for @khumsNextInstallment.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Installment'**
+  String get khumsNextInstallment;
+
+  /// No description provided for @khumsMarkAsPaidShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark Paid'**
+  String get khumsMarkAsPaidShort;
 }
 
 class _AppLocalizationsDelegate
