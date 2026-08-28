@@ -1462,4 +1462,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get plannedPurchases => 'Planned Purchases';
+
+  @override
+  String get nextToBuy => 'Next to Buy';
+
+  @override
+  String pendingItemsCount(int count) {
+    return '$count pending items';
+  }
+
+  @override
+  String get planYourPurchases => 'Plan and track your next purchases';
+
+  @override
+  String get topUrgentNeeds => 'Top Urgent & Important Needs';
 }

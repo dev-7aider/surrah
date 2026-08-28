@@ -2857,6 +2857,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Planned Purchases'**
   String get plannedPurchases;
+
+  /// No description provided for @nextToBuy.
+  ///
+  /// In en, this message translates to:
+  /// **'Next to Buy'**
+  String get nextToBuy;
+
+  /// No description provided for @pendingItemsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} pending items'**
+  String pendingItemsCount(int count);
+
+  /// No description provided for @planYourPurchases.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan and track your next purchases'**
+  String get planYourPurchases;
+
+  /// No description provided for @topUrgentNeeds.
+  ///
+  /// In en, this message translates to:
+  /// **'Top Urgent & Important Needs'**
+  String get topUrgentNeeds;
 }
 
 class _AppLocalizationsDelegate

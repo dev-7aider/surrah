@@ -521,5 +521,16 @@
   "noActivePurchases": "لا توجد مشتريات معلقة. اضغط بالأسفل للإضافة!",
   "noPurchasedHistory": "لا توجد مشتريات سابقة حتى الآن.",
   "purchaseSuccessDeducted": "تم تحديد العنصر كمشترى وتسجيل المصروف بنجاح!",
-  "plannedPurchases": "خطط الشراء"
+  "plannedPurchases": "خطط الشراء",
+  "nextToBuy": "القادم للشراء",
+  "pendingItemsCount": "{count} مشتريات متبقية",
+  "@pendingItemsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "planYourPurchases": "خطط لمشترياتك القادمة بذكاء",
+  "topUrgentNeeds": "أهم المشتريات العاجلة والمهمة"
 }

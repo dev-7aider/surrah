@@ -523,5 +523,16 @@
   "noActivePurchases": "No planned purchases pending. Tap below to add!",
   "noPurchasedHistory": "No purchased history yet.",
   "purchaseSuccessDeducted": "Item marked as purchased and expense recorded!",
-  "plannedPurchases": "Planned Purchases"
+  "plannedPurchases": "Planned Purchases",
+  "nextToBuy": "Next to Buy",
+  "pendingItemsCount": "{count} pending items",
+  "@pendingItemsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "planYourPurchases": "Plan and track your next purchases",
+  "topUrgentNeeds": "Top Urgent & Important Needs"
 }

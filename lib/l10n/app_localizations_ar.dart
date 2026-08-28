@@ -1455,4 +1455,18 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get plannedPurchases => 'خطط الشراء';
+
+  @override
+  String get nextToBuy => 'القادم للشراء';
+
+  @override
+  String pendingItemsCount(int count) {
+    return '$count مشتريات متبقية';
+  }
+
+  @override
+  String get planYourPurchases => 'خطط لمشترياتك القادمة بذكاء';
+
+  @override
+  String get topUrgentNeeds => 'أهم المشتريات العاجلة والمهمة';
 }
