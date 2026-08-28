@@ -2881,6 +2881,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Top Urgent & Important Needs'**
   String get topUrgentNeeds;
+
+  /// No description provided for @purchasedProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchased Progress'**
+  String get purchasedProgress;
+
+  /// No description provided for @completedCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Purchased'**
+  String completedCountLabel(int count);
+
+  /// No description provided for @plannedPurchasesHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchased Items History'**
+  String get plannedPurchasesHistory;
+
+  /// No description provided for @filterPlannedPurchases.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter Purchased Items'**
+  String get filterPlannedPurchases;
+
+  /// No description provided for @totalPurchasedAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Amount Paid'**
+  String get totalPurchasedAmount;
+
+  /// No description provided for @purchasedItemsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Completed Purchases'**
+  String purchasedItemsCount(int count);
+
+  /// No description provided for @noPurchasedItemsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No purchased items match the selected filter'**
+  String get noPurchasedItemsFound;
 }
 
 class _AppLocalizationsDelegate

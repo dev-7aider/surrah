@@ -534,5 +534,26 @@
     }
   },
   "planYourPurchases": "Plan and track your next purchases",
-  "topUrgentNeeds": "Top Urgent & Important Needs"
+  "topUrgentNeeds": "Top Urgent & Important Needs",
+  "purchasedProgress": "Purchased Progress",
+  "completedCountLabel": "{count} Purchased",
+  "@completedCountLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "plannedPurchasesHistory": "Purchased Items History",
+  "filterPlannedPurchases": "Filter Purchased Items",
+  "totalPurchasedAmount": "Total Amount Paid",
+  "purchasedItemsCount": "{count} Completed Purchases",
+  "@purchasedItemsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noPurchasedItemsFound": "No purchased items match the selected filter"
 }

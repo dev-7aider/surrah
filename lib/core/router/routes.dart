@@ -43,4 +43,5 @@ class Routes {
 
   /// Planned Purchases / Smart Shopping List
   static const String plannedPurchases = '/planned-purchases';
+  static const String plannedPurchasesHistory = '/planned-purchases-history';
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:pockaw/core/components/buttons/primary_button.dart';
 import 'package:pockaw/core/components/dialogs/toast.dart';
 import 'package:pockaw/core/components/scaffolds/custom_scaffold.dart';
@@ -10,6 +12,7 @@ import 'package:pockaw/core/constants/app_spacing.dart';
 import 'package:pockaw/core/constants/app_text_styles.dart';
 import 'package:pockaw/core/extensions/popup_extension.dart';
 import 'package:pockaw/core/database/database_provider.dart';
+import 'package:pockaw/core/router/routes.dart';
 import 'package:pockaw/core/services/widget_service/widget_sync_provider.dart';
 import 'package:pockaw/features/planned_purchases/data/model/planned_purchase_model.dart';
 import 'package:pockaw/features/planned_purchases/presentation/components/add_planned_item_bottom_sheet.dart';
@@ -182,9 +185,43 @@ class _PlannedPurchasesScreenState
             const Gap(AppSpacing.spacing24),
 
             // 5. Purchased History Header
-            Text(
-              l10n.purchasedHistory,
-              style: AppTextStyles.heading6,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  l10n.purchasedHistory,
+                  style: AppTextStyles.heading6,
+                ),
+                InkWell(
+                  onTap: () => context.push(Routes.plannedPurchasesHistory),
+                  borderRadius: BorderRadius.circular(AppRadius.radius4),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.spacing4,
+                      vertical: AppSpacing.spacing4,
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          l10n.seeAll,
+                          style: AppTextStyles.body4.copyWith(
+                            color: AppColors.primary,
+                          ),
+                        ),
+                        const Gap(AppSpacing.spacing4),
+                        HugeIcon(
+                          icon: Directionality.of(context) == TextDirection.rtl
+                              ? HugeIcons.strokeRoundedArrowLeft01
+                              : HugeIcons.strokeRoundedArrowRight01,
+                          color: AppColors.primary,
+                          size: 16,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
             const Gap(AppSpacing.spacing8),
 
@@ -211,13 +248,11 @@ class _PlannedPurchasesScreenState
                 }
 
                 return Column(
-                  children: items.map((item) {
+                  children: items.take(4).map((item) {
                     return PurchasedHistoryTile(
                       item: item,
                       onUnmark: () => _unmarkItem(item),
-                      onTap: () {
-                        // View details or transaction if any
-                      },
+                      onTap: () => context.push(Routes.plannedPurchasesHistory),
                     );
                   }).toList(),
                 );

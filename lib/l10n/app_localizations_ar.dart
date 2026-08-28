@@ -1469,4 +1469,29 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get topUrgentNeeds => 'أهم المشتريات العاجلة والمهمة';
+
+  @override
+  String get purchasedProgress => 'نسبة الشراء المكتمل';
+
+  @override
+  String completedCountLabel(int count) {
+    return '$count تم شراؤها';
+  }
+
+  @override
+  String get plannedPurchasesHistory => 'سجل المشتريات المكتملة';
+
+  @override
+  String get filterPlannedPurchases => 'فلترة سجل المشتريات';
+
+  @override
+  String get totalPurchasedAmount => 'إجمالي المبالغ المدفوعة';
+
+  @override
+  String purchasedItemsCount(int count) {
+    return '$count مشتريات مكتملة';
+  }
+
+  @override
+  String get noPurchasedItemsFound => 'لا توجد مشتريات مطابقة للفلتر المحدد';
 }

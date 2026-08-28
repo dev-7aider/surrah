@@ -1476,4 +1476,30 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get topUrgentNeeds => 'Top Urgent & Important Needs';
+
+  @override
+  String get purchasedProgress => 'Purchased Progress';
+
+  @override
+  String completedCountLabel(int count) {
+    return '$count Purchased';
+  }
+
+  @override
+  String get plannedPurchasesHistory => 'Purchased Items History';
+
+  @override
+  String get filterPlannedPurchases => 'Filter Purchased Items';
+
+  @override
+  String get totalPurchasedAmount => 'Total Amount Paid';
+
+  @override
+  String purchasedItemsCount(int count) {
+    return '$count Completed Purchases';
+  }
+
+  @override
+  String get noPurchasedItemsFound =>
+      'No purchased items match the selected filter';
 }

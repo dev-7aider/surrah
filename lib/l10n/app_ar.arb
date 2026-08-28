@@ -532,5 +532,26 @@
     }
   },
   "planYourPurchases": "خطط لمشترياتك القادمة بذكاء",
-  "topUrgentNeeds": "أهم المشتريات العاجلة والمهمة"
+  "topUrgentNeeds": "أهم المشتريات العاجلة والمهمة",
+  "purchasedProgress": "نسبة الشراء المكتمل",
+  "completedCountLabel": "{count} تم شراؤها",
+  "@completedCountLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "plannedPurchasesHistory": "سجل المشتريات المكتملة",
+  "filterPlannedPurchases": "فلترة سجل المشتريات",
+  "totalPurchasedAmount": "إجمالي المبالغ المدفوعة",
+  "purchasedItemsCount": "{count} مشتريات مكتملة",
+  "@purchasedItemsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noPurchasedItemsFound": "لا توجد مشتريات مطابقة للفلتر المحدد"
 }
