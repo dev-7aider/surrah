@@ -465,5 +465,61 @@
   "khumsInstallmentList": "قائمة الأقساط",
   "khumsInstallmentPaidSuccess": "تم تسديد الدفعة بنجاح",
   "khumsNextInstallment": "الدفعة القادمة",
-  "khumsMarkAsPaidShort": "تم الدفع"
+  "khumsMarkAsPaidShort": "تم الدفع",
+  "smartShoppingAndFuturePurchases": "خطط الشراء",
+  "totalPlannedBudget": "إجمالي الميزانية المخططة",
+  "statusTracking": "الحالة: متابعة",
+  "priorityMatrix": "مصفوفة الأولوية",
+  "needVsWant": "الحاجة مقابل الرغبة",
+  "urgentAndImportantNeed": "حاجة عاجلة\nومهمة",
+  "nonUrgentImportant": "مهمة غير\nعاجلة",
+  "desireWant": "رغبة /\nترفيه",
+  "activePurchasesToBuy": "مشتريات قيد الانتظار (للشراء)",
+  "purchasedHistory": "سجل المشتريات السابقة",
+  "quickAddNewPlannedItem": "إضافة عنصر مخطط جديد سريعاً",
+  "plannedPurchaseInfo": "تساعدك قائمة التسوق الذكية على التخطيط للشراء بوعي. عند الشراء يتم تحويل العنصر تلقائياً إلى مصروف مرتبط بمحفظتك.",
+  "totalItemsRemaining": "إجمالي {total} / متبقي {remaining}",
+  "@totalItemsRemaining": {
+    "placeholders": {
+      "total": {
+        "type": "int"
+      },
+      "remaining": {
+        "type": "int"
+      }
+    }
+  },
+  "remainingBalance": "المبلغ المتبقي: {balance}",
+  "@remainingBalance": {
+    "placeholders": {
+      "balance": {
+        "type": "String"
+      }
+    }
+  },
+  "lastPurchasedDate": "تاريخ الشراء: {date}",
+  "@lastPurchasedDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmPurchase": "تأكيد الشراء",
+  "selectWalletToDeduct": "اختر المحفظة المراد خصم المبلغ منها:",
+  "actualAmountPaid": "المبلغ الفعلي المدفوع",
+  "confirmAndDeduct": "تأكيد وخصم المبلغ",
+  "itemName": "اسم الحاجة / السلعة",
+  "estimatedPrice": "المبلغ التقديري",
+  "priority": "الأولوية",
+  "selectCategory": "اختر التصنيف",
+  "selectWalletOptional": "المحفظة الافتراضية (اختياري)",
+  "targetDateOptional": "الموعد المقترح (اختياري)",
+  "notesOptional": "ملاحظات (اختياري)",
+  "addNewItem": "إضافة عنصر شراء مخطط",
+  "editPlannedItem": "تعديل العنصر المخطط",
+  "noActivePurchases": "لا توجد مشتريات معلقة. اضغط بالأسفل للإضافة!",
+  "noPurchasedHistory": "لا توجد مشتريات سابقة حتى الآن.",
+  "purchaseSuccessDeducted": "تم تحديد العنصر كمشترى وتسجيل المصروف بنجاح!",
+  "plannedPurchases": "خطط الشراء"
 }

@@ -1350,4 +1350,109 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get khumsMarkAsPaidShort => 'تم الدفع';
+
+  @override
+  String get smartShoppingAndFuturePurchases => 'خطط الشراء';
+
+  @override
+  String get totalPlannedBudget => 'إجمالي الميزانية المخططة';
+
+  @override
+  String get statusTracking => 'الحالة: متابعة';
+
+  @override
+  String get priorityMatrix => 'مصفوفة الأولوية';
+
+  @override
+  String get needVsWant => 'الحاجة مقابل الرغبة';
+
+  @override
+  String get urgentAndImportantNeed => 'حاجة عاجلة\nومهمة';
+
+  @override
+  String get nonUrgentImportant => 'مهمة غير\nعاجلة';
+
+  @override
+  String get desireWant => 'رغبة /\nترفيه';
+
+  @override
+  String get activePurchasesToBuy => 'مشتريات قيد الانتظار (للشراء)';
+
+  @override
+  String get purchasedHistory => 'سجل المشتريات السابقة';
+
+  @override
+  String get quickAddNewPlannedItem => 'إضافة عنصر مخطط جديد سريعاً';
+
+  @override
+  String get plannedPurchaseInfo =>
+      'تساعدك قائمة التسوق الذكية على التخطيط للشراء بوعي. عند الشراء يتم تحويل العنصر تلقائياً إلى مصروف مرتبط بمحفظتك.';
+
+  @override
+  String totalItemsRemaining(int total, int remaining) {
+    return 'إجمالي $total / متبقي $remaining';
+  }
+
+  @override
+  String remainingBalance(String balance) {
+    return 'المبلغ المتبقي: $balance';
+  }
+
+  @override
+  String lastPurchasedDate(String date) {
+    return 'تاريخ الشراء: $date';
+  }
+
+  @override
+  String get confirmPurchase => 'تأكيد الشراء';
+
+  @override
+  String get selectWalletToDeduct => 'اختر المحفظة المراد خصم المبلغ منها:';
+
+  @override
+  String get actualAmountPaid => 'المبلغ الفعلي المدفوع';
+
+  @override
+  String get confirmAndDeduct => 'تأكيد وخصم المبلغ';
+
+  @override
+  String get itemName => 'اسم الحاجة / السلعة';
+
+  @override
+  String get estimatedPrice => 'المبلغ التقديري';
+
+  @override
+  String get priority => 'الأولوية';
+
+  @override
+  String get selectCategory => 'اختر التصنيف';
+
+  @override
+  String get selectWalletOptional => 'المحفظة الافتراضية (اختياري)';
+
+  @override
+  String get targetDateOptional => 'الموعد المقترح (اختياري)';
+
+  @override
+  String get notesOptional => 'ملاحظات (اختياري)';
+
+  @override
+  String get addNewItem => 'إضافة عنصر شراء مخطط';
+
+  @override
+  String get editPlannedItem => 'تعديل العنصر المخطط';
+
+  @override
+  String get noActivePurchases =>
+      'لا توجد مشتريات معلقة. اضغط بالأسفل للإضافة!';
+
+  @override
+  String get noPurchasedHistory => 'لا توجد مشتريات سابقة حتى الآن.';
+
+  @override
+  String get purchaseSuccessDeducted =>
+      'تم تحديد العنصر كمشترى وتسجيل المصروف بنجاح!';
+
+  @override
+  String get plannedPurchases => 'خطط الشراء';
 }

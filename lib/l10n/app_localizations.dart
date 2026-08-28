@@ -2665,6 +2665,198 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Mark Paid'**
   String get khumsMarkAsPaidShort;
+
+  /// No description provided for @smartShoppingAndFuturePurchases.
+  ///
+  /// In en, this message translates to:
+  /// **'Future Purchases'**
+  String get smartShoppingAndFuturePurchases;
+
+  /// No description provided for @totalPlannedBudget.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Planned Budget'**
+  String get totalPlannedBudget;
+
+  /// No description provided for @statusTracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Status: Tracking'**
+  String get statusTracking;
+
+  /// No description provided for @priorityMatrix.
+  ///
+  /// In en, this message translates to:
+  /// **'Priority Matrix'**
+  String get priorityMatrix;
+
+  /// No description provided for @needVsWant.
+  ///
+  /// In en, this message translates to:
+  /// **'Need vs Want'**
+  String get needVsWant;
+
+  /// No description provided for @urgentAndImportantNeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Urgent &\nImportant Need'**
+  String get urgentAndImportantNeed;
+
+  /// No description provided for @nonUrgentImportant.
+  ///
+  /// In en, this message translates to:
+  /// **'Non-Urgent\nImportant'**
+  String get nonUrgentImportant;
+
+  /// No description provided for @desireWant.
+  ///
+  /// In en, this message translates to:
+  /// **'Desire /\nWant'**
+  String get desireWant;
+
+  /// No description provided for @activePurchasesToBuy.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Purchases (To Buy)'**
+  String get activePurchasesToBuy;
+
+  /// No description provided for @purchasedHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchased History'**
+  String get purchasedHistory;
+
+  /// No description provided for @quickAddNewPlannedItem.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick Add New Planned Item'**
+  String get quickAddNewPlannedItem;
+
+  /// No description provided for @plannedPurchaseInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'The Smart Shopping List helps you plan and execute purchases wisely. Purchasing converts items to expense transactions linked to your wallets.'**
+  String get plannedPurchaseInfo;
+
+  /// No description provided for @totalItemsRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'{total} Total / {remaining} Remaining'**
+  String totalItemsRemaining(int total, int remaining);
+
+  /// No description provided for @remainingBalance.
+  ///
+  /// In en, this message translates to:
+  /// **'Remaining Balance: {balance}'**
+  String remainingBalance(String balance);
+
+  /// No description provided for @lastPurchasedDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Purchased: {date}'**
+  String lastPurchasedDate(String date);
+
+  /// No description provided for @confirmPurchase.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Purchase'**
+  String get confirmPurchase;
+
+  /// No description provided for @selectWalletToDeduct.
+  ///
+  /// In en, this message translates to:
+  /// **'Select wallet to deduct payment from:'**
+  String get selectWalletToDeduct;
+
+  /// No description provided for @actualAmountPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Actual Amount Paid'**
+  String get actualAmountPaid;
+
+  /// No description provided for @confirmAndDeduct.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm & Deduct'**
+  String get confirmAndDeduct;
+
+  /// No description provided for @itemName.
+  ///
+  /// In en, this message translates to:
+  /// **'Item Name'**
+  String get itemName;
+
+  /// No description provided for @estimatedPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated Price'**
+  String get estimatedPrice;
+
+  /// No description provided for @priority.
+  ///
+  /// In en, this message translates to:
+  /// **'Priority'**
+  String get priority;
+
+  /// No description provided for @selectCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Category'**
+  String get selectCategory;
+
+  /// No description provided for @selectWalletOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Default Wallet (Optional)'**
+  String get selectWalletOptional;
+
+  /// No description provided for @targetDateOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Target Date (Optional)'**
+  String get targetDateOptional;
+
+  /// No description provided for @notesOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes (Optional)'**
+  String get notesOptional;
+
+  /// No description provided for @addNewItem.
+  ///
+  /// In en, this message translates to:
+  /// **'Add New Planned Item'**
+  String get addNewItem;
+
+  /// No description provided for @editPlannedItem.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Planned Item'**
+  String get editPlannedItem;
+
+  /// No description provided for @noActivePurchases.
+  ///
+  /// In en, this message translates to:
+  /// **'No planned purchases pending. Tap below to add!'**
+  String get noActivePurchases;
+
+  /// No description provided for @noPurchasedHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'No purchased history yet.'**
+  String get noPurchasedHistory;
+
+  /// No description provided for @purchaseSuccessDeducted.
+  ///
+  /// In en, this message translates to:
+  /// **'Item marked as purchased and expense recorded!'**
+  String get purchaseSuccessDeducted;
+
+  /// No description provided for @plannedPurchases.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned Purchases'**
+  String get plannedPurchases;
 }
 
 class _AppLocalizationsDelegate

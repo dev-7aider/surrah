@@ -1357,4 +1357,109 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get khumsMarkAsPaidShort => 'Mark Paid';
+
+  @override
+  String get smartShoppingAndFuturePurchases => 'Future Purchases';
+
+  @override
+  String get totalPlannedBudget => 'Total Planned Budget';
+
+  @override
+  String get statusTracking => 'Status: Tracking';
+
+  @override
+  String get priorityMatrix => 'Priority Matrix';
+
+  @override
+  String get needVsWant => 'Need vs Want';
+
+  @override
+  String get urgentAndImportantNeed => 'Urgent &\nImportant Need';
+
+  @override
+  String get nonUrgentImportant => 'Non-Urgent\nImportant';
+
+  @override
+  String get desireWant => 'Desire /\nWant';
+
+  @override
+  String get activePurchasesToBuy => 'Active Purchases (To Buy)';
+
+  @override
+  String get purchasedHistory => 'Purchased History';
+
+  @override
+  String get quickAddNewPlannedItem => 'Quick Add New Planned Item';
+
+  @override
+  String get plannedPurchaseInfo =>
+      'The Smart Shopping List helps you plan and execute purchases wisely. Purchasing converts items to expense transactions linked to your wallets.';
+
+  @override
+  String totalItemsRemaining(int total, int remaining) {
+    return '$total Total / $remaining Remaining';
+  }
+
+  @override
+  String remainingBalance(String balance) {
+    return 'Remaining Balance: $balance';
+  }
+
+  @override
+  String lastPurchasedDate(String date) {
+    return 'Last Purchased: $date';
+  }
+
+  @override
+  String get confirmPurchase => 'Confirm Purchase';
+
+  @override
+  String get selectWalletToDeduct => 'Select wallet to deduct payment from:';
+
+  @override
+  String get actualAmountPaid => 'Actual Amount Paid';
+
+  @override
+  String get confirmAndDeduct => 'Confirm & Deduct';
+
+  @override
+  String get itemName => 'Item Name';
+
+  @override
+  String get estimatedPrice => 'Estimated Price';
+
+  @override
+  String get priority => 'Priority';
+
+  @override
+  String get selectCategory => 'Select Category';
+
+  @override
+  String get selectWalletOptional => 'Default Wallet (Optional)';
+
+  @override
+  String get targetDateOptional => 'Target Date (Optional)';
+
+  @override
+  String get notesOptional => 'Notes (Optional)';
+
+  @override
+  String get addNewItem => 'Add New Planned Item';
+
+  @override
+  String get editPlannedItem => 'Edit Planned Item';
+
+  @override
+  String get noActivePurchases =>
+      'No planned purchases pending. Tap below to add!';
+
+  @override
+  String get noPurchasedHistory => 'No purchased history yet.';
+
+  @override
+  String get purchaseSuccessDeducted =>
+      'Item marked as purchased and expense recorded!';
+
+  @override
+  String get plannedPurchases => 'Planned Purchases';
 }

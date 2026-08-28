@@ -40,4 +40,7 @@ class Routes {
   static const String khumsHistory = '/khums/history';
   static const String khumsPayment = '/khums/payment/:id';
   static const String khumsDetail = '/khums/detail/:id';
+
+  /// Planned Purchases / Smart Shopping List
+  static const String plannedPurchases = '/planned-purchases';
 }

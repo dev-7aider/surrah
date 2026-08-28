@@ -5,6 +5,7 @@ import 'package:pockaw/core/database/daos/budget_dao.dart';
 import 'package:pockaw/core/database/daos/category_dao.dart';
 import 'package:pockaw/core/database/daos/debt_dao.dart';
 import 'package:pockaw/core/database/daos/khums_dao.dart';
+import 'package:pockaw/core/database/daos/planned_purchase_dao.dart';
 import 'package:pockaw/core/database/daos/transaction_dao.dart';
 import 'package:pockaw/core/database/daos/checklist_item_dao.dart';
 import 'package:pockaw/core/database/daos/goal_dao.dart';
@@ -18,6 +19,7 @@ import 'package:pockaw/core/database/tables/debt_table.dart';
 import 'package:pockaw/core/database/tables/khums_installments_table.dart';
 import 'package:pockaw/core/database/tables/khums_money_sources_table.dart';
 import 'package:pockaw/core/database/tables/khums_years_table.dart';
+import 'package:pockaw/core/database/tables/planned_purchases_table.dart';
 import 'package:pockaw/core/database/tables/transaction_table.dart';
 import 'package:pockaw/core/database/tables/checklist_item_table.dart';
 import 'package:pockaw/core/database/tables/goal_table.dart';
@@ -45,6 +47,7 @@ part 'pockaw_database.g.dart';
     KhumsYears,
     KhumsMoneySources,
     KhumsInstallments,
+    PlannedPurchases,
   ],
   daos: [
     UserDao,
@@ -57,13 +60,14 @@ part 'pockaw_database.g.dart';
     UserActivityDao,
     DebtDao,
     KhumsDao,
+    PlannedPurchaseDao,
   ],
 )
 class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
-  int get schemaVersion => 15; // Increment schema version to 15 for Khums feature
+  int get schemaVersion => 16; // Increment schema version to 16 for PlannedPurchases feature
 
   @override
   MigrationStrategy get migration {
@@ -141,6 +145,15 @@ class AppDatabase extends _$AppDatabase {
             await m.createTable(khumsInstallments);
           } catch (e) {
             Log.d('Khums tables migration check: $e', label: 'database');
+          }
+        }
+
+        if (from < 16) {
+          Log.i('Creating PlannedPurchases table for schema v16...', label: 'database');
+          try {
+            await m.createTable(plannedPurchases);
+          } catch (e) {
+            Log.d('PlannedPurchases table migration check: $e', label: 'database');
           }
         }
       },

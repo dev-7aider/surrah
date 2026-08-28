@@ -467,5 +467,61 @@
   "khumsInstallmentList": "Installment List",
   "khumsInstallmentPaidSuccess": "Installment marked as paid successfully",
   "khumsNextInstallment": "Next Installment",
-  "khumsMarkAsPaidShort": "Mark Paid"
+  "khumsMarkAsPaidShort": "Mark Paid",
+  "smartShoppingAndFuturePurchases": "Future Purchases",
+  "totalPlannedBudget": "Total Planned Budget",
+  "statusTracking": "Status: Tracking",
+  "priorityMatrix": "Priority Matrix",
+  "needVsWant": "Need vs Want",
+  "urgentAndImportantNeed": "Urgent &\nImportant Need",
+  "nonUrgentImportant": "Non-Urgent\nImportant",
+  "desireWant": "Desire /\nWant",
+  "activePurchasesToBuy": "Active Purchases (To Buy)",
+  "purchasedHistory": "Purchased History",
+  "quickAddNewPlannedItem": "Quick Add New Planned Item",
+  "plannedPurchaseInfo": "The Smart Shopping List helps you plan and execute purchases wisely. Purchasing converts items to expense transactions linked to your wallets.",
+  "totalItemsRemaining": "{total} Total / {remaining} Remaining",
+  "@totalItemsRemaining": {
+    "placeholders": {
+      "total": {
+        "type": "int"
+      },
+      "remaining": {
+        "type": "int"
+      }
+    }
+  },
+  "remainingBalance": "Remaining Balance: {balance}",
+  "@remainingBalance": {
+    "placeholders": {
+      "balance": {
+        "type": "String"
+      }
+    }
+  },
+  "lastPurchasedDate": "Last Purchased: {date}",
+  "@lastPurchasedDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmPurchase": "Confirm Purchase",
+  "selectWalletToDeduct": "Select wallet to deduct payment from:",
+  "actualAmountPaid": "Actual Amount Paid",
+  "confirmAndDeduct": "Confirm & Deduct",
+  "itemName": "Item Name",
+  "estimatedPrice": "Estimated Price",
+  "priority": "Priority",
+  "selectCategory": "Select Category",
+  "selectWalletOptional": "Default Wallet (Optional)",
+  "targetDateOptional": "Target Date (Optional)",
+  "notesOptional": "Notes (Optional)",
+  "addNewItem": "Add New Planned Item",
+  "editPlannedItem": "Edit Planned Item",
+  "noActivePurchases": "No planned purchases pending. Tap below to add!",
+  "noPurchasedHistory": "No purchased history yet.",
+  "purchaseSuccessDeducted": "Item marked as purchased and expense recorded!",
+  "plannedPurchases": "Planned Purchases"
 }
