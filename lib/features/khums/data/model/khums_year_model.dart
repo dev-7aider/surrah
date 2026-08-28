@@ -55,6 +55,8 @@ class KhumsYearModel {
   }
 
   String formatHijriRange(Locale? locale) {
-    return '${hijriStartDate.format(locale)} → ${hijriEndDate.format(locale)}';
+    final isRtl = locale?.languageCode == 'ar';
+    final arrow = isRtl ? '←' : '→';
+    return '${hijriStartDate.format(locale)} $arrow ${hijriEndDate.format(locale)}';
   }
 }

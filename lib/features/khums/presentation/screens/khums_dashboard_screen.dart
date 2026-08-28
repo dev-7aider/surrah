@@ -161,11 +161,41 @@ class _KhumsDashboardScreenState extends ConsumerState<KhumsDashboardScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  year.formatHijriRange(locale),
-                                  style: AppTextStyles.body2.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    height: 1.3,
+                                FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  alignment: Directionality.of(context) ==
+                                          TextDirection.rtl
+                                      ? Alignment.centerRight
+                                      : Alignment.centerLeft,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        year.hijriStartDate.format(locale),
+                                        style: AppTextStyles.body2.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: AppSpacing.spacing8,
+                                        ),
+                                        child: HugeIcon(
+                                          icon: Directionality.of(context) ==
+                                                  TextDirection.rtl
+                                              ? HugeIcons.strokeRoundedArrowLeft02
+                                              : HugeIcons.strokeRoundedArrowRight02,
+                                          color: AppColors.primary,
+                                          size: 16,
+                                        ),
+                                      ),
+                                      Text(
+                                        year.hijriEndDate.format(locale),
+                                        style: AppTextStyles.body2.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                                 const Gap(AppSpacing.spacing8),
