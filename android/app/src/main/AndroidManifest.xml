@@ -39,9 +39,10 @@
             </intent-filter>
         </activity>
 
-        <!-- Home Screen Widget Receivers -->
+        <!-- Surrah Home Screen Widget Receiver -->
         <receiver
             android:name=".SurrahWidgetProvider"
+            android:label="@string/widget_surrah_name"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -49,17 +50,6 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/surrah_widget_info" />
-        </receiver>
-
-        <receiver
-            android:name=".PockawWidgetProvider"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/pockaw_widget_info" />
         </receiver>
 
         <!-- Disable automatic Firebase Performance & Sessions initialization for dummy keys -->

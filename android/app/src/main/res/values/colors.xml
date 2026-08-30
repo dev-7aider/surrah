@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="ic_launcher_background">#FFFFFF</color>
+    
+    <!-- Surrah Widget Dark Theme Colors (Identical to SarraTheme in iOS) -->
+    <color name="widget_bg_start">#0D0012</color>
+    <color name="widget_bg_end">#1E0D26</color>
+    <color name="widget_border">#24FFFFFF</color>
+    
+    <color name="widget_card_bg">#14FFFFFF</color>
+    <color name="widget_card_border">#1AFFFFFF</color>
+    
+    <color name="widget_primary_cyan">#00CCCD</color>
+    <color name="widget_primary_cyan_soft">#19E8E6</color>
+    <color name="widget_income_green">#52DF83</color>
+    <color name="widget_expense_red">#FF2C6D</color>
+    <color name="widget_transfer_blue">#4D96FF</color>
+    
+    <color name="widget_income_bg">#2E52DF83</color>
+    <color name="widget_expense_bg">#2EFF2C6D</color>
+    <color name="widget_transfer_bg">#2E4D96FF</color>
+    
+    <color name="widget_subtext">#B0B0B0</color>
+    <color name="widget_text_white">#FFFFFF</color>
 </resources>

@@ -6,7 +6,6 @@ class WidgetService {
   static const String appGroupId = 'group.com.haider.surrah';
   static const String androidWidgetName = 'SurrahWidgetProvider';
   static const String iOSWidgetName = 'SurrahWidget';
-  static const String pockawAndroidWidgetName = 'PockawWidgetProvider';
 
   /// Initialize HomeWidget settings
   static Future<void> initialize() async {
@@ -103,11 +102,6 @@ class WidgetService {
 
       await HomeWidget.updateWidget(
         androidName: androidWidgetName,
-        iOSName: iOSWidgetName,
-      );
-
-      await HomeWidget.updateWidget(
-        androidName: pockawAndroidWidgetName,
         iOSName: iOSWidgetName,
       );
     } catch (e) {

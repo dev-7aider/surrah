@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SURRAH</string>
+    <string name="widget_surrah_name">SURRAH Finance</string>
+    <string name="widget_surrah_description">Active wallet balance, cashflow, and transactions</string>
 </resources>

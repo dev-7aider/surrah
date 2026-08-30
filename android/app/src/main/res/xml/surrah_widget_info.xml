@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     android:minWidth="130dp"
-    android:minHeight="130dp"
+    android:minHeight="80dp"
+    android:targetCellWidth="3"
+    android:targetCellHeight="2"
+    android:minResizeWidth="100dp"
+    android:minResizeHeight="60dp"
+    android:maxResizeWidth="500dp"
+    android:maxResizeHeight="500dp"
     android:updatePeriodMillis="1800000"
-    android:previewImage="@mipmap/launcher_icon"
-    android:initialLayout="@layout/surrah_widget_small"
+    android:description="@string/widget_surrah_description"
+    android:initialLayout="@layout/surrah_widget_medium"
     android:resizeMode="horizontal|vertical"
     android:widgetCategory="home_screen">
 </appwidget-provider>

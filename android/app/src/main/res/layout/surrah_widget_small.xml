@@ -4,85 +4,101 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="12dp"
+    android:padding="10dp"
     android:background="@drawable/widget_bg">
 
-    <!-- Header: Active Wallet Title -->
+    <!-- Header: Wallet Name with credit card icon -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
+        <ImageView
+            android:id="@+id/widget_wallet_icon"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:src="@drawable/ic_widget_card"
+            android:layout_marginEnd="5dp" />
+
         <TextView
             android:id="@+id/widget_wallet_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Main Wallet"
-            android:textColor="#00CCCD"
+            android:textColor="@color/widget_primary_cyan"
             android:textSize="12sp"
             android:textStyle="bold"
             android:maxLines="1"
             android:ellipsize="end" />
     </LinearLayout>
 
-    <View
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <!-- Current Balance Block -->
-    <TextView
-        android:id="@+id/widget_balance_label"
-        android:layout_width="wrap_content"
+    <!-- Current Balance Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Current Balance"
-        android:textColor="#B0B0B0"
-        android:textSize="10sp" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/widget_balance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1,250,000 IQD"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:maxLines="1"
-        android:ellipsize="end" />
+        <TextView
+            android:id="@+id/widget_balance_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="الرصيد الحالي"
+            android:textColor="@color/widget_subtext"
+            android:textSize="9.5sp" />
 
-    <View
+        <TextView
+            android:id="@+id/widget_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:text="1,250,000 IQD"
+            android:textColor="@color/widget_text_white"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end" />
+    </LinearLayout>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <!-- Quick Action Links: Expense & Income -->
+    <!-- Quick Action Links: Expense & Income pill buttons -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <!-- Expense Button: - مصروف in RED background -->
         <TextView
             android:id="@+id/widget_btn_expense"
             android:layout_width="0dp"
-            android:layout_height="26dp"
+            android:layout_height="28dp"
             android:layout_weight="1"
-            android:text="- Expense"
-            android:textColor="#FF2C6D"
-            android:textSize="9.5sp"
+            android:text="- مصروف"
+            android:textColor="@color/widget_expense_red"
+            android:textSize="10sp"
             android:textStyle="bold"
             android:gravity="center"
             android:background="@drawable/widget_badge_expense"
             android:layout_marginEnd="4dp" />
 
+        <!-- Income Button: + دخل in GREEN background -->
         <TextView
             android:id="@+id/widget_btn_income"
             android:layout_width="0dp"
-            android:layout_height="26dp"
+            android:layout_height="28dp"
             android:layout_weight="1"
-            android:text="+ Income"
-            android:textColor="#52DF83"
-            android:textSize="9.5sp"
+            android:text="+ دخل"
+            android:textColor="@color/widget_income_green"
+            android:textSize="10sp"
             android:textStyle="bold"
             android:gravity="center"
             android:background="@drawable/widget_badge_income" />

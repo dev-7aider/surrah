@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">صُـرّة</string>
+    <string name="widget_surrah_name">صُـرّة - الإدارة المالية</string>
+    <string name="widget_surrah_description">رصيد المحفظة والتدفق النقدي وأحدث المعاملات</string>
 </resources>
