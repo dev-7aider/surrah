@@ -876,6 +876,14 @@ class AppLocalizationsEn extends AppLocalizations {
       'Which account should this amount be deducted from?';
 
   @override
+  String get deductFromAccountOption =>
+      'Deduct amount from an existing account';
+
+  @override
+  String get recordDebtOnlyLendingOption =>
+      'Record as debt only (without deducting from any account - previous debt)';
+
+  @override
   String get whichAccountReceiveBorrowedAmount =>
       'Which account should receive this amount?';
 

@@ -1784,6 +1784,18 @@ abstract class AppLocalizations {
   /// **'Which account should this amount be deducted from?'**
   String get whichAccountDeductLoanFrom;
 
+  /// No description provided for @deductFromAccountOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Deduct amount from an existing account'**
+  String get deductFromAccountOption;
+
+  /// No description provided for @recordDebtOnlyLendingOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Record as debt only (without deducting from any account - previous debt)'**
+  String get recordDebtOnlyLendingOption;
+
   /// No description provided for @whichAccountReceiveBorrowedAmount.
   ///
   /// In en, this message translates to:

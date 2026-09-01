@@ -286,6 +286,8 @@
   "noDebtsFoundCreateOne": "No debts found. Tap to add one.",
   "deductFromAccount": "Deduct from Account",
   "whichAccountDeductLoanFrom": "Which account should this amount be deducted from?",
+  "deductFromAccountOption": "Deduct amount from an existing account",
+  "recordDebtOnlyLendingOption": "Record as debt only (without deducting from any account - previous debt)",
   "whichAccountReceiveBorrowedAmount": "Which account should receive this amount?",
   "depositIntoAccountOption": "Deposit amount into an existing account",
   "recordDebtOnlyOption": "Record as debt only (without affecting any account balance)",

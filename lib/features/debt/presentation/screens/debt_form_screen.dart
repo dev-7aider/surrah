@@ -60,6 +60,7 @@ class DebtFormScreen extends HookConsumerWidget {
     final dueDate = useState<DateTime?>(null);
     final selectedWallet = useState<WalletModel?>(null);
     final depositIntoAccount = useState<bool>(true);
+    final deductFromAccount = useState<bool>(true);
 
     useEffect(() {
       if (selectedWallet.value == null && activeWallet != null) {
@@ -164,8 +165,8 @@ class DebtFormScreen extends HookConsumerWidget {
             ),
           );
 
-          if (debtType.value == DebtType.iAmOwed) {
-            // Rule 1: Giving a Loan -> Deduct loan amount from selected account
+          if (debtType.value == DebtType.iAmOwed && deductFromAccount.value) {
+            // Rule 1 (Option A): Giving a Loan -> Deduct loan amount from selected account
             final newBalance = walletToUse.balance - totalAmount;
             final updatedWallet = walletToUse.copyWith(balance: newBalance);
             await db.walletDao.updateWallet(updatedWallet);
@@ -209,7 +210,7 @@ class DebtFormScreen extends HookConsumerWidget {
               ),
             );
           }
-          // Rule 2 (Option B): Record debt only -> No balance change, no transaction created
+          // Option B (Both cases): Record debt only -> No balance change, no transaction created
 
           Toast.show(l10n.debtCreated, type: ToastificationType.success);
         }
@@ -348,30 +349,65 @@ class DebtFormScreen extends HookConsumerWidget {
 
                   // Accounting Prompt & Options based on DebtType
                   if (debtType.value == DebtType.iAmOwed) ...[
-                    // Rule 1: Giving a loan prompt
+                    // Rule 1: Giving a loan prompt & options
                     Text(
                       l10n.whichAccountDeductLoanFrom,
                       style: AppTextStyles.body3.bold,
                     ),
-                    CustomSelectField(
-                      context: context,
-                      controller: walletController,
-                      label: l10n.deductFromAccount,
-                      hint: l10n.selectAccount,
-                      prefixIcon: HugeIcons.strokeRoundedWallet01,
-                      onTap: () async {
-                        final picked = await context.openBottomSheet<WalletModel?>(
-                          child: WalletPickerBottomSheet(
-                            selectedWallet: selectedWallet.value,
-                            title: l10n.whichAccountDeductLoanFrom,
-                          ),
-                        );
-                        if (picked != null) {
-                          selectedWallet.value = picked;
-                          walletController.text = picked.name;
-                        }
-                      },
+                    Container(
+                      decoration: BoxDecoration(
+                        color: context.secondaryBackground,
+                        borderRadius: BorderRadius.circular(AppRadius.radius12),
+                        border: Border.all(color: context.secondaryBorderLighter),
+                      ),
+                      child: RadioGroup<bool>(
+                        groupValue: deductFromAccount.value,
+                        onChanged: (val) {
+                          if (val != null) deductFromAccount.value = val;
+                        },
+                        child: Column(
+                          children: [
+                            RadioListTile<bool>(
+                              title: Text(
+                                l10n.deductFromAccountOption,
+                                style: AppTextStyles.body4.bold,
+                              ),
+                              value: true,
+                            ),
+                            const Divider(height: 1),
+                            RadioListTile<bool>(
+                              title: Text(
+                                l10n.recordDebtOnlyLendingOption,
+                                style: AppTextStyles.body4.copyWith(
+                                  color: context.secondaryText,
+                                ),
+                              ),
+                              value: false,
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
+                    if (deductFromAccount.value)
+                      CustomSelectField(
+                        context: context,
+                        controller: walletController,
+                        label: l10n.deductFromAccount,
+                        hint: l10n.selectAccount,
+                        prefixIcon: HugeIcons.strokeRoundedWallet01,
+                        onTap: () async {
+                          final picked = await context.openBottomSheet<WalletModel?>(
+                            child: WalletPickerBottomSheet(
+                              selectedWallet: selectedWallet.value,
+                              title: l10n.whichAccountDeductLoanFrom,
+                            ),
+                          );
+                          if (picked != null) {
+                            selectedWallet.value = picked;
+                            walletController.text = picked.name;
+                          }
+                        },
+                      ),
                   ] else ...[
                     // Rule 2: Receiving a loan prompt & options
                     Text(

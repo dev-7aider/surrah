@@ -285,6 +285,8 @@
   "noDebtsFoundCreateOne": "لا توجد ديون حالياً. انقر لإضافة دين جديد.",
   "deductFromAccount": "تخصيم من الحساب",
   "whichAccountDeductLoanFrom": "أي حساب يجب تخصيم هذا المبلغ منه؟",
+  "deductFromAccountOption": "خصم المبلغ من أحد حساباتي الحالية",
+  "recordDebtOnlyLendingOption": "تسجيل كدين فقط (دون خصم من أي حساب - دين سابق)",
   "whichAccountReceiveBorrowedAmount": "أي حساب يجب أن يستلم هذا المبلغ؟",
   "depositIntoAccountOption": "إيداع المبلغ في أحد حساباتي الحالية",
   "recordDebtOnlyOption": "تسجيل كدين فقط (دون إيداع في أي حساب)",

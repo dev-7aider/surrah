@@ -874,6 +874,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get whichAccountDeductLoanFrom => 'أي حساب يجب تخصيم هذا المبلغ منه؟';
 
   @override
+  String get deductFromAccountOption => 'خصم المبلغ من أحد حساباتي الحالية';
+
+  @override
+  String get recordDebtOnlyLendingOption =>
+      'تسجيل كدين فقط (دون خصم من أي حساب - دين سابق)';
+
+  @override
   String get whichAccountReceiveBorrowedAmount =>
       'أي حساب يجب أن يستلم هذا المبلغ؟';
 
