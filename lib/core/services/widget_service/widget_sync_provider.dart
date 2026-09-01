@@ -127,22 +127,19 @@ class WidgetSyncService {
           ? '•••• $currencySymbol'
           : '${walletBalance.toPriceFormat()} $currencySymbol';
 
-      final String todayIncomeFormatted = hideBalance
-          ? '•••• $currencySymbol'
-          : '+${todayIncome.toPriceFormat()} $currencySymbol';
+      final String todayIncomeFormatted =
+          '+${todayIncome.toPriceFormat()} $currencySymbol';
 
-      final String todayExpensesFormatted = hideBalance
-          ? '•••• $currencySymbol'
-          : '-${todayExpenses.toPriceFormat()} $currencySymbol';
+      final String todayExpensesFormatted =
+          '-${todayExpenses.toPriceFormat()} $currencySymbol';
 
       // 5. Build recent 2-3 transactions payload
       final List<Map<String, dynamic>> recentTransactionsList = [];
       for (final tx in transactions.take(3)) {
         final bool isExpense = tx.transactionType == TransactionType.expense;
         final String sign = isExpense ? '-' : '+';
-        final String formattedAmount = hideBalance
-            ? '•••• $currencySymbol'
-            : '$sign${tx.amount.toPriceFormat()} $currencySymbol';
+        final String formattedAmount =
+            '$sign${tx.amount.toPriceFormat()} $currencySymbol';
 
         recentTransactionsList.add({
           'id': tx.id ?? 0,

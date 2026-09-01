@@ -122,7 +122,7 @@ class SurrahWidgetProvider : HomeWidgetProvider() {
                                     val tx1Intent = HomeWidgetLaunchIntent.getActivity(
                                         context,
                                         MainActivity::class.java,
-                                        Uri.parse("pockaw://transaction/$tx1Id")
+                                        Uri.parse("surrah://transaction/$tx1Id")
                                     )
                                     setOnClickPendingIntent(R.id.widget_tx_1, tx1Intent)
                                 } else {
@@ -146,7 +146,7 @@ class SurrahWidgetProvider : HomeWidgetProvider() {
                                     val tx2Intent = HomeWidgetLaunchIntent.getActivity(
                                         context,
                                         MainActivity::class.java,
-                                        Uri.parse("pockaw://transaction/$tx2Id")
+                                        Uri.parse("surrah://transaction/$tx2Id")
                                     )
                                     setOnClickPendingIntent(R.id.widget_tx_2, tx2Intent)
                                 } else {
@@ -170,7 +170,7 @@ class SurrahWidgetProvider : HomeWidgetProvider() {
                                     val tx3Intent = HomeWidgetLaunchIntent.getActivity(
                                         context,
                                         MainActivity::class.java,
-                                        Uri.parse("pockaw://transaction/$tx3Id")
+                                        Uri.parse("surrah://transaction/$tx3Id")
                                     )
                                     setOnClickPendingIntent(R.id.widget_tx_3, tx3Intent)
                                 } else {
@@ -189,22 +189,22 @@ class SurrahWidgetProvider : HomeWidgetProvider() {
                     val expenseIntent = HomeWidgetLaunchIntent.getActivity(
                         context,
                         MainActivity::class.java,
-                        Uri.parse("pockaw://add_transaction?type=expense")
+                        Uri.parse("surrah://add_transaction?type=expense")
                     )
                     val incomeIntent = HomeWidgetLaunchIntent.getActivity(
                         context,
                         MainActivity::class.java,
-                        Uri.parse("pockaw://add_transaction?type=income")
+                        Uri.parse("surrah://add_transaction?type=income")
                     )
                     val transferIntent = HomeWidgetLaunchIntent.getActivity(
                         context,
                         MainActivity::class.java,
-                        Uri.parse("pockaw://add_transaction?type=transfer")
+                        Uri.parse("surrah://add_transaction?type=transfer")
                     )
                     val openWalletsIntent = HomeWidgetLaunchIntent.getActivity(
                         context,
                         MainActivity::class.java,
-                        Uri.parse("pockaw://manage-wallets")
+                        Uri.parse("surrah://manage-wallets")
                     )
 
                     try {

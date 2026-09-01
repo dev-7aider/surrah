@@ -16,6 +16,7 @@ import 'package:pockaw/core/utils/logger.dart';
 import 'package:pockaw/features/authentication/presentation/riverpod/auth_provider.dart';
 import 'package:pockaw/features/user_activity/data/enum/user_activity_action.dart';
 import 'package:pockaw/features/user_activity/riverpod/user_activity_provider.dart';
+import 'package:pockaw/core/app.dart';
 import 'package:pockaw/core/services/widget_service/widget_service.dart';
 import 'package:pockaw/core/services/widget_service/widget_sync_provider.dart';
 

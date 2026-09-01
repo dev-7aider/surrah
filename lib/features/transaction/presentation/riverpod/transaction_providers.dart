@@ -55,7 +55,8 @@ final transactionDetailsProvider = StreamProvider.autoDispose.family<Transaction
   // and filter, or add a specific DAO method.
   // Let's assume `watchAllTransactionsWithDetails` is efficient enough for now for finding one item.
   return db.transactionDao.watchAllTransactionsWithDetails().map(
-    (transactions) => transactions.firstWhere((tx) => tx.id == id),
+    (transactions) =>
+        transactions.where((tx) => tx.id == id).firstOrNull,
   );
 });
 

@@ -137,8 +137,8 @@ struct Provider: TimelineProvider {
             walletName: walletName,
             walletBalanceFormatted: hideBalance ? "•••• \(currencySymbol)" : balanceStr!,
             currencySymbol: currencySymbol,
-            todayIncomeFormatted: hideBalance ? "•••• \(currencySymbol)" : todayIncomeStr!,
-            todayExpensesFormatted: hideBalance ? "•••• \(currencySymbol)" : todayExpensesStr!,
+            todayIncomeFormatted: todayIncomeStr!,
+            todayExpensesFormatted: todayExpensesStr!,
             incomeTodayLabel: incomeTodayLabel,
             expensesTodayLabel: expensesTodayLabel,
             recentTransactionsLabel: recentTransactionsLabel,
@@ -175,7 +175,7 @@ struct SmallWidgetView: View {
     let entry: FinancialWidgetEntry
 
     var body: some View {
-        Link(destination: URL(string: "pockaw://manage-wallets")!) {
+        Link(destination: URL(string: "surrah://manage-wallets")!) {
             VStack(alignment: entry.isRtl ? .trailing : .leading, spacing: 0) {
                 if !entry.hasActiveWallet {
                     Spacer()
@@ -225,7 +225,7 @@ struct SmallWidgetView: View {
                     
                     // Quick Expense & Income Links
                     HStack(spacing: 6) {
-                        Link(destination: URL(string: "pockaw://add_transaction?type=expense")!) {
+                        Link(destination: URL(string: "surrah://add_transaction?type=expense")!) {
                             HStack(spacing: 3) {
                                 Image(systemName: "minus.circle.fill")
                                     .font(.system(size: 9))
@@ -239,7 +239,7 @@ struct SmallWidgetView: View {
                             .cornerRadius(6)
                         }
                         
-                        Link(destination: URL(string: "pockaw://add_transaction?type=income")!) {
+                        Link(destination: URL(string: "surrah://add_transaction?type=income")!) {
                             HStack(spacing: 3) {
                                 Image(systemName: "plus.circle.fill")
                                     .font(.system(size: 9))
@@ -289,7 +289,7 @@ struct MediumWidgetView: View {
             } else {
                 // Top Row: Active Wallet Header & Balance
                 HStack(alignment: .top) {
-                    Link(destination: URL(string: "pockaw://manage-wallets")!) {
+                    Link(destination: URL(string: "surrah://manage-wallets")!) {
                         VStack(alignment: entry.isRtl ? .trailing : .leading, spacing: 2) {
                             HStack(spacing: 5) {
                                 Image(systemName: "creditcard.fill")
@@ -312,7 +312,7 @@ struct MediumWidgetView: View {
                     
                     // Quick Action Action Buttons: Expense, Income, Transfer
                     HStack(spacing: 5) {
-                        Link(destination: URL(string: "pockaw://add_transaction?type=expense")!) {
+                        Link(destination: URL(string: "surrah://add_transaction?type=expense")!) {
                             HStack(spacing: 2) {
                                 Text("-")
                                     .font(.system(size: 13, weight: .black))
@@ -326,7 +326,7 @@ struct MediumWidgetView: View {
                             .cornerRadius(8)
                         }
                         
-                        Link(destination: URL(string: "pockaw://add_transaction?type=income")!) {
+                        Link(destination: URL(string: "surrah://add_transaction?type=income")!) {
                             HStack(spacing: 2) {
                                 Text("+")
                                     .font(.system(size: 13, weight: .black))
@@ -340,7 +340,7 @@ struct MediumWidgetView: View {
                             .cornerRadius(8)
                         }
 
-                        Link(destination: URL(string: "pockaw://add_transaction?type=transfer")!) {
+                        Link(destination: URL(string: "surrah://add_transaction?type=transfer")!) {
                             HStack(spacing: 2) {
                                 Image(systemName: "arrow.left.arrow.right")
                                     .font(.system(size: 8, weight: .bold))
@@ -432,7 +432,7 @@ struct LargeWidgetView: View {
     var body: some View {
         VStack(alignment: entry.isRtl ? .trailing : .leading, spacing: 8) {
             // Header Row: Wallet Name & Balance Link
-            Link(destination: URL(string: "pockaw://manage-wallets")!) {
+            Link(destination: URL(string: "surrah://manage-wallets")!) {
                 HStack {
                     HStack(spacing: 6) {
                         Image(systemName: "creditcard.fill")
@@ -521,7 +521,7 @@ struct LargeWidgetView: View {
                     Spacer()
                 } else {
                     ForEach(entry.recentTransactions.prefix(3)) { tx in
-                        Link(destination: URL(string: "pockaw://transaction/\(tx.id)")!) {
+                        Link(destination: URL(string: "surrah://transaction/\(tx.id)")!) {
                             HStack(spacing: 7) {
                                 Circle()
                                     .fill(tx.isExpense ? SarraTheme.expenseRed.opacity(0.15) : SarraTheme.incomeGreen.opacity(0.15))
@@ -541,6 +541,7 @@ struct LargeWidgetView: View {
                                         .font(.system(size: 9))
                                         .foregroundColor(SarraTheme.neutralSubtext)
                                         .lineLimit(1)
+                                
                                 }
                                 
                                 Spacer()
@@ -565,7 +566,7 @@ struct LargeWidgetView: View {
             
             // Bottom Action Bar: [Expense] [Income] [Transfer]
             HStack(spacing: 6) {
-                Link(destination: URL(string: "pockaw://add_transaction?type=expense")!) {
+                Link(destination: URL(string: "surrah://add_transaction?type=expense")!) {
                     HStack(spacing: 3) {
                         Text("-")
                             .font(.system(size: 13, weight: .black))
@@ -579,7 +580,7 @@ struct LargeWidgetView: View {
                     .cornerRadius(8)
                 }
 
-                Link(destination: URL(string: "pockaw://add_transaction?type=income")!) {
+                Link(destination: URL(string: "surrah://add_transaction?type=income")!) {
                     HStack(spacing: 3) {
                         Text("+")
                             .font(.system(size: 13, weight: .black))
@@ -593,7 +594,7 @@ struct LargeWidgetView: View {
                     .cornerRadius(8)
                 }
 
-                Link(destination: URL(string: "pockaw://add_transaction?type=transfer")!) {
+                Link(destination: URL(string: "surrah://add_transaction?type=transfer")!) {
                     HStack(spacing: 3) {
                         Image(systemName: "arrow.left.arrow.right")
                             .font(.system(size: 9, weight: .bold))

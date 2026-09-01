@@ -109,6 +109,22 @@ class WidgetService {
     }
   }
 
+  static Uri? _pendingUri;
+
+  /// Store pending widget URI when launched from widget
+  static void setPendingUri(Uri? uri) {
+    if (uri != null) {
+      _pendingUri = uri;
+    }
+  }
+
+  /// Consume pending widget URI after app/session initialization
+  static Uri? consumePendingUri() {
+    final uri = _pendingUri;
+    _pendingUri = null;
+    return uri;
+  }
+
   /// Register callback for background widget actions or deep links
   static Future<Uri?> getInitiallyLaunchedUrl() async {
     try {

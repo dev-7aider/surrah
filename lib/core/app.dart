@@ -20,12 +20,20 @@ import 'package:pockaw/core/router/routes.dart';
 import 'package:pockaw/core/services/widget_service/widget_service.dart';
 import 'package:pockaw/core/services/widget_service/widget_sync_provider.dart';
 
-void _handleWidgetUri(Uri uri) {
-  final host = uri.host;
+void handleWidgetUri(Uri uri) {
+  final host = uri.host.toLowerCase();
   final path = uri.path;
+  final fullUriStr = uri.toString();
   final type = uri.queryParameters['type'];
 
   WidgetsBinding.instance.addPostFrameCallback((_) {
+    final currentPath = router.state?.uri.toString() ?? '';
+    // If currently on splash or onboarding, store as pending to open once main screen is reached
+    if (currentPath == Routes.splash || currentPath == Routes.onboarding) {
+      WidgetService.setPendingUri(uri);
+      return;
+    }
+
     if (host == 'add_transaction' ||
         host == 'transaction-form' ||
         path.contains('add_transaction') ||
@@ -39,8 +47,19 @@ void _handleWidgetUri(Uri uri) {
         host == 'manage-wallets' ||
         path.contains('manage-wallets')) {
       router.push(Routes.manageWallets);
-    } else if (path.startsWith('/transaction/')) {
-      router.push(path);
+    } else if (host == 'transaction' || path.startsWith('/transaction/') || path.startsWith('transaction/')) {
+      String txIdStr = '';
+      if (host == 'transaction' && path.isNotEmpty) {
+        txIdStr = path.replaceAll('/', '');
+      } else if (path.contains('/transaction/')) {
+        txIdStr = path.split('/transaction/').last;
+      } else if (path.startsWith('/')) {
+        txIdStr = path.substring(1);
+      }
+      final txId = int.tryParse(txIdStr);
+      if (txId != null) {
+        router.push('/transaction/$txId');
+      }
     }
   });
 }
@@ -66,13 +85,14 @@ class _MyAppState extends ConsumerState<MyApp> {
   Future<void> _initHomeWidgetDeepLinks() async {
     _widgetSubscription = HomeWidget.widgetClicked.listen((uri) {
       if (uri != null) {
-        _handleWidgetUri(uri);
+        handleWidgetUri(uri);
       }
     });
 
     final initialUri = await WidgetService.getInitiallyLaunchedUrl();
     if (initialUri != null) {
-      _handleWidgetUri(initialUri);
+      WidgetService.setPendingUri(initialUri);
+      handleWidgetUri(initialUri);
     }
   }
 

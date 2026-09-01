@@ -7,13 +7,31 @@ import 'package:pockaw/features/dashboard/presentation/screens/dashboard_screen.
 import 'package:pockaw/features/goal/presentation/screens/goal_screen.dart';
 import 'package:pockaw/features/main/presentation/components/custom_bottom_app_bar.dart';
 import 'package:pockaw/features/main/presentation/riverpod/main_page_view_riverpod.dart';
+import 'package:pockaw/core/app.dart';
+import 'package:pockaw/core/services/widget_service/widget_service.dart';
 import 'package:pockaw/features/transaction/presentation/screens/transaction_screen.dart';
 
-class MainScreen extends ConsumerWidget {
+class MainScreen extends ConsumerStatefulWidget {
   const MainScreen({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  ConsumerState<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends ConsumerState<MainScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final pendingUri = WidgetService.consumePendingUri();
+      if (pendingUri != null && mounted) {
+        handleWidgetUri(pendingUri);
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final currentPage = ref.watch(pageControllerProvider);
     // It's generally recommended to create PageController outside build or use usePageController hook if stateful,
     // but for this structure, ensure it's stable or managed by a provider if complex interactions are needed.
