@@ -557,5 +557,23 @@
       }
     }
   },
-  "noPurchasedItemsFound": "No purchased items match the selected filter"
+  "noPurchasedItemsFound": "No purchased items match the selected filter",
+  "homeScreenWidget": "Home Screen Widget",
+  "addWidgetTitle": "Add a Home Screen Widget",
+  "addWidgetSubtitle": "Get a quick view of your balance, today's income and expenses — right from your Home Screen.",
+  "instantAccessTitle": "Instant access",
+  "instantAccessSubtitle": "Check your balance in seconds",
+  "stayOnTopTitle": "Stay on top",
+  "stayOnTopSubtitle": "See today's income and expenses",
+  "securePrivateTitle": "Secure & private",
+  "securePrivateSubtitle": "Your data stays on your device",
+  "addWidgetButton": "Add Widget",
+  "maybeLater": "Maybe Later",
+  "quickAccessBadge": "Quick access to what matters",
+  "widgetPinnedSuccess": "Widget added to your Home Screen",
+  "howToAddWidgetTitle": "How to Add on iOS",
+  "iosStep1": "Go to your Home Screen, touch and hold an empty area until apps jiggle",
+  "iosStep2": "Tap the '+' button in the upper corner",
+  "iosStep3": "Search for 'SURRAH', choose your preferred size and tap 'Add Widget'",
+  "gotIt": "Got it"
 }

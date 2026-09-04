@@ -145,4 +145,36 @@ class WidgetService {
       debugPrint('Error registering interactivity callback: $e');
     }
   }
+
+  /// Request pinning the home widget (Supported on Android 8.0+ / API 26+)
+  static Future<bool> requestPinWidget() async {
+    try {
+      if (defaultTargetPlatform == TargetPlatform.android) {
+        final isSupported =
+            await HomeWidget.isRequestPinWidgetSupported() ?? false;
+        if (isSupported) {
+          await HomeWidget.requestPinWidget(
+            androidName: androidWidgetName,
+            qualifiedAndroidName: 'com.haider.surrah.SurrahWidgetProvider',
+          );
+          return true;
+        }
+      }
+    } catch (e) {
+      debugPrint('Error requesting widget pin: $e');
+    }
+    return false;
+  }
+
+  /// Check if requesting pin is supported on the current device
+  static Future<bool> isPinWidgetSupported() async {
+    try {
+      if (defaultTargetPlatform == TargetPlatform.android) {
+        return await HomeWidget.isRequestPinWidgetSupported() ?? false;
+      }
+    } catch (e) {
+      debugPrint('Error checking pin widget support: $e');
+    }
+    return false;
+  }
 }

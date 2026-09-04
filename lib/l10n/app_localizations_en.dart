@@ -1510,4 +1510,61 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get noPurchasedItemsFound =>
       'No purchased items match the selected filter';
+
+  @override
+  String get homeScreenWidget => 'Home Screen Widget';
+
+  @override
+  String get addWidgetTitle => 'Add a Home Screen Widget';
+
+  @override
+  String get addWidgetSubtitle =>
+      'Get a quick view of your balance, today\'s income and expenses — right from your Home Screen.';
+
+  @override
+  String get instantAccessTitle => 'Instant access';
+
+  @override
+  String get instantAccessSubtitle => 'Check your balance in seconds';
+
+  @override
+  String get stayOnTopTitle => 'Stay on top';
+
+  @override
+  String get stayOnTopSubtitle => 'See today\'s income and expenses';
+
+  @override
+  String get securePrivateTitle => 'Secure & private';
+
+  @override
+  String get securePrivateSubtitle => 'Your data stays on your device';
+
+  @override
+  String get addWidgetButton => 'Add Widget';
+
+  @override
+  String get maybeLater => 'Maybe Later';
+
+  @override
+  String get quickAccessBadge => 'Quick access to what matters';
+
+  @override
+  String get widgetPinnedSuccess => 'Widget added to your Home Screen';
+
+  @override
+  String get howToAddWidgetTitle => 'How to Add on iOS';
+
+  @override
+  String get iosStep1 =>
+      'Go to your Home Screen, touch and hold an empty area until apps jiggle';
+
+  @override
+  String get iosStep2 => 'Tap the \'+\' button in the upper corner';
+
+  @override
+  String get iosStep3 =>
+      'Search for \'SURRAH\', choose your preferred size and tap \'Add Widget\'';
+
+  @override
+  String get gotIt => 'Got it';
 }

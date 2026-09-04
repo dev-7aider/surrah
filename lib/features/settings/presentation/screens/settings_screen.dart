@@ -22,6 +22,7 @@ import 'package:pockaw/features/theme_switcher/presentation/components/theme_mod
 import 'package:pockaw/features/user_activity/riverpod/user_activity_provider.dart';
 import 'package:pockaw/core/database/database_provider.dart';
 import 'package:pockaw/core/localization/locale_provider.dart';
+import 'package:pockaw/core/services/widget_service/presentation/add_widget_prompt_bottom_sheet.dart';
 import 'package:pockaw/features/currency_picker/data/models/currency.dart';
 import 'package:pockaw/features/currency_picker/presentation/riverpod/currency_picker_provider.dart';
 import 'package:pockaw/l10n/app_localizations.dart';

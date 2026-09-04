@@ -20,6 +20,8 @@ import 'package:pockaw/features/user_activity/data/enum/user_activity_action.dar
 import 'package:pockaw/features/user_activity/riverpod/user_activity_provider.dart';
 import 'package:pockaw/features/wallet/data/model/wallet_model.dart';
 import 'package:pockaw/features/wallet/riverpod/wallet_providers.dart';
+import 'package:pockaw/core/services/widget_service/presentation/add_widget_prompt_bottom_sheet.dart';
+import 'package:pockaw/core/services/widget_service/widget_sync_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toastification/toastification.dart';
 
@@ -211,9 +213,29 @@ class AuthNotifier extends Notifier<UserModel> {
             .logActivity(action: UserActivityAction.journeyStarted);
       }
 
+      // Sync widget with latest wallet info
+      await ref.read(widgetSyncProvider).syncWidgetData();
+
+      // Check if user should be prompted to add home screen widget
+      final prefs = await SharedPreferences.getInstance();
+      final hasSeenWidgetPrompt =
+          prefs.getBool('has_seen_widget_prompt') ?? false;
+
+      if (!hasSeenWidgetPrompt && context.mounted) {
+        AddWidgetPromptBottomSheet.show(
+          context,
+          onProceed: () {
+            if (context.mounted) {
+              context.replace(Routes.main);
+            }
+          },
+        );
+        return;
+      }
+
       // Navigate to main screen
       if (context.mounted) {
-        context.push(Routes.main);
+        context.replace(Routes.main);
       }
     } catch (e, stackTrace) {
       Log.e(stackTrace.toString(), label: 'sign in or register');

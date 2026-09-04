@@ -1501,4 +1501,61 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get noPurchasedItemsFound => 'لا توجد مشتريات مطابقة للفلتر المحدد';
+
+  @override
+  String get homeScreenWidget => 'أداة الشاشة الرئيسية';
+
+  @override
+  String get addWidgetTitle => 'إضافة أداة الشاشة الرئيسية';
+
+  @override
+  String get addWidgetSubtitle =>
+      'احصل على نظرة سريعة على رصيدك، ومصاريف ودخل اليوم — مباشرة من شاشتك الرئيسية.';
+
+  @override
+  String get instantAccessTitle => 'وصول فوري';
+
+  @override
+  String get instantAccessSubtitle => 'تحقق من رصيدك في ثوانٍ';
+
+  @override
+  String get stayOnTopTitle => 'ابقَ على اطلاع';
+
+  @override
+  String get stayOnTopSubtitle => 'تابع مصاريفك ودخلك اليومي';
+
+  @override
+  String get securePrivateTitle => 'آمن وخاص';
+
+  @override
+  String get securePrivateSubtitle => 'بياناتك محفوظة على جهازك فقط';
+
+  @override
+  String get addWidgetButton => 'إضافة الأداة';
+
+  @override
+  String get maybeLater => 'ربما لاحقاً';
+
+  @override
+  String get quickAccessBadge => 'وصول سريع لما يهمك';
+
+  @override
+  String get widgetPinnedSuccess => 'تمت إضافة الأداة للشاشة الرئيسية';
+
+  @override
+  String get howToAddWidgetTitle => 'طريقة الإضافة على iOS';
+
+  @override
+  String get iosStep1 =>
+      'انتقل للشاشة الرئيسية والمس مطولاً أي مساحة فارغة حتى تهتز التطبيقات';
+
+  @override
+  String get iosStep2 => 'اضغط على زر \'+\' في الزاوية العلوية';
+
+  @override
+  String get iosStep3 =>
+      'ابحث عن \'صُـرّة\'، اختر الحجم المفضل واضغط \'إضافة أداة\'';
+
+  @override
+  String get gotIt => 'فهمت';
 }

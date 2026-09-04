@@ -44,6 +44,14 @@ class SettingsPreferencesGroup extends ConsumerWidget {
           icon: HugeIcons.strokeRoundedNotification01,
           onTap: () => context.push(Routes.comingSoon),
         ),
+        MenuTileButton(
+          label: l10n.homeScreenWidget,
+          icon: HugeIcons.strokeRoundedLayers01,
+          onTap: () => AddWidgetPromptBottomSheet.show(
+            context,
+            isFromSettings: true,
+          ),
+        ),
       ],
     );
   }

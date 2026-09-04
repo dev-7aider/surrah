@@ -2935,6 +2935,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No purchased items match the selected filter'**
   String get noPurchasedItemsFound;
+
+  /// No description provided for @homeScreenWidget.
+  ///
+  /// In en, this message translates to:
+  /// **'Home Screen Widget'**
+  String get homeScreenWidget;
+
+  /// No description provided for @addWidgetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a Home Screen Widget'**
+  String get addWidgetTitle;
+
+  /// No description provided for @addWidgetSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Get a quick view of your balance, today\'s income and expenses — right from your Home Screen.'**
+  String get addWidgetSubtitle;
+
+  /// No description provided for @instantAccessTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Instant access'**
+  String get instantAccessTitle;
+
+  /// No description provided for @instantAccessSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your balance in seconds'**
+  String get instantAccessSubtitle;
+
+  /// No description provided for @stayOnTopTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay on top'**
+  String get stayOnTopTitle;
+
+  /// No description provided for @stayOnTopSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'See today\'s income and expenses'**
+  String get stayOnTopSubtitle;
+
+  /// No description provided for @securePrivateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Secure & private'**
+  String get securePrivateTitle;
+
+  /// No description provided for @securePrivateSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your data stays on your device'**
+  String get securePrivateSubtitle;
+
+  /// No description provided for @addWidgetButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Widget'**
+  String get addWidgetButton;
+
+  /// No description provided for @maybeLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Maybe Later'**
+  String get maybeLater;
+
+  /// No description provided for @quickAccessBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick access to what matters'**
+  String get quickAccessBadge;
+
+  /// No description provided for @widgetPinnedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Widget added to your Home Screen'**
+  String get widgetPinnedSuccess;
+
+  /// No description provided for @howToAddWidgetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How to Add on iOS'**
+  String get howToAddWidgetTitle;
+
+  /// No description provided for @iosStep1.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to your Home Screen, touch and hold an empty area until apps jiggle'**
+  String get iosStep1;
+
+  /// No description provided for @iosStep2.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the \'+\' button in the upper corner'**
+  String get iosStep2;
+
+  /// No description provided for @iosStep3.
+  ///
+  /// In en, this message translates to:
+  /// **'Search for \'SURRAH\', choose your preferred size and tap \'Add Widget\''**
+  String get iosStep3;
+
+  /// No description provided for @gotIt.
+  ///
+  /// In en, this message translates to:
+  /// **'Got it'**
+  String get gotIt;
 }
 
 class _AppLocalizationsDelegate

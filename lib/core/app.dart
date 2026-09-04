@@ -23,11 +23,10 @@ import 'package:pockaw/core/services/widget_service/widget_sync_provider.dart';
 void handleWidgetUri(Uri uri) {
   final host = uri.host.toLowerCase();
   final path = uri.path;
-  final fullUriStr = uri.toString();
   final type = uri.queryParameters['type'];
 
   WidgetsBinding.instance.addPostFrameCallback((_) {
-    final currentPath = router.state?.uri.toString() ?? '';
+    final currentPath = router.state.uri.toString();
     // If currently on splash or onboarding, store as pending to open once main screen is reached
     if (currentPath == Routes.splash || currentPath == Routes.onboarding) {
       WidgetService.setPendingUri(uri);

@@ -555,5 +555,23 @@
       }
     }
   },
-  "noPurchasedItemsFound": "لا توجد مشتريات مطابقة للفلتر المحدد"
+  "noPurchasedItemsFound": "لا توجد مشتريات مطابقة للفلتر المحدد",
+  "homeScreenWidget": "أداة الشاشة الرئيسية",
+  "addWidgetTitle": "إضافة أداة الشاشة الرئيسية",
+  "addWidgetSubtitle": "احصل على نظرة سريعة على رصيدك، ومصاريف ودخل اليوم — مباشرة من شاشتك الرئيسية.",
+  "instantAccessTitle": "وصول فوري",
+  "instantAccessSubtitle": "تحقق من رصيدك في ثوانٍ",
+  "stayOnTopTitle": "ابقَ على اطلاع",
+  "stayOnTopSubtitle": "تابع مصاريفك ودخلك اليومي",
+  "securePrivateTitle": "آمن وخاص",
+  "securePrivateSubtitle": "بياناتك محفوظة على جهازك فقط",
+  "addWidgetButton": "إضافة الأداة",
+  "maybeLater": "ربما لاحقاً",
+  "quickAccessBadge": "وصول سريع لما يهمك",
+  "widgetPinnedSuccess": "تمت إضافة الأداة للشاشة الرئيسية",
+  "howToAddWidgetTitle": "طريقة الإضافة على iOS",
+  "iosStep1": "انتقل للشاشة الرئيسية والمس مطولاً أي مساحة فارغة حتى تهتز التطبيقات",
+  "iosStep2": "اضغط على زر '+' في الزاوية العلوية",
+  "iosStep3": "ابحث عن 'صُـرّة'، اختر الحجم المفضل واضغط 'إضافة أداة'",
+  "gotIt": "فهمت"
 }
