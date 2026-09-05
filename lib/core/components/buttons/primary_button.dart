@@ -48,6 +48,7 @@ class PrimaryButton extends FilledButton {
              ),
          child: Row(
            mainAxisAlignment: MainAxisAlignment.center,
+           mainAxisSize: MainAxisSize.min,
            children: [
              if (isLoading)
                const SizedBox.square(
@@ -57,7 +58,16 @@ class PrimaryButton extends FilledButton {
              if (isLoading) const Gap(AppSpacing.spacing12),
              if (icon != null) Icon(icon),
              if (icon != null) const Gap(AppSpacing.spacing8),
-             Text(isLoading ? loadingText : label, ),
+             Flexible(
+               child: FittedBox(
+                 fit: BoxFit.scaleDown,
+                 child: Text(
+                   isLoading ? loadingText : label,
+                   textAlign: TextAlign.center,
+                   maxLines: 1,
+                 ),
+               ),
+             ),
            ],
          ),
        );

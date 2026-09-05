@@ -41,11 +41,13 @@ class LocalBackupSection extends HookConsumerWidget {
         ),
         onConfirm: () async {
           context.pop(); // close confirmation sheet
+          if (context.mounted) {
+            context.pop(); // close restore list sheet
+          }
           final success = await ref
               .read(backupControllerProvider.notifier)
               .restoreFromFile(backupFile);
           if (success && context.mounted) {
-            context.pop(); // close restore selection sheet
             context.replace(Routes.main);
           }
         },
@@ -169,9 +171,9 @@ class LocalBackupSection extends HookConsumerWidget {
                   : 'اختيار ملف من الذاكرة (ZIP)',
               isOutlined: state.localBackups.isNotEmpty,
               onPressed: () async {
+                context.pop();
                 final success = await notifier.restoreFromLocalFile();
                 if (success && context.mounted) {
-                  context.pop();
                   context.replace(Routes.main);
                 }
               },
@@ -223,8 +225,14 @@ class LocalBackupSection extends HookConsumerWidget {
           label: l10n.restoreData,
           subtitle: Text(l10n.restoringFromZip),
           icon: HugeIcons.strokeRoundedDatabaseImport,
-          onTap: () {
-            _openRestoreSheet(context, ref, state, l10n);
+          onTap: () async {
+            await ref
+                .read(backupControllerProvider.notifier)
+                .fetchLastLocalBackupFile();
+            if (context.mounted) {
+              final latestState = ref.read(backupControllerProvider);
+              _openRestoreSheet(context, ref, latestState, l10n);
+            }
           },
         ),
         // show local backup and restore info card

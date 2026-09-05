@@ -39,12 +39,18 @@ class SecondaryButton extends OutlinedButton {
                      ),
                    if (label != null) const Gap(AppSpacing.spacing8),
                    if (label != null)
-                     Padding(
-                       padding: const EdgeInsets.only(top: 1),
-                       child: Text(
-                         label,
-                         style: AppTextStyles.body3.semibold.copyWith(
-                           color: context.secondaryText,
+                     Flexible(
+                       child: FittedBox(
+                         fit: BoxFit.scaleDown,
+                         child: Padding(
+                           padding: const EdgeInsets.only(top: 1),
+                           child: Text(
+                             label,
+                             style: AppTextStyles.body3.semibold.copyWith(
+                               color: context.secondaryText,
+                             ),
+                             maxLines: 1,
+                           ),
                          ),
                        ),
                      ),
