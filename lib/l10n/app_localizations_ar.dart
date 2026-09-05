@@ -1506,11 +1506,11 @@ class AppLocalizationsAr extends AppLocalizations {
   String get homeScreenWidget => 'أداة الشاشة الرئيسية';
 
   @override
-  String get addWidgetTitle => 'إضافة أداة الشاشة الرئيسية';
+  String get addWidgetTitle => 'ودجت صُـرّة على شاشتك';
 
   @override
   String get addWidgetSubtitle =>
-      'احصل على نظرة سريعة على رصيدك، ومصاريف ودخل اليوم — مباشرة من شاشتك الرئيسية.';
+      'تابع رصيدك ومصاريف اليوم وسجّل معاملاتك بلمسة واحدة دون الحاجة لفتح التطبيق.';
 
   @override
   String get instantAccessTitle => 'وصول فوري';
@@ -1531,7 +1531,41 @@ class AppLocalizationsAr extends AppLocalizations {
   String get securePrivateSubtitle => 'بياناتك محفوظة على جهازك فقط';
 
   @override
-  String get addWidgetButton => 'إضافة الأداة';
+  String get widgetProTipsTitle => 'تلميحات ومميزات ذكية';
+
+  @override
+  String get widgetTipSyncTitle => 'مزامنة لحظية وتلقائية';
+
+  @override
+  String get widgetTipSyncSubtitle =>
+      'يتحدث رصيدك ومصاريفك فورياً مع كل حركة دون استنزاف للبطارية';
+
+  @override
+  String get widgetTipQuickAddTitle => 'تسجيل فوري بلمسة واحدة';
+
+  @override
+  String get widgetTipQuickAddSubtitle =>
+      'اضغط على زر (+) في الودجت لفتح شاشة تسجيل العملية مباشرة';
+
+  @override
+  String get widgetTipPrivacyTitle => 'حماية وخصوصية تامة';
+
+  @override
+  String get widgetTipPrivacySubtitle =>
+      'بياناتك المالية مشفرة وتبقى محلياً على جهازك فقط بكل سرية';
+
+  @override
+  String get widgetProTipLabel => 'تلميح ذكي';
+
+  @override
+  String get widgetProTipCallout =>
+      'ضع الودجت في صفحة هاتفك الأولى لتراقب ميزانيتك اليومية قبل اتخاذ أي قرار شراء!';
+
+  @override
+  String get widgetNewFeatureBadge => 'جديد ومميز';
+
+  @override
+  String get addWidgetButton => 'إضافة الأداة للشاشة';
 
   @override
   String get maybeLater => 'ربما لاحقاً';

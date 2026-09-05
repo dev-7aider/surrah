@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -279,24 +280,33 @@ class AuthNotifier extends Notifier<UserModel> {
     UserModel? userModel;
 
     if (userString != null) {
-      final userJson = jsonDecode(userString);
-      userModel = UserModel.fromJson(userJson);
-      Log.i(userModel.toJson(), label: 'user session from prefs');
-    }
+      try {
+        final userJson = jsonDecode(userString);
+        userModel = UserModel.fromJson(userJson);
+        state = userModel;
+        Log.i(userModel.toJson(), label: 'user session from prefs');
+      } catch (e) {
+        Log.e('Failed to parse user from prefs: $e');
+      }
 
-    await selectDefaultCurrency();
+      // Populate currencies and verify/refresh user from DB in the background
+      unawaited(() async {
+        await selectDefaultCurrency();
+        final userDao = ref.read(userDaoProvider);
+        final userFromDb = await userDao.getUserByEmail(
+          userModel?.email ?? email ?? '',
+        );
+        if (userFromDb != null) {
+          state = userFromDb.toModel();
+          Log.i(state.toJson(), label: 'user session refreshed from db');
+        }
+      }());
 
-    final userDao = ref.read(userDaoProvider);
-    final userFromDb = await userDao.getUserByEmail(
-      userModel?.email ?? email ?? '',
-    );
-    if (userFromDb != null) {
-      userModel = userFromDb.toModel();
-      state = userModel;
-      Log.i(userModel.toJson(), label: 'user session from db');
       return userModel;
     }
 
+    // No user in prefs, warm up currencies in background
+    unawaited(selectDefaultCurrency());
     Log.i(null, label: 'no user session in db');
     return null;
   }

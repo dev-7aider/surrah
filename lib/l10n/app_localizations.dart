@@ -2945,13 +2945,13 @@ abstract class AppLocalizations {
   /// No description provided for @addWidgetTitle.
   ///
   /// In en, this message translates to:
-  /// **'Add a Home Screen Widget'**
+  /// **'SURRAH on Your Home Screen'**
   String get addWidgetTitle;
 
   /// No description provided for @addWidgetSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Get a quick view of your balance, today\'s income and expenses — right from your Home Screen.'**
+  /// **'Track your balance, today\'s spending, and log transactions in one tap without opening the app.'**
   String get addWidgetSubtitle;
 
   /// No description provided for @instantAccessTitle.
@@ -2990,10 +2990,70 @@ abstract class AppLocalizations {
   /// **'Your data stays on your device'**
   String get securePrivateSubtitle;
 
+  /// No description provided for @widgetProTipsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Pro Tips'**
+  String get widgetProTipsTitle;
+
+  /// No description provided for @widgetTipSyncTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Instant Auto-Sync'**
+  String get widgetTipSyncTitle;
+
+  /// No description provided for @widgetTipSyncSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your balance and expenses update automatically with zero battery drain'**
+  String get widgetTipSyncSubtitle;
+
+  /// No description provided for @widgetTipQuickAddTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'1-Tap Quick Action'**
+  String get widgetTipQuickAddTitle;
+
+  /// No description provided for @widgetTipQuickAddSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the (+) button on the widget to jump straight into logging a transaction'**
+  String get widgetTipQuickAddSubtitle;
+
+  /// No description provided for @widgetTipPrivacyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Private & On-Device'**
+  String get widgetTipPrivacyTitle;
+
+  /// No description provided for @widgetTipPrivacySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your financial records stay strictly encrypted on your phone'**
+  String get widgetTipPrivacySubtitle;
+
+  /// No description provided for @widgetProTipLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Tip'**
+  String get widgetProTipLabel;
+
+  /// No description provided for @widgetProTipCallout.
+  ///
+  /// In en, this message translates to:
+  /// **'Place the widget on your primary home screen to stay mindful of your daily budget before making purchases!'**
+  String get widgetProTipCallout;
+
+  /// No description provided for @widgetNewFeatureBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'New & Featured'**
+  String get widgetNewFeatureBadge;
+
   /// No description provided for @addWidgetButton.
   ///
   /// In en, this message translates to:
-  /// **'Add Widget'**
+  /// **'Add Widget to Screen'**
   String get addWidgetButton;
 
   /// No description provided for @maybeLater.

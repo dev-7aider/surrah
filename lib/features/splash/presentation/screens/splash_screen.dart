@@ -28,53 +28,44 @@ class SplashScreen extends HookConsumerWidget {
     // Use useEffect to run side effects once when the widget is built
     useEffect(() {
       Future<void> initializeApp() async {
-        // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-        /* SystemChrome.setEnabledSystemUIMode(
-          SystemUiMode.manual,
-          overlays: [
-            SystemUiOverlay.top,
-          ],
-        ); */
-
-        // Initialize database (this also triggers onCreate population services)
-        ref.read(databaseProvider);
-
-        // Initialize device info service
-        ref.read(deviceInfoUtilProvider);
-
-        // Initialize PackageInfoService
-        final packageInfoService = ref.read(packageInfoServiceProvider);
-        await packageInfoService.init();
-
-        // Initialize user activity service
-        final userActivityService = ref.read(userActivityServiceProvider);
-        await userActivityService.logActivity(
-          action: UserActivityAction.appLaunched,
-        );
-
-        // Initialize Home Screen Widget Service & Sync Data
-        await WidgetService.initialize();
-        ref.read(widgetSyncProvider).syncWidgetData();
-
-        // Delete log file only for mobile platforms
-        if (Platform.isAndroid || Platform.isIOS) {
-          final file = await Log.getLogFile();
-          file?.delete();
-        }
-
-        // Check user session and navigate
+        // Fast session check
         final auth = ref.read(authStateProvider.notifier);
         final user = await auth.getSession();
+
         if (context.mounted) {
           if (user == null) {
             GoRouter.of(rootNavKey.currentContext!).go(Routes.onboarding);
           } else {
-            ref
-                .read(userActivityServiceProvider)
-                .logActivity(action: UserActivityAction.signInWithSession);
             GoRouter.of(rootNavKey.currentContext!).go(Routes.main);
           }
         }
+
+        // Run non-critical initializations and sync in background
+        Future.microtask(() async {
+          ref.read(databaseProvider);
+          ref.read(deviceInfoUtilProvider);
+
+          final packageInfoService = ref.read(packageInfoServiceProvider);
+          await packageInfoService.init();
+
+          final userActivityService = ref.read(userActivityServiceProvider);
+          await userActivityService.logActivity(
+            action: UserActivityAction.appLaunched,
+          );
+          if (user != null) {
+            await userActivityService.logActivity(
+              action: UserActivityAction.signInWithSession,
+            );
+          }
+
+          await WidgetService.initialize();
+          ref.read(widgetSyncProvider).syncWidgetData();
+
+          if (Platform.isAndroid || Platform.isIOS) {
+            final file = await Log.getLogFile();
+            file?.delete();
+          }
+        });
       }
 
       initializeApp();

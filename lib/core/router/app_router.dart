@@ -20,33 +20,42 @@ import 'package:pockaw/features/splash/presentation/screens/splash_screen.dart';
 
 final rootNavKey = GlobalKey<NavigatorState>();
 
-final router = GoRouter(
-  navigatorKey: rootNavKey,
-  initialLocation: Routes.splash,
-  observers: <NavigatorObserver>[],
-  routes: [
-    GoRoute(
-      path: Routes.splash,
-      builder: (context, state) => const SplashScreen(),
-    ),
-    GoRoute(
-      path: Routes.comingSoon,
-      builder: (context, state) => const PlaceholderScreen(),
-    ),
+GoRouter createRouter({String initialLocation = Routes.main}) {
+  return GoRouter(
+    navigatorKey: rootNavKey,
+    initialLocation: initialLocation,
+    observers: <NavigatorObserver>[],
+    routes: [
+      GoRoute(
+        path: Routes.splash,
+        builder: (context, state) => const SplashScreen(),
+      ),
+      GoRoute(
+        path: Routes.comingSoon,
+        builder: (context, state) => const PlaceholderScreen(),
+      ),
 
-    // feature‐specific sub‐routers:
-    ...OnboardingRouter.routes,
-    ...AuthenticationRouter.routes,
-    ...TransactionRouter.routes,
-    ...CategoryRouter.routes,
-    ...GoalRouter.routes,
-    ...BudgetRouter.routes,
-    ...DebtRouter.routes,
-    ...KhumsRouter.routes,
-    ...PlannedPurchasesRouter.routes,
-    ...SettingsRouter.routes,
-    ...CurrencyRouter.routes,
-    ...WalletRouter.routes,
-    ...ReportRouter.routes,
-  ],
-);
+      // feature‐specific sub‐routers:
+      ...OnboardingRouter.routes,
+      ...AuthenticationRouter.routes,
+      ...TransactionRouter.routes,
+      ...CategoryRouter.routes,
+      ...GoalRouter.routes,
+      ...BudgetRouter.routes,
+      ...DebtRouter.routes,
+      ...KhumsRouter.routes,
+      ...PlannedPurchasesRouter.routes,
+      ...SettingsRouter.routes,
+      ...CurrencyRouter.routes,
+      ...WalletRouter.routes,
+      ...ReportRouter.routes,
+    ],
+  );
+}
+
+GoRouter router = createRouter();
+
+void initRouter({String initialLocation = Routes.main}) {
+  router = createRouter(initialLocation: initialLocation);
+}
+

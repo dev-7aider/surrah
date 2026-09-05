@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="ic_launcher_background">#FFFFFF</color>
+    <color name="splash_background_light">#FFFFFF</color>
+    <color name="splash_background_dark">#121212</color>
     
     <!-- Surrah Widget Dark Theme Colors (Identical to SarraTheme in iOS) -->
     <color name="widget_bg_start">#0D0012</color>

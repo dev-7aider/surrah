@@ -1515,11 +1515,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeScreenWidget => 'Home Screen Widget';
 
   @override
-  String get addWidgetTitle => 'Add a Home Screen Widget';
+  String get addWidgetTitle => 'SURRAH on Your Home Screen';
 
   @override
   String get addWidgetSubtitle =>
-      'Get a quick view of your balance, today\'s income and expenses — right from your Home Screen.';
+      'Track your balance, today\'s spending, and log transactions in one tap without opening the app.';
 
   @override
   String get instantAccessTitle => 'Instant access';
@@ -1540,7 +1540,41 @@ class AppLocalizationsEn extends AppLocalizations {
   String get securePrivateSubtitle => 'Your data stays on your device';
 
   @override
-  String get addWidgetButton => 'Add Widget';
+  String get widgetProTipsTitle => 'Smart Pro Tips';
+
+  @override
+  String get widgetTipSyncTitle => 'Instant Auto-Sync';
+
+  @override
+  String get widgetTipSyncSubtitle =>
+      'Your balance and expenses update automatically with zero battery drain';
+
+  @override
+  String get widgetTipQuickAddTitle => '1-Tap Quick Action';
+
+  @override
+  String get widgetTipQuickAddSubtitle =>
+      'Tap the (+) button on the widget to jump straight into logging a transaction';
+
+  @override
+  String get widgetTipPrivacyTitle => 'Private & On-Device';
+
+  @override
+  String get widgetTipPrivacySubtitle =>
+      'Your financial records stay strictly encrypted on your phone';
+
+  @override
+  String get widgetProTipLabel => 'Smart Tip';
+
+  @override
+  String get widgetProTipCallout =>
+      'Place the widget on your primary home screen to stay mindful of your daily budget before making purchases!';
+
+  @override
+  String get widgetNewFeatureBadge => 'New & Featured';
+
+  @override
+  String get addWidgetButton => 'Add Widget to Screen';
 
   @override
   String get maybeLater => 'Maybe Later';
