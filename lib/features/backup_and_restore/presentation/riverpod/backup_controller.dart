@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart';
 import 'package:pockaw/core/components/dialogs/toast.dart';
@@ -6,12 +7,12 @@ import 'package:pockaw/core/services/data_backup_service/data_backup_service_pro
 import 'package:pockaw/core/services/google/google_auth_service.dart';
 import 'package:pockaw/core/services/google/google_drive_service.dart';
 import 'package:pockaw/core/utils/logger.dart';
-import 'dart:io';
 import 'package:pockaw/features/user_activity/riverpod/user_activity_provider.dart';
 import 'package:pockaw/features/user_activity/data/enum/user_activity_action.dart';
 import 'package:pockaw/features/authentication/presentation/riverpod/auth_provider.dart';
 import 'package:pockaw/features/wallet/riverpod/wallet_providers.dart';
 import 'package:pockaw/core/database/daos/user_dao.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:toastification/toastification.dart';
 
 // Placeholder providers if not globally exported yet.
@@ -43,6 +44,7 @@ class BackupState {
   final DateTime? lastDriveBackupTime;
   final DateTime? lastDriveRestoreTime;
   final List<DriveFileSummary> driveBackups;
+  final List<File> localBackups;
 
   const BackupState({
     this.status = BackupStatus.idle,
@@ -54,6 +56,7 @@ class BackupState {
     this.lastDriveBackupTime,
     this.lastDriveRestoreTime,
     this.driveBackups = const [],
+    this.localBackups = const [],
   });
 
   BackupState copyWith({
@@ -66,6 +69,7 @@ class BackupState {
     DateTime? lastDriveBackupTime,
     DateTime? lastDriveRestoreTime,
     List<DriveFileSummary>? driveBackups,
+    List<File>? localBackups,
   }) {
     return BackupState(
       status: status ?? this.status,
@@ -77,6 +81,7 @@ class BackupState {
       lastDriveBackupTime: lastDriveBackupTime ?? this.lastDriveBackupTime,
       lastDriveRestoreTime: lastDriveRestoreTime ?? this.lastDriveRestoreTime,
       driveBackups: driveBackups ?? this.driveBackups,
+      localBackups: localBackups ?? this.localBackups,
     );
   }
 }
@@ -190,11 +195,13 @@ class BackupController extends Notifier<BackupState> {
       );
 
       if (await zip.exists()) {
+        final localFiles = await _backupService.getLocalBackupFiles();
         state = state.copyWith(
           status: BackupStatus.success,
           message: 'Backup saved to: ${zip.path}',
           localDirectory: zip.path,
           lastLocalBackupTime: DateTime.now(),
+          localBackups: localFiles,
         );
 
         ref
@@ -205,7 +212,22 @@ class BackupController extends Notifier<BackupState> {
               userId: ref.read(authStateProvider).id,
             );
 
-        Toast.show('Backup saved to: ${zip.path}');
+        Toast.show('Backup saved successfully');
+
+        // Prompt system share sheet so user can easily export to Downloads/Drive
+        try {
+          await SharePlus.instance.share(
+            ShareParams(
+              files: [XFile(zip.path, mimeType: 'application/zip')],
+              text: 'Pockaw Backup - صُـرّة',
+              subject: 'Pockaw Backup',
+            ),
+          );
+        } catch (e) {
+          Log.d('Share backup prompt dismissed or failed: $e',
+              label: 'BackupController');
+        }
+
         return zip;
       } else {
         state = state.copyWith(
@@ -350,26 +372,14 @@ class BackupController extends Notifier<BackupState> {
   }
 
   // --- Local Restore Flow ---
-  /// Picks a local backup zip, restores data and applies the restored user
-  /// into the auth state. Returns true on success, false otherwise.
-  Future<bool> restoreFromLocalFile() async {
+  /// Restores from a given [File] backup archive.
+  Future<bool> restoreFromFile(File file) async {
     state = state.copyWith(
       status: BackupStatus.loading,
-      message: 'Waiting for file selection...',
+      message: 'Restoring data...',
     );
 
     try {
-      final file = await _backupService.pickBackupZipFile();
-      if (file == null) {
-        state = state.copyWith(status: BackupStatus.idle); // User cancelled
-        return false;
-      }
-
-      state = state.copyWith(
-        status: BackupStatus.loading,
-        message: 'Restoring data...',
-      );
-
       final success = await _backupService.restoreDataFromFile(file);
 
       if (!success) {
@@ -392,8 +402,6 @@ class BackupController extends Notifier<BackupState> {
       // After successful restore, load the first user from DB and set auth state.
       final userRow = await ref.read(userDaoProvider).getFirstUser();
       if (userRow == null) {
-        // If no user after restore, treat as failure
-
         state = state.copyWith(
           status: BackupStatus.error,
           message: 'Restore failed.',
@@ -414,7 +422,7 @@ class BackupController extends Notifier<BackupState> {
       // Refresh active wallet
       await ref.read(activeWalletProvider.notifier).setDefaultWallet();
 
-      // Small delay to let UI settle (matches previous behavior in widget)
+      // Small delay to let UI settle
       await Future.delayed(const Duration(milliseconds: 1500));
 
       state = state.copyWith(
@@ -434,6 +442,40 @@ class BackupController extends Notifier<BackupState> {
 
       return true;
     } catch (e, st) {
+      Log.e('restoreFromFile failed: $e\n$st', label: 'BackupController');
+
+      state = state.copyWith(
+        status: BackupStatus.error,
+        message: 'Restore failed.',
+      );
+
+      ref
+          .read(userActivityServiceProvider)
+          .logActivity(action: UserActivityAction.restoreFailed);
+
+      Toast.show('Restore failed', type: ToastificationType.error);
+
+      return false;
+    }
+  }
+
+  /// Picks a local backup zip, restores data and applies the restored user
+  /// into the auth state. Returns true on success, false otherwise.
+  Future<bool> restoreFromLocalFile() async {
+    state = state.copyWith(
+      status: BackupStatus.loading,
+      message: 'Waiting for file selection...',
+    );
+
+    try {
+      final file = await _backupService.pickBackupZipFile();
+      if (file == null) {
+        state = state.copyWith(status: BackupStatus.idle); // User cancelled
+        return false;
+      }
+
+      return restoreFromFile(file);
+    } catch (e, st) {
       Log.e('restoreFromLocalFile failed: $e\n$st', label: 'BackupController');
 
       state = state.copyWith(
@@ -451,35 +493,80 @@ class BackupController extends Notifier<BackupState> {
     }
   }
 
+  /// Restore the latest available local backup directly from app storage.
+  Future<bool> restoreLatestLocalBackup() async {
+    final file = await _backupService.getLatestLocalBackupFile();
+    if (file == null) {
+      Toast.show('No local backup found');
+      return false;
+    }
+    return restoreFromFile(file);
+  }
+
+  /// Share/export a backup file using the system share sheet.
+  Future<void> shareBackup(File file) async {
+    try {
+      if (await file.exists()) {
+        await SharePlus.instance.share(
+          ShareParams(
+            files: [XFile(file.path, mimeType: 'application/zip')],
+            text: 'Pockaw Backup - صُـرّة',
+            subject: 'Pockaw Backup',
+          ),
+        );
+      } else {
+        Toast.show('Backup file not found');
+      }
+    } catch (e) {
+      Log.e('shareBackup failed: $e', label: 'BackupController');
+    }
+  }
+
   /// Returns the configured or last-used local backup file (metadata stored
-  /// in the user activity). Returns null if no information is available.
+  /// in user activity and verified on disk).
   Future<void> fetchLastLocalBackupFile() async {
+    final localFiles = await _backupService.getLocalBackupFiles();
+
     final user = ref.read(authStateProvider);
     final uid = user.id;
-    if (uid == null) return;
+    DateTime? lastBackupTime;
+    String? localDirectory;
 
-    final dao = ref.read(userActivityDaoProvider);
-    final activities = await dao.getByUserId(uid);
-
-    final backupActionNames = {
-      UserActivityAction.backupCreated.nameAsString,
-      UserActivityAction.backupFailed.nameAsString,
-    };
-
-    final list = activities
-        .where((a) => backupActionNames.contains(a.action))
-        .toList();
-    if (list.isEmpty) {
-      state = state.copyWith(localDirectory: null);
-      return;
+    if (localFiles.isNotEmpty) {
+      final latest = localFiles.first;
+      localDirectory = latest.path;
+      lastBackupTime = latest.lastModifiedSync();
     }
 
-    list.sort((a, b) => b.timestamp.compareTo(a.timestamp));
-    Log.d(list.map((e) => e.toJson()).toList(), label: 'local backup list');
-    final latest = list.first;
+    if (uid != null) {
+      final dao = ref.read(userActivityDaoProvider);
+      final activities = await dao.getByUserId(uid);
+
+      final backupActionNames = {
+        UserActivityAction.backupCreated.nameAsString,
+        UserActivityAction.backupFailed.nameAsString,
+      };
+
+      final list = activities
+          .where((a) => backupActionNames.contains(a.action))
+          .toList();
+      if (list.isNotEmpty) {
+        list.sort((a, b) => b.timestamp.compareTo(a.timestamp));
+        final latestActivity = list.first;
+        if (latestActivity.action ==
+            UserActivityAction.backupCreated.nameAsString) {
+          lastBackupTime = latestActivity.timestamp;
+          if (latestActivity.metadata != null) {
+            localDirectory = latestActivity.metadata;
+          }
+        }
+      }
+    }
+
     state = state.copyWith(
-      localDirectory: latest.metadata,
-      lastLocalBackupTime: latest.timestamp,
+      localBackups: localFiles,
+      localDirectory: localDirectory,
+      lastLocalBackupTime: lastBackupTime,
     );
   }
 

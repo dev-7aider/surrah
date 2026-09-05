@@ -36,7 +36,7 @@ class DataBackupService {
   // ---------------------------------------------------------------------------\
 
   /// 1. Create ZIP File
-  /// Creates a temporary folder, exports JSON + images, zips it, and returns the file.
+  /// Creates a temporary staging folder, exports JSON + images, zips it into PockawBackup, and returns the file.
   Future<File> createBackupZipFile({
     bool deleteImageBackupDirectory = false,
     bool deleteDataBackupFile = false,
@@ -44,22 +44,28 @@ class DataBackupService {
     bool staticZipFile = false,
   }) async {
     Log.i('Creating backup ZIP file...', label: 'Backup');
-    Directory? tempBackupDir;
+    Directory? stagingDir;
 
     try {
-      // A. Prepare temp directory
-      tempBackupDir = await _getDefaultDirectory();
+      // A. Prepare clean dedicated temp staging directory
+      final tempRoot = await getTemporaryDirectory();
+      stagingDir = Directory(p.join(tempRoot.path, 'pockaw_backup_staging'));
+      if (await stagingDir.exists()) {
+        await stagingDir.delete(recursive: true);
+      }
+      await stagingDir.create(recursive: true);
+
       final tempImagesDir = Directory(
-        p.join(tempBackupDir.path, _imagesDirName),
+        p.join(stagingDir.path, _imagesDirName),
       );
       await tempImagesDir.create(recursive: true);
 
       // B. Export data to JSON
       final backupData = await _exportDatabaseToJson();
-      final jsonFile = File(p.join(tempBackupDir.path, _jsonFileName));
+      final jsonFile = File(p.join(stagingDir.path, _jsonFileName));
       await jsonFile.writeAsString(jsonEncode(backupData.toJson()));
 
-      // C. Copy images to temp directory
+      // C. Copy images to staging directory
       final allImagePaths = await _getAllImagePaths(backupData);
       for (final originalPath in allImagePaths) {
         final originalFile = File(originalPath);
@@ -70,7 +76,9 @@ class DataBackupService {
         }
       }
 
-      // D. Create ZIP archive
+      // D. Prepare target directory for the ZIP file (PockawBackup)
+      final backupDir = await _getDefaultDirectory();
+
       final timestamp = DateTime.now()
           .toIso8601String()
           .replaceAll(':', '-')
@@ -82,21 +90,14 @@ class DataBackupService {
       }
 
       final zipFile = File(
-        p.join(tempBackupDir.path, zipFileName),
+        p.join(backupDir.path, zipFileName),
       );
 
+      // E. Create ZIP archive from the isolated staging directory only
       final encoder = ZipFileEncoder();
       encoder.create(zipFile.path);
-      await encoder.addDirectory(tempBackupDir, includeDirName: false);
+      await encoder.addDirectory(stagingDir, includeDirName: false);
       encoder.close();
-
-      if (deleteImageBackupDirectory) {
-        tempImagesDir.delete(recursive: true);
-      }
-
-      if (deleteDataBackupFile) {
-        jsonFile.delete();
-      }
 
       Log.i('Backup ZIP created at: ${zipFile.path}', label: 'Backup');
       return zipFile;
@@ -104,11 +105,11 @@ class DataBackupService {
       Log.e('Failed to create backup zip: $e\n$st', label: 'Backup Error');
       rethrow;
     } finally {
-      // Cleanup temp folder (but keep the zip file)
-      if (deleteBackupZipFile &&
-          tempBackupDir != null &&
-          await tempBackupDir.exists()) {
-        await tempBackupDir.delete(recursive: true);
+      // Cleanup staging folder
+      if (stagingDir != null && await stagingDir.exists()) {
+        try {
+          await stagingDir.delete(recursive: true);
+        } catch (_) {}
       }
     }
   }
@@ -122,8 +123,16 @@ class DataBackupService {
         allowedExtensions: ['zip'],
       );
 
-      if (result != null && result.files.single.path != null) {
-        return File(result.files.single.path!);
+      if (result != null && result.files.isNotEmpty) {
+        final pickedFile = result.files.single;
+        if (pickedFile.path != null) {
+          return File(pickedFile.path!);
+        } else if (pickedFile.bytes != null) {
+          final tempDir = await getTemporaryDirectory();
+          final tempFile = File(p.join(tempDir.path, pickedFile.name));
+          await tempFile.writeAsBytes(pickedFile.bytes!);
+          return tempFile;
+        }
       }
       return null;
     } catch (e, st) {
@@ -224,6 +233,33 @@ class DataBackupService {
       Log.e('Offline backup failed: $e\n$st', label: 'Backup Error');
       return false;
     }
+  }
+
+  /// 5. Get all local backup files saved inside app storage, newest first.
+  Future<List<File>> getLocalBackupFiles() async {
+    try {
+      final backupDir = await _getDefaultDirectory();
+      if (!await backupDir.exists()) return [];
+
+      final files = backupDir
+          .listSync()
+          .whereType<File>()
+          .where((f) => f.path.endsWith('.zip'))
+          .toList();
+
+      files.sort((a, b) => b.lastModifiedSync().compareTo(a.lastModifiedSync()));
+      return files;
+    } catch (e) {
+      Log.e('Failed to list local backup files: $e', label: 'Backup Error');
+      return [];
+    }
+  }
+
+  /// Returns the most recent local backup file in app storage, or null if none exist.
+  Future<File?> getLatestLocalBackupFile() async {
+    final files = await getLocalBackupFiles();
+    if (files.isEmpty) return null;
+    return files.first;
   }
 
   // ---------------------------------------------------------------------------
