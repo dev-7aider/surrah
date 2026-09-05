@@ -226,35 +226,54 @@ class AppDatabase extends _$AppDatabase {
   Future<void> _deleteAllWallets() => delete(wallets).go();
   Future<void> _deleteAllCategories() => delete(categories).go();
   Future<void> _deleteAllUserActivities() => delete(userActivities).go();
+  Future<void> _deleteAllDebtPayments() => delete(debtPayments).go();
+  Future<void> _deleteAllDebts() => delete(debts).go();
+  Future<void> _deleteAllKhumsInstallments() => delete(khumsInstallments).go();
+  Future<void> _deleteAllKhumsMoneySources() => delete(khumsMoneySources).go();
+  Future<void> _deleteAllKhumsYears() => delete(khumsYears).go();
+  Future<void> _deleteAllPlannedPurchases() => delete(plannedPurchases).go();
 
   /// Clears all data from all tables in the correct order to respect foreign key constraints.
   Future<void> clearAllTables() async {
     Log.i('Clearing all database tables...', label: 'database');
     await transaction(() async {
       // Delete in reverse dependency order
+      await _deleteAllDebtPayments();
+      await _deleteAllDebts();
+      await _deleteAllKhumsInstallments();
+      await _deleteAllKhumsMoneySources();
+      await _deleteAllKhumsYears();
+      await _deleteAllPlannedPurchases();
       await _deleteAllChecklistItems();
       await _deleteAllBudgets();
       await _deleteAllTransactions();
       await _deleteAllGoals();
-      await _deleteAllUsers(); // Users table has no incoming FKs from other tables
+      await _deleteAllUserActivities();
       await _deleteAllWallets();
       await _deleteAllCategories();
-      await _deleteAllUserActivities();
+      await _deleteAllUsers();
     });
     Log.i('All database tables cleared.', label: 'database');
   }
 
   /// Inserts data into tables in the correct order to respect foreign key constraints.
   /// This method is designed to be used during a restore operation.
-  Future<void> insertAllData(
-    List<Map<String, dynamic>> usersData,
-    List<Map<String, dynamic>> categoriesData,
-    List<Map<String, dynamic>> walletsData,
-    List<Map<String, dynamic>> budgetsData,
-    List<Map<String, dynamic>> goalsData,
-    List<Map<String, dynamic>> checklistItemsData,
-    List<Map<String, dynamic>> transactionsData,
-  ) async {
+  Future<void> insertAllData({
+    required List<Map<String, dynamic>> usersData,
+    required List<Map<String, dynamic>> categoriesData,
+    required List<Map<String, dynamic>> walletsData,
+    required List<Map<String, dynamic>> budgetsData,
+    required List<Map<String, dynamic>> goalsData,
+    required List<Map<String, dynamic>> checklistItemsData,
+    required List<Map<String, dynamic>> transactionsData,
+    List<Map<String, dynamic>> debtsData = const [],
+    List<Map<String, dynamic>> debtPaymentsData = const [],
+    List<Map<String, dynamic>> khumsYearsData = const [],
+    List<Map<String, dynamic>> khumsMoneySourcesData = const [],
+    List<Map<String, dynamic>> khumsInstallmentsData = const [],
+    List<Map<String, dynamic>> plannedPurchasesData = const [],
+    List<Map<String, dynamic>> userActivitiesData = const [],
+  }) async {
     Log.i('Inserting all data into database...', label: 'database');
     await transaction(() async {
       // Insert in dependency order
@@ -296,6 +315,68 @@ class AppDatabase extends _$AppDatabase {
           checklistItemsData.map((e) => ChecklistItem.fromJson(e)).toList(),
         ),
       );
+      if (debtsData.isNotEmpty) {
+        await batch(
+          (b) => b.insertAll(
+            debts,
+            debtsData.map((e) => Debt.fromJson(e)).toList(),
+          ),
+        );
+      }
+      if (debtPaymentsData.isNotEmpty) {
+        await batch(
+          (b) => b.insertAll(
+            debtPayments,
+            debtPaymentsData.map((e) => DebtPayment.fromJson(e)).toList(),
+          ),
+        );
+      }
+      if (khumsYearsData.isNotEmpty) {
+        await batch(
+          (b) => b.insertAll(
+            khumsYears,
+            khumsYearsData.map((e) => KhumsYearEntry.fromJson(e)).toList(),
+          ),
+        );
+      }
+      if (khumsMoneySourcesData.isNotEmpty) {
+        await batch(
+          (b) => b.insertAll(
+            khumsMoneySources,
+            khumsMoneySourcesData
+                .map((e) => KhumsMoneySourceEntry.fromJson(e))
+                .toList(),
+          ),
+        );
+      }
+      if (khumsInstallmentsData.isNotEmpty) {
+        await batch(
+          (b) => b.insertAll(
+            khumsInstallments,
+            khumsInstallmentsData
+                .map((e) => KhumsInstallmentEntry.fromJson(e))
+                .toList(),
+          ),
+        );
+      }
+      if (plannedPurchasesData.isNotEmpty) {
+        await batch(
+          (b) => b.insertAll(
+            plannedPurchases,
+            plannedPurchasesData
+                .map((e) => PlannedPurchase.fromJson(e))
+                .toList(),
+          ),
+        );
+      }
+      if (userActivitiesData.isNotEmpty) {
+        await batch(
+          (b) => b.insertAll(
+            userActivities,
+            userActivitiesData.map((e) => UserActivity.fromJson(e)).toList(),
+          ),
+        );
+      }
     });
     Log.i('All data inserted successfully.', label: 'database');
   }

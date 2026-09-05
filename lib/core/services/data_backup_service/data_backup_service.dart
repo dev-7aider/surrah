@@ -289,6 +289,27 @@ class DataBackupService {
     final transactions = (await _db.transactionDao.getAllTransactions())
         .map((e) => e.toMap())
         .toList();
+    final debts = (await _db.select(_db.debts).get())
+        .map((e) => e.toMap())
+        .toList();
+    final debtPayments = (await _db.select(_db.debtPayments).get())
+        .map((e) => e.toMap())
+        .toList();
+    final khumsYears = (await _db.select(_db.khumsYears).get())
+        .map((e) => e.toMap())
+        .toList();
+    final khumsMoneySources = (await _db.select(_db.khumsMoneySources).get())
+        .map((e) => e.toMap())
+        .toList();
+    final khumsInstallments = (await _db.select(_db.khumsInstallments).get())
+        .map((e) => e.toMap())
+        .toList();
+    final plannedPurchases = (await _db.select(_db.plannedPurchases).get())
+        .map((e) => e.toMap())
+        .toList();
+    final userActivities = (await _db.userActivityDao.getAllActivities())
+        .map((e) => e.toMap())
+        .toList();
 
     return BackupData(
       users: users,
@@ -298,19 +319,33 @@ class DataBackupService {
       goals: goals,
       checklistItems: checklistItems,
       transactions: transactions,
+      debts: debts,
+      debtPayments: debtPayments,
+      khumsYears: khumsYears,
+      khumsMoneySources: khumsMoneySources,
+      khumsInstallments: khumsInstallments,
+      plannedPurchases: plannedPurchases,
+      userActivities: userActivities,
     );
   }
 
   Future<void> _importJsonToDatabase(BackupData data) async {
     await _db.clearAllTables();
     await _db.insertAllData(
-      data.users,
-      data.categories,
-      data.wallets,
-      data.budgets,
-      data.goals,
-      data.checklistItems,
-      data.transactions,
+      usersData: data.users,
+      categoriesData: data.categories,
+      walletsData: data.wallets,
+      budgetsData: data.budgets,
+      goalsData: data.goals,
+      checklistItemsData: data.checklistItems,
+      transactionsData: data.transactions,
+      debtsData: data.debts,
+      debtPaymentsData: data.debtPayments,
+      khumsYearsData: data.khumsYears,
+      khumsMoneySourcesData: data.khumsMoneySources,
+      khumsInstallmentsData: data.khumsInstallments,
+      plannedPurchasesData: data.plannedPurchases,
+      userActivitiesData: data.userActivities,
     );
   }
 
