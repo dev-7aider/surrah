@@ -19,9 +19,12 @@ class MainScreen extends ConsumerStatefulWidget {
 }
 
 class _MainScreenState extends ConsumerState<MainScreen> {
+  late final PageController _pageController;
+
   @override
   void initState() {
     super.initState();
+    _pageController = PageController(initialPage: ref.read(pageControllerProvider));
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final pendingUri = WidgetService.consumePendingUri();
       if (pendingUri != null && mounted) {
@@ -31,28 +34,42 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   }
 
   @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final currentPage = ref.watch(pageControllerProvider);
-    // It's generally recommended to create PageController outside build or use usePageController hook if stateful,
-    // but for this structure, ensure it's stable or managed by a provider if complex interactions are needed.
-    // For this specific case where it's driven by Riverpod's currentPage, it's acceptable.
-    final pageController = PageController(initialPage: currentPage);
+    if (_pageController.hasClients && _pageController.page?.round() != currentPage) {
+      _pageController.jumpToPage(currentPage);
+    }
 
-    final Widget pageViewWidget = PageView(
-      controller: pageController,
+    final Widget pageViewWidget = PageView.builder(
+      controller: _pageController,
+      itemCount: 4,
       onPageChanged: (value) {
         ref.read(pageControllerProvider.notifier).setPage(value);
       },
-      children: const [
-        DashboardScreen(),
-        TransactionScreen(),
-        GoalScreen(),
-        BudgetScreen(),
-      ],
+      itemBuilder: (context, index) {
+        switch (index) {
+          case 0:
+            return const DashboardScreen();
+          case 1:
+            return const TransactionScreen();
+          case 2:
+            return const GoalScreen();
+          case 3:
+            return const BudgetScreen();
+          default:
+            return const SizedBox.shrink();
+        }
+      },
     );
 
     final Widget navigationControls = CustomBottomAppBar(
-      pageController: pageController,
+      pageController: _pageController,
     );
 
     return PopScope(

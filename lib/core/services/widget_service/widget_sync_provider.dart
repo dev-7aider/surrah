@@ -48,8 +48,8 @@ final autoWidgetSyncProvider = Provider<void>((ref) {
     sub3.cancel();
   });
 
-  // Defer initial sync to next microtask so build phase completes first
-  Future.microtask(() => syncService.syncWidgetData());
+  // Defer initial sync after app is fully rendered to avoid startup jank
+  Future.delayed(const Duration(seconds: 2), () => syncService.syncWidgetData());
 });
 
 class WidgetSyncService {

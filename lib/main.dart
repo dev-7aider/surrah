@@ -38,8 +38,8 @@ Future<void> main() async {
   );
   debugPrint('⚡ [STARTUP OPTIMIZED] UI mounted and runApp called in: ${sw.elapsedMilliseconds}ms');
 
-  // Defer background tasks so they never block app launch
-  unawaited(() async {
+  // Defer background tasks until initial frame rendering has completely settled
+  Future.delayed(const Duration(milliseconds: 1500), () async {
     // 1. Initialize Home Widget settings
     await WidgetService.initialize();
 
@@ -64,5 +64,5 @@ Future<void> main() async {
       final file = await Log.getLogFile();
       file?.delete();
     }
-  }());
+  });
 }
