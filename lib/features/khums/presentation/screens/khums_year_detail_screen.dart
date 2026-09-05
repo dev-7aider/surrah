@@ -61,7 +61,7 @@ class KhumsYearDetailScreen extends ConsumerWidget {
                       ),
                       const Gap(AppSpacing.spacing4),
                       Text(
-                        year.formatHijriRange(locale),
+                        year.formatHijriRange(locale), 
                         style: AppTextStyles.body4.copyWith(
                           color: context.secondaryText,
                         ),

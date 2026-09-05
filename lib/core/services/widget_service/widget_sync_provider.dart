@@ -136,8 +136,14 @@ class WidgetSyncService {
       // 5. Build recent 2-3 transactions payload
       final List<Map<String, dynamic>> recentTransactionsList = [];
       for (final tx in transactions.take(3)) {
-        final bool isExpense = tx.transactionType == TransactionType.expense;
-        final String sign = isExpense ? '-' : '+';
+        final String sign;
+        if (tx.transactionType == TransactionType.expense) {
+          sign = '-';
+        } else if (tx.transactionType == TransactionType.income) {
+          sign = '+';
+        } else {
+          sign = '';
+        }
         final String formattedAmount =
             '$sign${tx.amount.toPriceFormat()} $currencySymbol';
 

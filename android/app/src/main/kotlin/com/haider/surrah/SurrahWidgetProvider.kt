@@ -64,28 +64,38 @@ class SurrahWidgetProvider : HomeWidgetProvider() {
                         setTextViewText(R.id.widget_balance_label, balanceLabel)
                     } catch (e: Exception) {}
 
+                    // Colors
+                    val incomeColor = context.getColor(R.color.widget_income_green)
+                    val expenseColor = context.getColor(R.color.widget_expense_red)
+                    val transferColor = context.getColor(R.color.widget_transfer_blue)
+
                     // Action buttons: - for Expense (RED), + for Income (GREEN), ⇄ for Transfer
                     try {
                         setTextViewText(R.id.widget_btn_expense, "- $expenseLabel")
+                        setTextColor(R.id.widget_btn_expense, expenseColor)
                     } catch (e: Exception) {}
 
                     try {
                         setTextViewText(R.id.widget_btn_income, "+ $incomeLabel")
+                        setTextColor(R.id.widget_btn_income, incomeColor)
                     } catch (e: Exception) {}
 
                     try {
                         setTextViewText(R.id.widget_btn_transfer, "⇄ $transferLabel")
+                        setTextColor(R.id.widget_btn_transfer, transferColor)
                     } catch (e: Exception) {}
 
                     // Daily cashflow: Income (GREEN) & Expenses (RED)
                     try {
                         setTextViewText(R.id.widget_income_label, incomeTodayLabel)
                         setTextViewText(R.id.widget_today_income, todayIncomeFormatted)
+                        setTextColor(R.id.widget_today_income, incomeColor)
                     } catch (e: Exception) {}
 
                     try {
                         setTextViewText(R.id.widget_expenses_label, expensesTodayLabel)
                         setTextViewText(R.id.widget_today_expenses, todayExpensesFormatted)
+                        setTextColor(R.id.widget_today_expenses, expenseColor)
                     } catch (e: Exception) {}
 
                     // Large widget: Recent transactions list
@@ -105,76 +115,65 @@ class SurrahWidgetProvider : HomeWidgetProvider() {
                             } else {
                                 setViewVisibility(R.id.widget_tx_empty, View.GONE)
 
-                                // Tx 1
-                                if (count >= 1) {
-                                    val tx1 = txArray.getJSONObject(0)
-                                    setViewVisibility(R.id.widget_tx_1, View.VISIBLE)
-                                    setTextViewText(R.id.widget_tx_1_title, tx1.optString("title", "Transaction"))
-                                    setTextViewText(R.id.widget_tx_1_category, tx1.optString("category", ""))
-                                    setTextViewText(R.id.widget_tx_1_amount, tx1.optString("amount_formatted", ""))
-                                    val isExpense = tx1.optString("type", "expense").lowercase() == "expense"
-                                    setImageViewResource(
-                                        R.id.widget_tx_1_icon,
-                                        if (isExpense) R.drawable.ic_widget_cart else R.drawable.ic_widget_income_cash
-                                    )
+                                val rows = listOf(
+                                    listOf(R.id.widget_tx_1, R.id.widget_tx_1_icon, R.id.widget_tx_1_title, R.id.widget_tx_1_category, R.id.widget_tx_1_amount),
+                                    listOf(R.id.widget_tx_2, R.id.widget_tx_2_icon, R.id.widget_tx_2_title, R.id.widget_tx_2_category, R.id.widget_tx_2_amount),
+                                    listOf(R.id.widget_tx_3, R.id.widget_tx_3_icon, R.id.widget_tx_3_title, R.id.widget_tx_3_category, R.id.widget_tx_3_amount)
+                                )
 
-                                    val tx1Id = tx1.optInt("id", 0)
-                                    val tx1Intent = HomeWidgetLaunchIntent.getActivity(
-                                        context,
-                                        MainActivity::class.java,
-                                        Uri.parse("surrah://transaction/$tx1Id")
-                                    )
-                                    setOnClickPendingIntent(R.id.widget_tx_1, tx1Intent)
-                                } else {
-                                    setViewVisibility(R.id.widget_tx_1, View.GONE)
-                                }
+                                for (i in rows.indices) {
+                                    val row = rows[i]
+                                    val rowId = row[0]
+                                    val iconId = row[1]
+                                    val titleId = row[2]
+                                    val categoryId = row[3]
+                                    val amountId = row[4]
 
-                                // Tx 2
-                                if (count >= 2) {
-                                    val tx2 = txArray.getJSONObject(1)
-                                    setViewVisibility(R.id.widget_tx_2, View.VISIBLE)
-                                    setTextViewText(R.id.widget_tx_2_title, tx2.optString("title", "Transaction"))
-                                    setTextViewText(R.id.widget_tx_2_category, tx2.optString("category", ""))
-                                    setTextViewText(R.id.widget_tx_2_amount, tx2.optString("amount_formatted", ""))
-                                    val isExpense = tx2.optString("type", "expense").lowercase() == "expense"
-                                    setImageViewResource(
-                                        R.id.widget_tx_2_icon,
-                                        if (isExpense) R.drawable.ic_widget_cart else R.drawable.ic_widget_income_cash
-                                    )
+                                    if (i < count) {
+                                        val tx = txArray.getJSONObject(i)
+                                        setViewVisibility(rowId, View.VISIBLE)
+                                        setTextViewText(titleId, tx.optString("title", "Transaction"))
+                                        setTextViewText(categoryId, tx.optString("category", ""))
+                                        setTextViewText(amountId, tx.optString("amount_formatted", ""))
 
-                                    val tx2Id = tx2.optInt("id", 0)
-                                    val tx2Intent = HomeWidgetLaunchIntent.getActivity(
-                                        context,
-                                        MainActivity::class.java,
-                                        Uri.parse("surrah://transaction/$tx2Id")
-                                    )
-                                    setOnClickPendingIntent(R.id.widget_tx_2, tx2Intent)
-                                } else {
-                                    setViewVisibility(R.id.widget_tx_2, View.GONE)
-                                }
+                                        val type = tx.optString("type", "expense").lowercase()
+                                        val isIncome = type == "income"
+                                        val isTransfer = type == "transfer"
 
-                                // Tx 3
-                                if (count >= 3) {
-                                    val tx3 = txArray.getJSONObject(2)
-                                    setViewVisibility(R.id.widget_tx_3, View.VISIBLE)
-                                    setTextViewText(R.id.widget_tx_3_title, tx3.optString("title", "Transaction"))
-                                    setTextViewText(R.id.widget_tx_3_category, tx3.optString("category", ""))
-                                    setTextViewText(R.id.widget_tx_3_amount, tx3.optString("amount_formatted", ""))
-                                    val isExpense = tx3.optString("type", "expense").lowercase() == "expense"
-                                    setImageViewResource(
-                                        R.id.widget_tx_3_icon,
-                                        if (isExpense) R.drawable.ic_widget_cart else R.drawable.ic_widget_income_cash
-                                    )
+                                        val (textColor, iconRes, bgRes) = when {
+                                            isIncome -> Triple(
+                                                incomeColor,
+                                                R.drawable.ic_widget_income_cash,
+                                                R.drawable.widget_icon_income_bg
+                                            )
+                                            isTransfer -> Triple(
+                                                transferColor,
+                                                R.drawable.ic_widget_transfer,
+                                                R.drawable.widget_icon_transfer_bg
+                                            )
+                                            else -> Triple(
+                                                expenseColor,
+                                                R.drawable.ic_widget_cart,
+                                                R.drawable.widget_icon_expense_bg
+                                            )
+                                        }
 
-                                    val tx3Id = tx3.optInt("id", 0)
-                                    val tx3Intent = HomeWidgetLaunchIntent.getActivity(
-                                        context,
-                                        MainActivity::class.java,
-                                        Uri.parse("surrah://transaction/$tx3Id")
-                                    )
-                                    setOnClickPendingIntent(R.id.widget_tx_3, tx3Intent)
-                                } else {
-                                    setViewVisibility(R.id.widget_tx_3, View.GONE)
+                                        setTextColor(amountId, textColor)
+                                        setImageViewResource(iconId, iconRes)
+                                        try {
+                                            setInt(iconId, "setBackgroundResource", bgRes)
+                                        } catch (e: Exception) {}
+
+                                        val txId = tx.optInt("id", 0)
+                                        val txIntent = HomeWidgetLaunchIntent.getActivity(
+                                            context,
+                                            MainActivity::class.java,
+                                            Uri.parse("surrah://transaction/$txId")
+                                        )
+                                        setOnClickPendingIntent(rowId, txIntent)
+                                    } else {
+                                        setViewVisibility(rowId, View.GONE)
+                                    }
                                 }
                             }
                         } catch (e: Exception) {

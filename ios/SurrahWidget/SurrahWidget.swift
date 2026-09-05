@@ -14,6 +14,12 @@ struct WidgetTransaction: Identifiable, Decodable {
     var isExpense: Bool {
         return type.lowercased() == "expense"
     }
+    var isIncome: Bool {
+        return type.lowercased() == "income"
+    }
+    var isTransfer: Bool {
+        return type.lowercased() == "transfer"
+    }
 }
 
 // MARK: - Timeline Entry
@@ -521,15 +527,18 @@ struct LargeWidgetView: View {
                     Spacer()
                 } else {
                     ForEach(entry.recentTransactions.prefix(3)) { tx in
+                        let txColor = tx.isIncome ? SarraTheme.incomeGreen : (tx.isTransfer ? SarraTheme.transferBlue : SarraTheme.expenseRed)
+                        let txIcon = tx.isIncome ? "banknote.fill" : (tx.isTransfer ? "arrow.left.arrow.right" : "cart.fill")
+
                         Link(destination: URL(string: "surrah://transaction/\(tx.id)")!) {
                             HStack(spacing: 7) {
                                 Circle()
-                                    .fill(tx.isExpense ? SarraTheme.expenseRed.opacity(0.15) : SarraTheme.incomeGreen.opacity(0.15))
+                                    .fill(txColor.opacity(0.15))
                                     .frame(width: 22, height: 22)
                                     .overlay(
-                                        Image(systemName: tx.isExpense ? "cart.fill" : "banknote.fill")
+                                        Image(systemName: txIcon)
                                             .font(.system(size: 10))
-                                            .foregroundColor(tx.isExpense ? SarraTheme.expenseRed : SarraTheme.incomeGreen)
+                                            .foregroundColor(txColor)
                                     )
                                 
                                 VStack(alignment: .leading, spacing: 1) {
@@ -548,7 +557,7 @@ struct LargeWidgetView: View {
                                 
                                 Text(tx.amount_formatted)
                                     .font(.system(size: 11, weight: .bold, design: .rounded))
-                                    .foregroundColor(tx.isExpense ? SarraTheme.expenseRed : SarraTheme.incomeGreen)
+                                    .foregroundColor(txColor)
                                     .lineLimit(1)
                             }
                             .padding(.horizontal, 7)
